@@ -1013,8 +1013,8 @@ if(makingViewport){
   const clonesAfter=originals.map(card=>card.cloneNode(true));
   function prepararClone(clone,original){
    clone.dataset.makingClone='1';
-   clone.addEventListener('click',()=>abrirVideo(clone));
-   clone.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirVideo(clone)}});
+   /* Os clones recebem os mesmos eventos no listener geral abaixo. Não registrar
+      outro click/keydown aqui evita abrir e destruir o player duas vezes. */
    /* As capas são carregadas de forma assíncrona; espelha o src nas cópias também. */
    const originalImg=original.querySelector('.video-cover');
    const cloneImg=clone.querySelector('.video-cover');
@@ -1059,12 +1059,11 @@ function scrollMaking(direction){
 if(makingPrev)makingPrev.addEventListener('click',()=>scrollMaking(-1));
 if(makingNext)makingNext.addEventListener('click',()=>scrollMaking(1));
 
-/* PLAYER MODAL DO PORTFÓLIO */
+/* PLAYER MODAL DO PORTFÓLIO — iframe novo por abertura e eventos delegados */
 const videoModal=document.getElementById('videoModal');
-const modalVideo=document.getElementById('modalVideo');
 const modalFrame=document.getElementById('modalFrame');
 const videoModalClose=document.getElementById('videoModalClose');
-let modalVimeoPlayer=null;
+let modalVideo=null;
 let modalPlayerToken=0;
 
 function ajustarPlayerModal(largura,altura){
@@ -1083,52 +1082,44 @@ function ajustarPlayerModal(largura,altura){
  modalFrame.style.maxHeight=alturaMaxima+'px';
 }
 
-function ajustarPlayerPelasDimensoesReais(token){
- if(!modalVimeoPlayer)return;
- Promise.all([modalVimeoPlayer.getVideoWidth(),modalVimeoPlayer.getVideoHeight()]).then(function(dimensoes){
-  if(token!==modalPlayerToken||!videoModal.classList.contains('open'))return;
-  const largura=Number(dimensoes[0]),altura=Number(dimensoes[1]);
-  if(largura>0&&altura>0)ajustarPlayerModal(largura,altura);
- }).catch(function(){});
-}
-
 function abrirVideo(card){
  if(window.pararNarracaoFundo)window.pararNarracaoFundo();
- const endereco=card.dataset.playerSrc;
+ const endereco=card && (card.dataset.playerSrc || card.getAttribute('data-player-src'));
  if(!endereco)return;
+ let url;
+ try{url=new URL(endereco,window.location.href)}catch(e){return}
+ if(!/player\.vimeo\.com|youtube\.com|youtu\.be/.test(url.hostname))return;
  modalPlayerToken++;
- const token=modalPlayerToken;
- if(modalVimeoPlayer){try{modalVimeoPlayer.destroy()}catch(e){}modalVimeoPlayer=null}
- const url=new URL(endereco);
+ /* Retira completamente o player anterior antes de inserir o próximo. */
+ if(modalVideo){modalVideo.remove();modalVideo=null}
+ const iframe=document.createElement('iframe');
+ iframe.id='modalVideo';
+ iframe.title=card.getAttribute('aria-label')||'Vídeo do portfólio';
+ iframe.allow='autoplay; fullscreen; picture-in-picture; encrypted-media';
+ iframe.allowFullscreen=true;
+ iframe.referrerPolicy='strict-origin-when-cross-origin';
  url.searchParams.set('autoplay','1');
  url.searchParams.set('title','0');
  url.searchParams.set('byline','0');
  url.searchParams.set('portrait','0');
- url.searchParams.set('dnt','1');
  url.searchParams.set('playsinline','1');
  url.searchParams.set('controls','1');
- url.searchParams.set('transparent','0');
+ iframe.src=url.toString();
+ modalVideo=iframe;
+ modalFrame.appendChild(iframe);
  const imagem=card.querySelector('.video-cover');
  if(imagem&&imagem.naturalWidth&&imagem.naturalHeight)ajustarPlayerModal(imagem.naturalWidth,imagem.naturalHeight);
- else ajustarPlayerModal(9,16);
- modalVideo.src=url.toString();
+ else ajustarPlayerModal(16,9);
  videoModal.classList.add('open');
  document.body.style.overflow='hidden';
  videoModalClose.focus();
- if(window.Vimeo&&window.Vimeo.Player){
-  try{
-   modalVimeoPlayer=new Vimeo.Player(modalVideo);
-   modalVimeoPlayer.ready().then(function(){if(token!==modalPlayerToken)return;ajustarPlayerPelasDimensoesReais(token)}).catch(function(){});
-  }catch(e){}
- }
 }
 
 function fecharVideo(){
  modalPlayerToken++;
  videoModal.classList.remove('open');
- if(modalVimeoPlayer){try{modalVimeoPlayer.destroy()}catch(e){}modalVimeoPlayer=null}
- modalVideo.src='';
- document.body.style.overflow=storiesViewer.classList.contains('aberto')?'hidden':'';
+ if(modalVideo){modalVideo.src='about:blank';modalVideo.remove();modalVideo=null}
+ document.body.style.overflow=(typeof storiesViewer!=='undefined'&&storiesViewer.classList.contains('aberto'))?'hidden':'';
  modalFrame.style.width='';
  modalFrame.style.height='';
  modalFrame.style.maxWidth='';
@@ -1136,15 +1127,18 @@ function fecharVideo(){
  modalFrame.style.aspectRatio='16/9';
 }
 
-document.querySelectorAll('.video-card').forEach(function(card){
- card.addEventListener('click',function(){abrirVideo(card)});
- card.addEventListener('keydown',function(event){
-  if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirVideo(card)}
- });
+/* Delegação: funciona também com cards criados/duplicados pelo carrossel. */
+document.addEventListener('click',function(event){
+ const card=event.target.closest('.video-card');
+ if(card && !event.target.closest('a,button'))abrirVideo(card);
+});
+document.addEventListener('keydown',function(event){
+ const card=event.target.closest && event.target.closest('.video-card');
+ if(card&&(event.key==='Enter'||event.key===' ')){event.preventDefault();abrirVideo(card)}
 });
 videoModalClose.addEventListener('click',fecharVideo);
 videoModal.addEventListener('click',function(event){if(event.target===videoModal)fecharVideo()});
-window.addEventListener('resize',function(){if(videoModal.classList.contains('open')&&modalVimeoPlayer)ajustarPlayerPelasDimensoesReais(modalPlayerToken)});
+window.addEventListener('resize',function(){if(videoModal.classList.contains('open'))ajustarPlayerModal(window.innerWidth<=600?9:16,window.innerWidth<=600?16:9)});
 
 /* DADOS DOS DESTAQUES */
 const videoStoryExemplo='https://player.vimeo.com/video/1189278924?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1';
