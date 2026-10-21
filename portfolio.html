@@ -1630,21 +1630,24 @@ document.querySelectorAll('.destaque-item').forEach(function(botao){
 
 /* BOTÕES DO VISUALIZADOR */
 storiesClose.addEventListener('click',fecharDestaque);
-storyNextButton.addEventListener('click',proximoDestaque);
-storyPrevButton.addEventListener('click',destaqueAnterior);
+storyNextButton.addEventListener('click',proximoStory);
+storyPrevButton.addEventListener('click',storyAnterior);
 document.getElementById('storyClickNext').addEventListener('click',proximoStory);
 document.getElementById('storyClickPrev').addEventListener('click',storyAnterior);
 storyPauseButton.addEventListener('click',alternarPausa);
 storyMuteButton.addEventListener('click',alternarSom);
 storyVolume.addEventListener('input',function(){mudarVolume(this.value)});
 
-storyPreviewLeft.addEventListener('click',function(){destaqueAnterior()});
-storyPreviewRight.addEventListener('click',function(){proximoDestaque()});
+/* Clicar nas prévias laterais abre diretamente o destaque correspondente.
+   As setas dentro do visualizador continuam avançando vídeo por vídeo. */
+storyPreviewLeft.addEventListener('click',function(){
+ if(destaqueAtual>0)abrirDestaque(destaqueAtual-1);
+});
+storyPreviewRight.addEventListener('click',function(){
+ abrirDestaque((destaqueAtual+1)%destaquesData.length);
+});
 storyPreviewFarRight.addEventListener('click',function(){
- destaqueAtual=(destaqueAtual+2)%destaquesData.length;
- storyAtual=0;
- atualizarPreviews();
- carregarStory();
+ abrirDestaque((destaqueAtual+2)%destaquesData.length);
 });
 
 /* TECLADO */
@@ -1871,4 +1874,11 @@ document.addEventListener('keydown',function(event){
 @media(max-width:600px){.story-sound-control input{width:45px}.story-sound-control:hover input,.story-sound-control:focus-within input{width:45px}}
 @media(max-width:480px){.story-sound-control input{width:38px}.story-sound-control:hover input,.story-sound-control:focus-within input{width:38px}}
 @media(max-width:390px){.story-sound-control input{width:30px}.story-sound-control:hover input,.story-sound-control:focus-within input{width:30px}}
+</style>
+
+<style id="cobertura-previews-laterais-sem-pelicula">
+/* As prévias laterais mostram os vídeos com brilho normal, sem película escura. */
+.story-preview, .story-preview:hover, .story-preview-left, .story-preview-left:hover, .story-preview-right-group .story-preview { opacity:1!important; filter:none!important; -webkit-filter:none!important; }
+.story-preview::before, .story-preview::after, .story-preview iframe { opacity:1!important; filter:none!important; -webkit-filter:none!important; }
+.story-preview { background:transparent!important; }
 </style>
