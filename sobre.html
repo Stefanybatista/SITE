@@ -1823,4 +1823,11 @@ document.addEventListener('keydown',function(event){
 .site-footer .footer-columns h3{font-size:15px!important;}
 .site-footer .footer-columns a,
 .site-footer .footer-info p{font-family:'Poppins',sans-serif!important;font-size:12px!important;font-weight:400!important;letter-spacing:normal!important;}
+
+/* Barra de áudio: revela por opacidade, sem animar a largura para evitar tremores no hover. */
+.story-sound-control input{width:65px;transition:opacity .15s ease!important}
+.story-sound-control:hover input,.story-sound-control:focus-within input{width:65px;opacity:1;pointer-events:auto}
+@media(max-width:600px){.story-sound-control input{width:45px}.story-sound-control:hover input,.story-sound-control:focus-within input{width:45px}}
+@media(max-width:480px){.story-sound-control input{width:38px}.story-sound-control:hover input,.story-sound-control:focus-within input{width:38px}}
+@media(max-width:390px){.story-sound-control input{width:30px}.story-sound-control:hover input,.story-sound-control:focus-within input{width:30px}}
 </style>
