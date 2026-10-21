@@ -759,9 +759,9 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 </section>
 <footer class="site-footer">
  <div class="footer-columns">
-  <div><h3>Início</h3><a href="#Home">Home</a><a href="#portfolio">Portfólio</a><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse.">Contato</a></div>
+  <div><h3>Início</h3><a href="sobre.html#Home">Home</a><a href="portfolio.html">Portfólio</a><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse.">Contato</a></div>
   <div><h3>Sobre nós</h3><a href="sobre.html">Quem somos</a><a href="portfolio.html">Projetos</a><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse.">Orçamento</a></div>
-  <div><h3>Suporte</h3><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse.">FAQ</a><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse.">WhatsApp</a><a href="mailto:contato@victormatos.com.br">E-mail</a></div>
+  <div><h3>Suporte</h3><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse.">FAQ</a><a href="https://wa.me/5511948838756?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Tenho%20interesse." target="_blank" rel="noopener">WhatsApp</a><a href="https://mail.google.com/mail/?view=cm&to=contato.stefany.batista.lima@gmail.com" target="_blank" rel="noopener">E-mail</a></div>
   <div class="footer-info"><h3>Informações</h3><p>Produções cinematográficas, vídeos comerciais, posicionamento de marca e filmes publicitários.</p></div>
  </div>
  <div class="footer-bottom"><strong>VITOR MATOS</strong><span>Copyright © 2026 Todos os direitos reservados.</span></div>
@@ -1827,6 +1827,12 @@ document.addEventListener('keydown',function(event){
  .making-arrow.making-prev{left:-15px!important;}
  .making-arrow.making-next{right:-15px!important;}
 }
+/* Centraliza visualmente os símbolos das setas de Bastidores dentro dos círculos. */
+.making-arrow{font-size:0!important;line-height:1!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;}
+.making-arrow::before{font-size:28px;line-height:1;display:block;position:relative;top:-1px;}
+.making-arrow.making-prev::before{content:"‹";left:-1px;}
+.making-arrow.making-next::before{content:"›";left:1px;}
+@media(max-width:600px){.making-arrow::before{font-size:24px;top:-1px;}}
 </style>
 
 
