@@ -645,13 +645,37 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 </style>
 
 <style id="instagram-heading-aligned-with-first-card">
-/* Alinha o título com a borda esquerda do primeiro quadrado do Instagram. */
-.instagram-live-heading{width:min(100%,1002px)!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important;text-align:left!important}
-.instagram-live-kicker{text-align:left!important;margin-left:0!important}
-@media(max-width:700px){.instagram-live-heading{width:100%!important}}
+/* As frases começam exatamente na mesma linha da borda esquerda do primeiro quadrado. */
+.instagram-live-heading{width:100%!important;max-width:1200px!important;margin:0 auto 28px!important;box-sizing:border-box!important;text-align:left!important}
+.instagram-live-about-title,.instagram-live-heading-description{text-align:left!important;margin-left:0!important;margin-right:0!important}
+@media(max-width:700px){.instagram-live-heading{width:100%!important;max-width:100%!important}}
 </style>
 <style id="marcas-title-case-fix">
 .empresas .empresas-eyebrow{ text-transform:none !important; }
+</style>
+<style id="instagram-live-heading-typography">
+/* Título e texto acima do quadrado, usando a mesma família tipográfica de Bastidores. */
+.instagram-live-about-title{
+  font-family:inherit!important;
+  font-size:30px!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+  letter-spacing:-1.2px!important;
+  color:#f4f4f4!important;
+  margin:0 0 10px!important;
+  text-align:left!important;
+}
+.instagram-live-heading-description{
+  font-family:inherit!important;
+  font-size:14px!important;
+  color:#8c8c91!important;
+  font-style:italic!important;
+  font-weight:300!important;
+  line-height:1.35!important;
+  margin:0 0 26px!important;
+  text-align:left!important;
+}
+.instagram-live-heading-description a{font-family:inherit!important;color:inherit!important;text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 
@@ -724,7 +748,8 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 <section class="instagram-live-section" aria-labelledby="instagramLiveTitle">
  <div class="instagram-live-container">
   <div class="instagram-live-heading">
-   <p class="instagram-live-kicker">VITOR MATOS • DIRETOR CRIATIVO | FILMMAKER</p>
+   <h2 class="instagram-live-about-title" id="instagramLiveTitle">O Olhar Criativo PorTrás Das Câmeras De Vitor Matos</h2>
+   <p class="instagram-live-heading-description">Projetos, processos, momentos e bastidores direto do Instagram de <a href="https://www.instagram.com/euvitorcine/" target="_blank" rel="noopener noreferrer">@euvitorcine</a>.</p>
    
    
   </div>
