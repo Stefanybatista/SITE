@@ -713,9 +713,9 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
   </div>
   <div class="destaques-lista" id="destaquesLista">
    <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuuvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuuvi Beauty" loading="lazy"></span><span class="destaque-nome">NUUVI BEAUY</span></button>
-   <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Dental Protect"><span class="destaque-circulo"><img src="https://i.imgur.com/p6jEHVA.jpeg" alt="Capa Dental Protect" loading="lazy"></span><span class="destaque-nome">DENTAL PROTETIC</span></button>
-   <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="https://i.imgur.com/jccz7FJ.jpeg.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
-   <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Camelô do China"><span class="destaque-circulo"><img src="https://i.imgur.com/79G3mKh.jpeg" alt="Capa Camelô do China" loading="lazy"></span><span class="destaque-nome">CAMELÔ DO CHINA</span></button>
+   <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Dental Protect"><span class="destaque-circulo"><img src="dental-protect.jpeg" alt="Capa Dental Protect" loading="lazy"></span><span class="destaque-nome">DENTAL PROTETIC</span></button>
+   <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
+   <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
    <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Produções"><span class="destaque-circulo"><img src="https://i.imgur.com/p6jEHVA.jpeg" alt="Capa Produções" loading="lazy"></span><span class="destaque-nome">PRODUÇÕES</span></button>
   </div>
  </div>
@@ -941,16 +941,16 @@ const projetos=[
 ];
 
 const makingOf=[
- {id:'1099554358',title:'Making Of',description:'Bastidores da produção: preparação, direção e os detalhes que acontecem antes de cada cena.'},
- {id:'1099553815',title:'Making Of',description:'Um olhar por trás das câmeras sobre o processo criativo e a construção das imagens.'},
+ {id:'1099554358',title:'Making Of',description:'Bastidores da produção: organização, preparação e os detalhes que acontecem antes de cada cena.'},
+ {id:'1099553815',title:'Making Of',description:'Sessão fotográfica com a celebridade Juju Salimeni, captando os momentos por trás da produção.'},
  {id:'1099555900',title:'Making Of',description:'Momentos reais do set e detalhes da equipe em ação durante a produção.'},
- {id:'1099555025',title:'Making Of',description:'A rotina de gravação, os ajustes de cena e o cuidado com cada detalhe visual.'},
- {id:'1099555467',title:'Making Of',description:'Bastidores que mostram o trabalho, a preparação e a energia por trás do resultado final.'},
- {id:'1189288930',hash:'h=76e43c87b1',title:'Making Of',description:'Um recorte dos bastidores e das escolhas que ajudam a dar vida ao projeto.'},
- {id:'1189289338',hash:'h=76e43c87b1',title:'Making Of',description:'Direção, captação e momentos espontâneos registrados durante a produção.'},
- {id:'1099795275',hash:'h=76e43c87b1',title:'Making Of',description:'A experiência no set vista de perto, valorizando o processo por trás das imagens.'},
+ {id:'1099555025',title:'Making Of',description:'Bastidores de uma live com Willian Celso, registrando a transmissão, o cenário e os detalhes por trás das câmeras.'},
+ {id:'1099555467',title:'Making Of',description:'Acompanhamento do processo de produção audiovisual com Erika Schneider, conferindo o desenvolvimento do vídeo e os detalhes da edição.'},
+ {id:'1189288930',hash:'h=76e43c87b1',title:'Making Of',description:'Bastidores da campanha de Guto Silva, secretário de Estado do Paraná, em Curitiba.'},
+ {id:'1189289338',hash:'h=76e43c87b1',title:'Making Of',description:'Direção, captação e momentos espontâneos registrados durante a produção com Dra. Juliana Narciso.'},
+ {id:'1099795275',hash:'h=76e43c87b1',title:'Making Of',description:'Bastidores de gravação para uma marca de acessórios com Erika Schneider.'},
  {id:'1099778246',hash:'h=76e43c87b1',title:'Making Of',description:'Um registro do processo audiovisual, da preparação às cenas captadas.'},
- {id:'1099778841',hash:'h=76e43c87b1',title:'Making Of',description:'Os detalhes que não aparecem no vídeo final, mas fazem parte de cada produção.'}
+ {id:'1099778841',hash:'h=76e43c87b1',title:'Making Of',description:'Set com o Mago da Neurovendas, Karllos Della Re.'}
 ];
 
 async function obterCapaVimeo(projeto){
@@ -1244,17 +1244,17 @@ const destaquesData=[
  },
  {
   nome:'DENTAL PROTETIC',
-  capa:'https://i.imgur.com/p6jEHVA.jpeg',
+  capa:'dental-protect.jpeg',
   videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
  },
  {
   nome:'AQUA MART',
-  capa:'https://i.imgur.com/jccz7FJ.jpeg.jpeg',
+  capa:'aqua-mart.jpeg',
   videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
  },
  {
-  nome:'CAMELÔ DO CHINA',
-  capa:'https://i.imgur.com/79G3mKh.jpeg',
+  nome:'PEDRO CHEN',
+  capa:'camelo-do-china.jpeg',
   videos:[
    'https://player.vimeo.com/video/1236020026?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1236020352?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
@@ -1526,8 +1526,7 @@ function abrirDestaque(indice){
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
- storyMuted=true;
- storyVolumeAtual=0;
+ /* Preserva a preferência de áudio escolhida ao trocar de destaque. */
  storiesViewer.classList.add('aberto');
  storiesViewer.setAttribute('aria-hidden','false');
  document.body.style.overflow='hidden';
@@ -1547,7 +1546,10 @@ function fecharDestaque(){
  storyLoadingState=false;
  storyPausedState=false;
  storyPaused.classList.remove('visivel');
- document.body.style.overflow=videoModal.classList.contains('open')?'hidden':'';
+ /* Restaura a rolagem ao fechar os destaques, respeitando outro modal aberto. */
+ const outroModalAberto=!!document.querySelector('.video-modal.open');
+ document.body.style.overflow=outroModalAberto?'hidden':'';
+ document.documentElement.style.overflow=outroModalAberto?'hidden':'';
 }
 
 function proximoStory(){
@@ -1881,4 +1883,20 @@ document.addEventListener('keydown',function(event){
 .story-preview, .story-preview:hover, .story-preview-left, .story-preview-left:hover, .story-preview-right-group .story-preview { opacity:1!important; filter:none!important; -webkit-filter:none!important; }
 .story-preview::before, .story-preview::after, .story-preview iframe { opacity:1!important; filter:none!important; -webkit-filter:none!important; }
 .story-preview { background:transparent!important; }
+</style>
+
+<style id="titulos-portfolio-35px">
+/* Mantém os quatro títulos da página Portfólio no tamanho solicitado. */
+.portfolio-container > .recent-title,
+.destaques-eyebrow,
+.portfolio-row-title .row-heading h3 {
+  font-size: 35px !important;
+}
+@media (max-width: 650px) {
+  .portfolio-container > .recent-title,
+  .destaques-eyebrow,
+  .portfolio-row-title .row-heading h3 {
+    font-size: 35px !important;
+  }
+}
 </style>
