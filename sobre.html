@@ -718,8 +718,171 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 .empresas .empresas-eyebrow{font-size:35px!important;}
 @media(max-width:600px){.about-story-copy h3{font-size:35px!important;}.instagram-live-about-title{font-size:35px!important;}.empresas .empresas-eyebrow{font-size:35px!important;}}
 
-/* Textos da seção Sobre Nós no mesmo estilo e tamanho do subtítulo do Portfólio */
-.about-story-copy p{font-family:'Poppins',sans-serif!important;font-size:14px!important;font-weight:300!important;font-style:italic!important;line-height:1.55!important;color:#8c8c91!important;}
+</style>
+
+<style id="about-copy-style">.about-story-copy p{font-family:'Poppins',sans-serif!important;font-size:14px!important;font-weight:300!important;font-style:italic!important;line-height:1.55!important;color:#8c8c91!important;}</style>
+<style id="mobile-menu-match-desktop">
+@media (max-width: 700px) {
+  .navbar { display:flex!important; flex-direction:row!important; align-items:center!important; justify-content:space-between!important; gap:10px!important; height:72px!important; min-height:72px!important; padding:0 4%!important; background:rgba(11,15,20,.88)!important; backdrop-filter:blur(12px)!important; -webkit-backdrop-filter:blur(12px)!important; border-bottom:1px solid rgba(255,255,255,.08)!important; }
+  .navbar .brand-area { display:flex!important; flex:0 1 auto!important; min-width:0!important; gap:0!important; margin:0!important; }
+  .navbar .brand-logo { display:block!important; white-space:nowrap!important; font-size:clamp(11px,3.1vw,20px)!important; letter-spacing:-.5px!important; }
+  .navbar .brand-divider, .navbar .brand-description { display:none!important; }
+  .navbar .nav-links { display:flex!important; position:static!important; flex:1 1 auto!important; width:auto!important; min-width:0!important; height:auto!important; flex-direction:row!important; flex-wrap:nowrap!important; justify-content:flex-end!important; align-items:center!important; gap:clamp(6px,2vw,18px)!important; margin:0 0 0 auto!important; padding:0!important; background:transparent!important; box-shadow:none!important; opacity:1!important; visibility:visible!important; transform:none!important; }
+  .navbar .nav-links a { display:inline-flex!important; white-space:nowrap!important; font-size:clamp(9px,2.7vw,14px)!important; letter-spacing:clamp(.2px,.25vw,1.5px)!important; padding:0!important; margin:0!important; }
+  .navbar .nav-links a.nav-contact-link { min-height:0!important; padding:0!important; border:0!important; border-radius:0!important; background:transparent!important; }
+  .navbar .menu-toggle { display:none!important; }
+}
+@media (max-width: 360px) { .navbar { padding-left:2.5%!important; padding-right:2.5%!important; gap:5px!important; } .navbar .brand-logo { font-size:10px!important; } .navbar .nav-links { gap:5px!important; } .navbar .nav-links a { font-size:8px!important; letter-spacing:0!important; } }
+</style>
+
+<style id="mobile-only-reference-adjustments">
+@media (max-width: 700px) {
+  /* Mobile: preserve desktop-style nav, with a red outlined Contact button */
+  .navbar .nav-links a.nav-contact-link {
+    border: 2px solid #d91f12 !important;
+    background: #c91d10 !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+  }
+  /* Show more of the portrait/banner image on mobile, matching the wider reference framing */
+  .banner .slide {
+    object-fit: cover !important;
+    object-position: 56% center !important;
+    background: #0b0f14 !important;
+  }
+  /* Keep a clear gap between the brand and navigation on narrow screens */
+  .navbar .brand-area { margin-right: 12px !important; flex-shrink: 0 !important; }
+  .navbar .nav-links { gap: clamp(12px, 3vw, 20px) !important; }
+  .navbar .nav-links a { letter-spacing: 0 !important; }
+}
+</style>
+
+
+<style id="mobile-final-user-adjustments">
+@media (max-width: 650px) {
+  /* Mobile only: reduce the hero image zoom while keeping it sharp and full-screen. */
+  .banner .slide { object-fit: cover !important; object-position: 56% center !important; transform: scale(.88) !important; }
+  /* Mobile only: keep all five Coverage highlights in one horizontal row. */
+  #experiencias .destaques-lista { display:flex !important; flex-wrap:nowrap !important; align-items:flex-start !important; justify-content:space-between !important; gap:clamp(4px,1.6vw,10px) !important; width:100% !important; overflow:visible !important; }
+  #experiencias .destaque-item { flex:0 0 18% !important; width:18% !important; min-width:0 !important; padding:0 !important; font-size:clamp(7px,2.15vw,11px) !important; letter-spacing:0 !important; gap:7px !important; }
+  #experiencias .destaque-circulo { width:clamp(42px,15vw,68px) !important; height:clamp(42px,15vw,68px) !important; min-width:0 !important; min-height:0 !important; padding:2px !important; box-sizing:border-box !important; }
+  #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; overflow-wrap:anywhere !important; }
+}
+</style>
+
+
+<style id="about-mobile-image-text-side-by-side">
+@media (max-width: 600px) {
+  .about-story-inner .about-story-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 28px 0 !important;
+  }
+  .about-story-inner .about-story-row .about-story-image {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+  }
+  .about-story-inner .about-story-row:nth-child(odd) .about-story-image { order: 2 !important; }
+  .about-story-inner .about-story-row:nth-child(even) .about-story-image { order: 0 !important; }
+  .about-story-inner .about-story-row .about-story-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 150px !important;
+    object-fit: cover !important;
+  }
+  .about-story-inner .about-story-row .about-story-copy {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .about-story-inner .about-story-row .about-story-copy h3 {
+    font-size: 19px !important;
+    line-height: 1.12 !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 0 !important;
+  }
+  .about-story-inner .about-story-row .about-story-copy p {
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+}
+@media (max-width: 380px) {
+  .about-story-inner .about-story-row { gap: 8px !important; }
+  .about-story-inner .about-story-row .about-story-image img { height: 125px !important; }
+  .about-story-inner .about-story-row .about-story-copy h3 { font-size: 17px !important; }
+  .about-story-inner .about-story-row .about-story-copy p { font-size: 10px !important; }
+}
+</style>
+
+
+<style id="instagram-mobile-compact-embed">
+/* Mobile only: reduce the excessive blank area around the embedded Instagram feed. */
+@media (max-width: 800px) {
+  .instagram-live-embed-column { min-height: 0 !important; height: auto !important; overflow: hidden !important; }
+  .instagram-live-embed-wrap { min-height: 0 !important; height: 250px !important; max-height: 250px !important; overflow: hidden !important; background: #fff !important; border-radius: 8px !important; padding: 0 !important; }
+  .instagram-live-embed-wrap iframe { height: 250px !important; min-height: 250px !important; max-height: 250px !important; }
+}
+@media (max-width: 420px) {
+  .instagram-live-embed-wrap { height: 220px !important; max-height: 220px !important; }
+  .instagram-live-embed-wrap iframe { height: 220px !important; min-height: 220px !important; max-height: 220px !important; }
+}
+</style>
+
+
+
+
+<style id="footer-mobile-stacked-layout">
+@media (max-width: 700px) {
+  .site-footer .footer-columns {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    padding: 30px 24px 28px !important;
+    text-align: left !important;
+  }
+  .site-footer .footer-columns > div {
+    min-width: 0 !important;
+    padding: 0 0 24px !important;
+    margin: 0 0 23px !important;
+    border-bottom: 1px solid rgba(255,255,255,.10) !important;
+  }
+  .site-footer .footer-columns > div:last-child {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+  }
+  .site-footer .footer-columns h3 {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    margin: 0 0 12px !important;
+    text-align: left !important;
+  }
+  .site-footer .footer-columns a {
+    font-size: 14px !important;
+    line-height: 2 !important;
+    text-align: left !important;
+  }
+  .site-footer .footer-info p {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    text-align: left !important;
+    max-width: 420px !important;
+  }
+}
+</style>
+
+<style id="footer-mobile-centered-no-lines">
+@media (max-width: 700px) {
+  .site-footer .footer-columns { text-align: center !important; }
+  .site-footer .footer-columns > div { border: 0 !important; border-bottom: 0 !important; text-align: center !important; padding: 0 0 24px !important; margin: 0 0 18px !important; }
+  .site-footer .footer-columns > div:last-child { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+  .site-footer .footer-columns h3,
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+  .site-footer .footer-info p { max-width: 420px !important; font-size: 16px !important; line-height: 1.8 !important; }
+}
 </style>
 
 </head>
@@ -1876,8 +2039,8 @@ document.addEventListener('keydown',function(event){
 /* Aproxima o link VER PORTFÓLIO um pouco da borda interna */
 .floating-page-arrows{right:48px!important;}
 /* Move o WhatsApp um pouco para a direita sem alterar o visual branco */
-.whatsapp-scroll{left:42px!important;}
-@media(max-width:600px){.footer-bottom>strong{left:18px!important}.floating-page-arrows{right:22px!important}.whatsapp-scroll{left:30px!important}}
+.whatsapp-scroll{left:20px!important;}
+@media(max-width:600px){.footer-bottom>strong{left:18px!important}.floating-page-arrows{right:22px!important}.whatsapp-scroll{left:10px!important}}
 
 /* Títulos da página Sobre Nós padronizados em 35px. */
 .about-story-copy h3{font-size:35px!important;}
@@ -1925,24 +2088,7 @@ document.addEventListener('keydown',function(event){
 </style>
 
 
-<style id="ajustes-mobile-2026">
-/* Ajustes exclusivos para celular: mantém o layout desktop intacto. */
-@media (max-width: 600px) {
-  .navbar { top: 10px !important; left: 3% !important; width: 94% !important; height: 58px !important; min-height: 58px !important; padding: 0 10px !important; display: flex !important; flex-wrap: nowrap !important; justify-content: space-between !important; align-items: center !important; gap: 8px !important; border-radius: 12px !important; }
-  .brand-area { display: flex !important; flex: 0 0 auto !important; min-width: 0 !important; align-items: center !important; }
-  .brand-logo { font-size: 13px !important; letter-spacing: -.35px !important; }
-  .brand-divider, .brand-description, .menu-toggle { display: none !important; }
-  .nav-links, .nav-links.active, .nav-links.open { position: static !important; display: flex !important; flex: 1 1 auto !important; width: auto !important; min-width: 0 !important; flex-direction: row !important; align-items: center !important; justify-content: flex-end !important; gap: 9px !important; padding: 0 !important; margin: 0 !important; background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
-  .nav-links a { display: inline-flex !important; align-items: center !important; justify-content: center !important; width: auto !important; padding: 6px 0 !important; white-space: nowrap !important; text-align: center !important; font-size: 10px !important; line-height: 1 !important; letter-spacing: 0 !important; }
-  .nav-links a.nav-contact-link { min-height: 28px !important; padding: 0 7px !important; border-radius: 5px !important; font-size: 10px !important; }
-  .footer-bottom span { font-size: 10px !important; line-height: 1.4 !important; }
-  /* O embed oficial de perfil do Instagram pode reservar altura vazia no celular. */
-  .instagram-live-embed-column { min-height: 0 !important; height: auto !important; max-height: none !important; overflow: hidden !important; }
-  .instagram-live-embed-wrap { min-height: 0 !important; height: auto !important; max-height: none !important; padding: 0 !important; overflow: hidden !important; }
-  .instagram-live-embed-wrap iframe { height: auto !important; min-height: 0 !important; max-height: none !important; }
-  .instagram-live-embed-wrap .instagram-media { min-height: 0 !important; margin: 0 !important; }
-}
-</style>
+
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
@@ -1978,4 +2124,20 @@ document.addEventListener('keydown',function(event){
 .empresas .empresas-eyebrow{font-size:35px!important;}
 @media(max-width:600px){.about-story-copy h3{font-size:35px!important;}.instagram-live-about-title{font-size:35px!important;}.empresas .empresas-eyebrow{font-size:35px!important;}}
 
+</style>
+
+<style id="ajuste-tipografia-mobile-sobre-e-rodape">
+/* Tamanhos solicitados apenas para telas mobile; desktop permanece igual. */
+@media (max-width: 650px) {
+  .about-story-copy h3,
+  .instagram-live-about-title,
+  .empresas .empresas-eyebrow { font-size: 20px !important; }
+  .about-story-copy p,
+  .instagram-live-heading-description,
+  .instagram-live-description,
+  .instagram-live-note { font-size: 12px !important; }
+  .site-footer .footer-columns h3,
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p { font-size: 12px !important; }
+}
 </style>

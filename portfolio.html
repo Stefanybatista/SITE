@@ -676,6 +676,111 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 /* Única alteração: remover a borda clara da barra de menu do Portfólio. */
 .navbar, .navbar.scrolled { border: 0 !important; border-bottom: 0 !important; outline: 0 !important; }
 </style>
+
+<style id="mobile-menu-match-desktop">
+@media (max-width: 700px) {
+ .navbar { display:flex!important; flex-direction:row!important; align-items:center!important; justify-content:space-between!important; gap:10px!important; height:72px!important; min-height:72px!important; padding:0 4%!important; background:rgba(11,15,20,.88)!important; backdrop-filter:blur(12px)!important; -webkit-backdrop-filter:blur(12px)!important; border-bottom:1px solid rgba(255,255,255,.08)!important; }
+ .navbar .brand-area { display:flex!important; flex:0 1 auto!important; min-width:0!important; gap:0!important; margin:0!important; }
+ .navbar .brand-logo { display:block!important; white-space:nowrap!important; font-size:clamp(11px,3.1vw,20px)!important; letter-spacing:-.5px!important; }
+ .navbar .brand-divider,.navbar .brand-description { display:none!important; }
+ .navbar .nav-links { display:flex!important; position:static!important; flex:1 1 auto!important; width:auto!important; min-width:0!important; height:auto!important; flex-direction:row!important; flex-wrap:nowrap!important; justify-content:flex-end!important; align-items:center!important; gap:clamp(6px,2vw,18px)!important; margin:0 0 0 auto!important; padding:0!important; background:transparent!important; box-shadow:none!important; opacity:1!important; visibility:visible!important; transform:none!important; }
+ .navbar .nav-links a { display:inline-flex!important; white-space:nowrap!important; font-size:clamp(9px,2.7vw,14px)!important; letter-spacing:clamp(.2px,.25vw,1.5px)!important; padding:0!important; margin:0!important; }
+ .navbar .nav-links a.nav-contact-link { min-height:0!important; padding:0!important; border:0!important; border-radius:0!important; background:transparent!important; }
+ .navbar .menu-toggle { display:none!important; }
+}
+@media(max-width:360px){.navbar{padding-left:2.5%!important;padding-right:2.5%!important;gap:5px!important}.navbar .brand-logo{font-size:10px!important}.navbar .nav-links{gap:5px!important}.navbar .nav-links a{font-size:8px!important;letter-spacing:0!important}}
+</style>
+
+<style id="mobile-only-reference-adjustments">
+@media (max-width: 700px) {
+  /* Mobile: preserve desktop-style nav, with a red outlined Contact button */
+  .navbar .nav-links a.nav-contact-link {
+    border: 2px solid #d91f12 !important;
+    background: #c91d10 !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+  }
+  /* Show more of the portrait/banner image on mobile, matching the wider reference framing */
+  .banner .slide {
+    object-fit: cover !important;
+    object-position: 56% center !important;
+    background: #0b0f14 !important;
+  }
+  /* Keep a clear gap between the brand and navigation on narrow screens */
+  .navbar .brand-area { margin-right: 12px !important; flex-shrink: 0 !important; }
+  .navbar .nav-links { gap: clamp(12px, 3vw, 20px) !important; }
+  .navbar .nav-links a { letter-spacing: 0 !important; }
+}
+</style>
+
+
+<style id="mobile-final-user-adjustments">
+@media (max-width: 650px) {
+  /* Mobile only: reduce the hero image zoom while keeping it sharp and full-screen. */
+  .banner .slide { object-fit: cover !important; object-position: 56% center !important; transform: scale(.88) !important; }
+  /* Mobile only: keep all five Coverage highlights in one horizontal row. */
+  #experiencias .destaques-lista { display:flex !important; flex-wrap:nowrap !important; align-items:flex-start !important; justify-content:space-between !important; gap:clamp(4px,1.6vw,10px) !important; width:100% !important; overflow:visible !important; }
+  #experiencias .destaque-item { flex:0 0 18% !important; width:18% !important; min-width:0 !important; padding:0 !important; font-size:clamp(7px,2.15vw,11px) !important; letter-spacing:0 !important; gap:7px !important; }
+  #experiencias .destaque-circulo { width:clamp(42px,15vw,68px) !important; height:clamp(42px,15vw,68px) !important; min-width:0 !important; min-height:0 !important; padding:2px !important; box-sizing:border-box !important; }
+  #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; overflow-wrap:anywhere !important; }
+}
+</style>
+
+
+
+
+<style id="footer-mobile-stacked-layout">
+@media (max-width: 700px) {
+  .site-footer .footer-columns {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    padding: 30px 24px 28px !important;
+    text-align: left !important;
+  }
+  .site-footer .footer-columns > div {
+    min-width: 0 !important;
+    padding: 0 0 24px !important;
+    margin: 0 0 23px !important;
+    border-bottom: 1px solid rgba(255,255,255,.10) !important;
+  }
+  .site-footer .footer-columns > div:last-child {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+  }
+  .site-footer .footer-columns h3 {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    margin: 0 0 12px !important;
+    text-align: left !important;
+  }
+  .site-footer .footer-columns a {
+    font-size: 14px !important;
+    line-height: 2 !important;
+    text-align: left !important;
+  }
+  .site-footer .footer-info p {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    text-align: left !important;
+    max-width: 420px !important;
+  }
+}
+</style>
+
+<style id="footer-mobile-centered-no-lines">
+@media (max-width: 700px) {
+  .site-footer .footer-columns { text-align: center !important; }
+  .site-footer .footer-columns > div { border: 0 !important; border-bottom: 0 !important; text-align: center !important; padding: 0 0 24px !important; margin: 0 0 18px !important; }
+  .site-footer .footer-columns > div:last-child { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+  .site-footer .footer-columns h3,
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+  .site-footer .footer-info p { max-width: 420px !important; font-size: 16px !important; line-height: 1.8 !important; }
+}
+</style>
+
 </head>
 
 <body data-page="portfolio">
@@ -716,7 +821,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
    <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Dental Protect"><span class="destaque-circulo"><img src="dental-protect.jpeg" alt="Capa Dental Protect" loading="lazy"></span><span class="destaque-nome">DENTAL PROTETIC</span></button>
    <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
    <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
-   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Produções"><span class="destaque-circulo"><img src="https://i.imgur.com/p6jEHVA.jpeg" alt="Capa Produções" loading="lazy"></span><span class="destaque-nome">PRODUÇÕES</span></button>
+   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.jpeg" alt="Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
   </div>
  </div>
 </section>
@@ -923,21 +1028,21 @@ navLinks.querySelectorAll('a').forEach(function(link){
 
 /* PROJETOS */
 const projetos=[
- {id:'1099468333',hash:'h=76e43c87b1',title:'Rosa Selvagem',description:'Uma produção visual pensada para transmitir a identidade, a atmosfera e os detalhes da marca com uma narrativa envolvente.'},
- {id:'1189273179',hash:'h=76e43c87b1',title:'Borelli Gelateria',description:'Conteúdo audiovisual que valoriza a experiência, os produtos e os detalhes que tornam a marca memorável.'},
- {id:'1189278924',hash:'p=0s',title:'Dra. Marcela',description:'Conteúdo estratégico para comunicar autoridade, proximidade e confiança por meio de uma linguagem visual cuidadosa.'},
- {id:'1191342661',hash:'h=76e43c87b1',title:'Dra. Juliana Narciso',description:'Produção de conteúdo profissional com foco na presença digital, na personalidade e no posicionamento da especialista.'},
- {id:'1190608148',hash:'p=0s',title:'Tayti Gelateria',description:'Uma abordagem visual dinâmica para destacar a experiência da marca e despertar o interesse do público.'},
- {id:'1189273774',hash:'h=76e43c87b1',title:'Fábrica de Love',description:'Registro audiovisual de marca com atenção à narrativa, aos detalhes e à emoção presente em cada cena.'},
- {id:'1099462212',hash:'p=0s',title:'Evento',description:'Captação dos principais momentos e da energia do evento, criando um registro visual envolvente.'},
- {id:'1189274042',hash:'p=0s',title:'Fábrica de Love',description:'Conteúdo visual que aproxima o público da marca e evidencia os detalhes da experiência.'},
- {id:'1189273549',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Produção temática que destaca os produtos, os detalhes e a atmosfera especial da campanha de Páscoa.'},
- {id:'1099459713',hash:'p=0s',title:'TV Fama',description:'Registro audiovisual de entrevista e presença de marca, com foco nos momentos mais relevantes.'},
- {id:'1099542612',hash:'p=0s',title:'Juju Salimeni',description:'Conteúdo de personalidade com direção visual e atenção à presença e à expressividade em cena.'},
- {id:'1189280115',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Uma segunda perspectiva da campanha, valorizando os detalhes e a construção visual da produção.'},
- {id:'1099461212',hash:'p=0s',title:'Paraisópolis',description:'Registro de ambiente, pessoas e momentos reais, com uma narrativa visual conectada à experiência.'},
- {id:'1099464291',hash:'p=0s',title:'Capital Black Master Mind',description:'Cobertura audiovisual voltada a registrar ideias, conexões e os momentos marcantes da experiência.'},
- {id:'1099468840',hash:'p=0s',title:'Underground',description:'Uma linguagem visual de atitude, ritmo e atmosfera, construída para valorizar a identidade do projeto.'}
+ {id:'1099468333',hash:'h=76e43c87b1',title:'Rosa Selvagem',description:'Campanha para a marca Rosa Selvagem com a celebridade Juju Salimeni.'},
+ {id:'1189273179',hash:'h=76e43c87b1',title:'Borelli Gelateria',description:'Campanha para a gelateria Borelli com a participação da influenciadora Thátilla Coelho.'},
+ {id:'1189278924',hash:'p=0s',title:'Dra. Marcela',description:'Produção de conteúdo de posicionamento para a doutora biomédica Marcela Rodrigues.'},
+ {id:'1191342661',hash:'h=76e43c87b1',title:'Dra. Juliana Narciso',description:'Produção de conteúdo para a doutora nutróloga Juliana Narciso.'},
+ {id:'1190608148',hash:'p=0s',title:'Tayti Gelateria',description:'Essa produção mostra a experiência do cliente nas lojas Tayti Gelateria.'},
+ {id:'1189273774',hash:'h=76e43c87b1',title:'Fábrica de Love',description:'Produção da campanha de Natal da confeitaria Fábrica de Love.'},
+ {id:'1099462212',hash:'p=0s',title:'Evento',description:'Registramos os bastidores da participação da Juju Salimeni no circo do Tirulipa.'},
+ {id:'1189274042',hash:'p=0s',title:'Fábrica de Love',description:'Conteúdo apresentando a produção da confeitaria Fábrica de Love.'},
+ {id:'1189273549',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Produção de conteúdo para a Fábrica de Love no período de Páscoa.'},
+ {id:'1099459713',hash:'p=0s',title:'TV Fama',description:'Cobertura TV Fama no show de lançamento do Mumuzinho com a Erika Schneider.'},
+ {id:'1099542612',hash:'p=0s',title:'Juju Salimeni',description:'Treino completo de quadríceps da Juju Salimeni na academia Ironberg Alphaville.'},
+ {id:'1189280115',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Takes para divulgação dos produtos de Páscoa da confeitaria Fábrica de Love.'},
+ {id:'1099461212',hash:'p=0s',title:'Paraisópolis',description:'Acompanhamos o Pablo Marçal, candidato à prefeitura de SP, na favela Paraisópolis.'},
+ {id:'1099464291',hash:'p=0s',title:'Capital Black Master Mind',description:'Viagem exclusiva para os membros do Capital Black Mastermind do Nezio Monteiro.'},
+ {id:'1099468840',hash:'p=0s',title:'Underground',description:'Aftermovie do evento presencial underground no kartódromo Aldeia da Serra.'}
 ];
 
 const makingOf=[
@@ -1702,8 +1807,8 @@ document.addEventListener('keydown',function(event){
 /* Aproxima o link VER PORTFÓLIO um pouco da borda interna */
 .floating-page-arrows{right:48px!important;}
 /* Move o WhatsApp um pouco para a direita sem alterar o visual branco */
-.whatsapp-scroll{left:42px!important;}
-@media(max-width:600px){.footer-bottom>strong{left:18px!important}.floating-page-arrows{right:22px!important}.whatsapp-scroll{left:30px!important}}
+.whatsapp-scroll{left:20px!important;}
+@media(max-width:600px){.footer-bottom>strong{left:18px!important}.floating-page-arrows{right:22px!important}.whatsapp-scroll{left:10px!important}}
 
 /* Bastidores: carrossel horizontal com navegação por setas */
 .portfolio{padding-top:145px}
@@ -1748,6 +1853,9 @@ document.addEventListener('keydown',function(event){
 .trabalhos-mobile-title{border-top:1px solid rgba(255,255,255,.07)!important;padding-top:30px!important;margin-top:42px!important;}
 @media(max-width:650px){.trabalhos-mobile-title{padding-top:24px!important;margin-top:30px!important;}}
 </style>
+
+
+
 
 </body>
 </html>
@@ -1898,5 +2006,35 @@ document.addEventListener('keydown',function(event){
   .portfolio-row-title .row-heading h3 {
     font-size: 35px !important;
   }
+}
+</style>
+
+<style id="ajuste-titulos-e-subtitulos-somente-mobile-final">
+/* Ajuste mobile aplicado por último para prevalecer sobre regras anteriores. */
+@media screen and (max-width: 650px) {
+  .portfolio-container .recent-title,
+  .portfolio-container > h1.recent-title,
+  .destaques-container .destaques-eyebrow,
+  .portfolio-row-title .row-heading h3 { font-size: 20px !important; line-height: 1.15 !important; }
+  .portfolio-container .recent-subtitle,
+  .destaques-container .destaques-subtitle,
+  .portfolio-row-title .row-subtitle { font-size: 12px !important; line-height: 1.4 !important; }
+  .trabalhos-mobile-title .row-subtitle { font-size: 12px !important; line-height: 1.4 !important; }
+}
+</style>
+
+<style id="ajuste-tipografia-mobile-sobre-e-rodape">
+/* Tamanhos solicitados apenas para telas mobile; desktop permanece igual. */
+@media (max-width: 650px) {
+  .about-story-copy h3,
+  .instagram-live-about-title,
+  .empresas .empresas-eyebrow { font-size: 20px !important; }
+  .about-story-copy p,
+  .instagram-live-heading-description,
+  .instagram-live-description,
+  .instagram-live-note { font-size: 12px !important; }
+  .site-footer .footer-columns h3,
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p { font-size: 12px !important; }
 }
 </style>
