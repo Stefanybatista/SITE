@@ -747,9 +747,9 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
   }
   /* Show more of the portrait/banner image on mobile, matching the wider reference framing */
   .banner .slide {
-    object-fit: cover !important;
-    object-position: 56% center !important;
-    background: #0b0f14 !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    background: transparent !important;
   }
   /* Keep a clear gap between the brand and navigation on narrow screens */
   .navbar .brand-area { margin-right: 12px !important; flex-shrink: 0 !important; }
@@ -762,126 +762,12 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 <style id="mobile-final-user-adjustments">
 @media (max-width: 650px) {
   /* Mobile only: reduce the hero image zoom while keeping it sharp and full-screen. */
-  .banner .slide { object-fit: cover !important; object-position: 56% center !important; transform: scale(.88) !important; }
+  .banner .slide { object-fit: fill !important; object-position: center center !important; transform: none !important; }
   /* Mobile only: keep all five Coverage highlights in one horizontal row. */
   #experiencias .destaques-lista { display:flex !important; flex-wrap:nowrap !important; align-items:flex-start !important; justify-content:space-between !important; gap:clamp(4px,1.6vw,10px) !important; width:100% !important; overflow:visible !important; }
   #experiencias .destaque-item { flex:0 0 18% !important; width:18% !important; min-width:0 !important; padding:0 !important; font-size:clamp(7px,2.15vw,11px) !important; letter-spacing:0 !important; gap:7px !important; }
   #experiencias .destaque-circulo { width:clamp(42px,15vw,68px) !important; height:clamp(42px,15vw,68px) !important; min-width:0 !important; min-height:0 !important; padding:2px !important; box-sizing:border-box !important; }
   #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; overflow-wrap:anywhere !important; }
-}
-</style>
-
-
-<style id="about-mobile-image-text-side-by-side">
-@media (max-width: 600px) {
-  .about-story-inner .about-story-row {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
-    align-items: center !important;
-    gap: 12px !important;
-    margin: 28px 0 !important;
-  }
-  .about-story-inner .about-story-row .about-story-image {
-    width: 100% !important;
-    height: auto !important;
-    min-width: 0 !important;
-  }
-  .about-story-inner .about-story-row:nth-child(odd) .about-story-image { order: 2 !important; }
-  .about-story-inner .about-story-row:nth-child(even) .about-story-image { order: 0 !important; }
-  .about-story-inner .about-story-row .about-story-image img {
-    display: block !important;
-    width: 100% !important;
-    height: 150px !important;
-    object-fit: cover !important;
-  }
-  .about-story-inner .about-story-row .about-story-copy {
-    min-width: 0 !important;
-    width: 100% !important;
-  }
-  .about-story-inner .about-story-row .about-story-copy h3 {
-    font-size: 19px !important;
-    line-height: 1.12 !important;
-    margin-bottom: 8px !important;
-    letter-spacing: 0 !important;
-  }
-  .about-story-inner .about-story-row .about-story-copy p {
-    font-size: 11px !important;
-    line-height: 1.45 !important;
-  }
-}
-@media (max-width: 380px) {
-  .about-story-inner .about-story-row { gap: 8px !important; }
-  .about-story-inner .about-story-row .about-story-image img { height: 125px !important; }
-  .about-story-inner .about-story-row .about-story-copy h3 { font-size: 17px !important; }
-  .about-story-inner .about-story-row .about-story-copy p { font-size: 10px !important; }
-}
-</style>
-
-
-<style id="instagram-mobile-compact-embed">
-/* Mobile only: reduce the excessive blank area around the embedded Instagram feed. */
-@media (max-width: 800px) {
-  .instagram-live-embed-column { min-height: 0 !important; height: auto !important; overflow: hidden !important; }
-  .instagram-live-embed-wrap { min-height: 0 !important; height: 250px !important; max-height: 250px !important; overflow: hidden !important; background: #fff !important; border-radius: 8px !important; padding: 0 !important; }
-  .instagram-live-embed-wrap iframe { height: 250px !important; min-height: 250px !important; max-height: 250px !important; }
-}
-@media (max-width: 420px) {
-  .instagram-live-embed-wrap { height: 220px !important; max-height: 220px !important; }
-  .instagram-live-embed-wrap iframe { height: 220px !important; min-height: 220px !important; max-height: 220px !important; }
-}
-</style>
-
-
-
-
-<style id="footer-mobile-stacked-layout">
-@media (max-width: 700px) {
-  .site-footer .footer-columns {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 0 !important;
-    padding: 30px 24px 28px !important;
-    text-align: left !important;
-  }
-  .site-footer .footer-columns > div {
-    min-width: 0 !important;
-    padding: 0 0 24px !important;
-    margin: 0 0 23px !important;
-    border-bottom: 1px solid rgba(255,255,255,.10) !important;
-  }
-  .site-footer .footer-columns > div:last-child {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-    border-bottom: 0 !important;
-  }
-  .site-footer .footer-columns h3 {
-    font-size: 16px !important;
-    line-height: 1.35 !important;
-    margin: 0 0 12px !important;
-    text-align: left !important;
-  }
-  .site-footer .footer-columns a {
-    font-size: 14px !important;
-    line-height: 2 !important;
-    text-align: left !important;
-  }
-  .site-footer .footer-info p {
-    font-size: 16px !important;
-    line-height: 1.8 !important;
-    text-align: left !important;
-    max-width: 420px !important;
-  }
-}
-</style>
-
-<style id="footer-mobile-centered-no-lines">
-@media (max-width: 700px) {
-  .site-footer .footer-columns { text-align: center !important; }
-  .site-footer .footer-columns > div { border: 0 !important; border-bottom: 0 !important; text-align: center !important; padding: 0 0 24px !important; margin: 0 0 18px !important; }
-  .site-footer .footer-columns > div:last-child { padding-bottom: 0 !important; margin-bottom: 0 !important; }
-  .site-footer .footer-columns h3,
-  .site-footer .footer-columns a,
-  .site-footer .footer-info p { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
-  .site-footer .footer-info p { max-width: 420px !important; font-size: 16px !important; line-height: 1.8 !important; }
 }
 </style>
 
@@ -2039,8 +1925,8 @@ document.addEventListener('keydown',function(event){
 /* Aproxima o link VER PORTFÓLIO um pouco da borda interna */
 .floating-page-arrows{right:48px!important;}
 /* Move o WhatsApp um pouco para a direita sem alterar o visual branco */
-.whatsapp-scroll{left:20px!important;}
-@media(max-width:600px){.footer-bottom>strong{left:18px!important}.floating-page-arrows{right:22px!important}.whatsapp-scroll{left:10px!important}}
+.whatsapp-scroll{left:42px!important;}
+@media(max-width:600px){.footer-bottom>strong{left:18px!important}.floating-page-arrows{right:22px!important}.whatsapp-scroll{left:30px!important}}
 
 /* Títulos da página Sobre Nós padronizados em 35px. */
 .about-story-copy h3{font-size:35px!important;}
@@ -2088,6 +1974,32 @@ document.addEventListener('keydown',function(event){
 </style>
 
 
+<script id="corrigir-travamento-rolagem-final">
+(function(){
+  function liberarRolagemSeFechado(){
+    var stories=document.getElementById('storiesViewer');
+    var video=document.getElementById('videoModal');
+    var storiesAberto=!!(stories && stories.classList.contains('aberto'));
+    var videoAberto=!!(video && video.classList.contains('open'));
+    if(!storiesAberto && !videoAberto){
+      document.documentElement.style.overflow='';
+      document.body.style.overflow='';
+      document.body.style.position='';
+      document.body.style.touchAction='';
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',liberarRolagemSeFechado);
+  else liberarRolagemSeFechado();
+  window.addEventListener('pageshow',liberarRolagemSeFechado);
+  window.addEventListener('load',liberarRolagemSeFechado);
+  ['storiesViewer','videoModal'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el && window.MutationObserver){
+      new MutationObserver(liberarRolagemSeFechado).observe(el,{attributes:true,attributeFilter:['class']});
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
@@ -2126,18 +2038,124 @@ document.addEventListener('keydown',function(event){
 
 </style>
 
-<style id="ajuste-tipografia-mobile-sobre-e-rodape">
-/* Tamanhos solicitados apenas para telas mobile; desktop permanece igual. */
+<style id="mobile-nav-inner-transparent-preserve-contact-and-desktop-photo">
+@media (max-width: 650px) {
+  /* Remove only the extra outline/background around the group of navigation links. */
+  .navbar .nav-links,
+  .navbar .nav-links:hover,
+  .navbar .nav-links:focus-within {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  /* Keep individual links clean, but preserve the red Contact button. */
+  .navbar .nav-links a:not(.nav-contact-link),
+  .navbar .nav-links a:not(.nav-contact-link):hover,
+  .navbar .nav-links a:not(.nav-contact-link):focus,
+  .navbar .nav-links a:not(.nav-contact-link):active {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .navbar .nav-links a.nav-contact-link,
+  .navbar .nav-links a.nav-contact-link:hover,
+  .navbar .nav-links a.nav-contact-link:focus,
+  .navbar .nav-links a.nav-contact-link:active {
+    border: 2px solid #d91f12 !important;
+    background: #c91d10 !important;
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    color: #fff !important;
+    box-shadow: none !important;
+  }
+  /* Mobile only: use the existing banner image only; no duplicate background image. */
+  .banner { background-image: none !important; }
+  .banner .slide {
+    transform: none !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    background: transparent !important;
+  }
+}
+</style>
+
+<style id="menu-mobile-transparencia-unificada-final">
+@media (max-width: 650px) {
+  /* O fundo do menu permanece igual antes e depois da rolagem. */
+  .navbar, .navbar.scrolled {
+    background: rgba(11,15,20,.58) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  /* Apenas a cápsula principal envolve os links; o grupo interno é transparente. */
+  .navbar .nav-links,
+  .navbar .nav-links:hover,
+  .navbar .nav-links:focus,
+  .navbar .nav-links:focus-within,
+  .navbar .nav-links:active {
+    background: transparent !important;
+    border: 0 !important; outline: 0 !important; box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .navbar .nav-links a:not(.nav-contact-link),
+  .navbar .nav-links a:not(.nav-contact-link):hover,
+  .navbar .nav-links a:not(.nav-contact-link):focus,
+  .navbar .nav-links a:not(.nav-contact-link):active,
+  .navbar .nav-links a:not(.nav-contact-link)[aria-current="page"] {
+    background: transparent !important; border: 0 !important; outline: 0 !important;
+    box-shadow: none !important; border-radius: 0 !important;
+  }
+  /* Mantém o botão Contato vermelho, com sua borda original. */
+  .navbar .nav-links a.nav-contact-link,
+  .navbar .nav-links a.nav-contact-link:hover,
+  .navbar .nav-links a.nav-contact-link:focus,
+  .navbar .nav-links a.nav-contact-link:active {
+    border: 2px solid #d91f12 !important; background: #c91d10 !important;
+    border-radius: 12px !important; color: #fff !important; box-shadow: none !important;
+  }
+}
+</style>
+
+<style id="restaurar-tamanhos-mobile-pequenos">
 @media (max-width: 650px) {
   .about-story-copy h3,
   .instagram-live-about-title,
   .empresas .empresas-eyebrow { font-size: 20px !important; }
   .about-story-copy p,
-  .instagram-live-heading-description,
-  .instagram-live-description,
-  .instagram-live-note { font-size: 12px !important; }
-  .site-footer .footer-columns h3,
-  .site-footer .footer-columns a,
-  .site-footer .footer-info p { font-size: 12px !important; }
+  .instagram-live-about-description,
+  .empresas .empresas-description,
+
+}
+</style>
+
+
+<style id="restaurar-rodape-mobile-vertical-sem-alterar-tipografia">
+@media (max-width: 650px) {
+  .site-footer .footer-columns { grid-template-columns: minmax(0, 1fr) !important; }
+  .site-footer .footer-columns > * { width: 100% !important; }
+  .whatsapp-scroll { left: 12px !important; bottom: 8px !important; }
+}
+@media (max-width: 600px) {
+  .whatsapp-scroll { left: 12px !important; bottom: 8px !important; }
+}
+</style>
+
+<style id="alternar-imagens-e-textos-historia">
+/* Mantém as três histórias lado a lado, alternando a posição da imagem. */
+.about-story-row:nth-child(odd) .about-story-image { order: 2 !important; }
+.about-story-row:nth-child(odd) .about-story-copy { order: 1 !important; }
+.about-story-row:nth-child(even) .about-story-image { order: 0 !important; }
+.about-story-row:nth-child(even) .about-story-copy { order: 1 !important; }
+@media (max-width: 600px) {
+  .about-story-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; align-items: center !important; gap: 12px !important; }
+  .about-story-row .about-story-image { height: auto !important; aspect-ratio: 3 / 4 !important; }
+  .about-story-row .about-story-copy h3 { font-size: 20px !important; line-height: 1.15 !important; }
+  .about-story-row .about-story-copy p { font-size: 12px !important; line-height: 1.45 !important; }
 }
 </style>
