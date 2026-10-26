@@ -729,10 +729,11 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 
 
 <style id="ajuste-banner-mobile-sem-bordas">
-/* Mobile: banner com 30svh e imagem centralizada em 80% de largura e altura. */
+/* Mobile: banner com 84svh e imagem centralizada em 100% de largura e altura. */
 @media (max-width: 768px) {
   .banner {
-    height: 30svh !important;
+    width: 100% !important;
+    height: 84svh !important;
     min-height: 0 !important;
     overflow: hidden !important;
   }
@@ -741,9 +742,9 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
     inset: auto !important;
     top: 50% !important;
     left: 50% !important;
-    width: 80% !important;
-    height: 80% !important;
-    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
     object-position: center center !important;
     transform: translate(-50%, -50%) !important;
   }
@@ -766,7 +767,10 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 </header>
 
 <section id="Home" class="banner">
+ <picture class="banner-responsive-picture">
+ <source media="(max-width: 768px)" srcset="https://i.imgur.com/FEoXJD6.jpeg">
  <img src="https://i.imgur.com/p6jEHVA.jpeg" class="slide" alt="Produção audiovisual da Rector Filmes">
+</picture>
  <div class="overlay"></div>
 </section>
 
