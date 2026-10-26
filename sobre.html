@@ -2185,3 +2185,17 @@ document.addEventListener('keydown',function(event){
   }
 }
 </style>
+
+<style id="instagram-mobile-white-space-reduction">
+/* Somente mobile: reduz a área branca vazia abaixo da grade incorporada do Instagram. */
+@media (max-width: 600px) {
+  .instagram-live-embed-column { min-height: 0 !important; height: auto !important; }
+  .instagram-live-embed-wrap { min-height: 0 !important; height: auto !important; }
+  .instagram-live-embed-wrap iframe { height: 410px !important; min-height: 410px !important; }
+}
+@media (max-width: 420px) {
+  .instagram-live-embed-column { min-height: 0 !important; height: auto !important; }
+  .instagram-live-embed-wrap { min-height: 0 !important; height: auto !important; }
+  .instagram-live-embed-wrap iframe { height: 390px !important; min-height: 390px !important; }
+}
+</style>
