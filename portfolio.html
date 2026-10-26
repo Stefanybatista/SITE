@@ -1601,14 +1601,13 @@ function abrirDestaque(indice){
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
- /* Mobile: cada destaque sempre começa silenciado. O som só é ativado pelo ícone
-    ou por um evento físico de volume caso o navegador disponibilize esse sinal. */
+ /* Mobile: inicia os destaques com áudio habilitado; demais comportamentos ficam iguais. */
  if(window.matchMedia && window.matchMedia('(max-width: 900px)').matches){
-  storyMuted=true;
-  storyVolumeAtual=0;
-  storyMuteButton.innerHTML=iconeMudo();
-  storyMuteButton.setAttribute('aria-label','Ativar som');
-  storyVolume.value='0';
+  storyMuted=false;
+  if(!storyVolumeAtual || storyVolumeAtual<=0) storyVolumeAtual=0.5;
+  storyMuteButton.innerHTML=iconeVolume();
+  storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+  storyVolume.value=String(storyVolumeAtual);
  }
  storiesViewer.classList.add('aberto');
  storiesViewer.setAttribute('aria-hidden','false');
