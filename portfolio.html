@@ -1832,6 +1832,78 @@ document.addEventListener('keydown',function(event){
 @media(max-width:650px){.trabalhos-mobile-title{padding-top:24px!important;margin-top:30px!important;}}
 </style>
 
+
+
+<!-- Tentativa de melhor esforço: detecta teclas/eventos de volume quando o navegador os expõe. -->
+<script id="mobile-hardware-volume-best-effort">
+(function(){
+  'use strict';
+  var mobileQuery = window.matchMedia('(max-width: 768px)');
+  var lastActivation = 0;
+
+  function destaqueAberto(){
+    var viewer = document.getElementById('storiesViewer');
+    return !!(viewer && viewer.classList.contains('aberto'));
+  }
+
+  function normalizar(valor){
+    return String(valor || '').toLowerCase().replace(/[^a-z]/g, '');
+  }
+
+  function ehSinalDeVolume(event){
+    var key = normalizar(event.key);
+    var code = normalizar(event.code);
+    var numericCode = Number(event.keyCode || event.which || 0);
+    var nomes = ['audiovolumeup','audiovolumedown','volumeup','volumedown'];
+    return nomes.indexOf(key) !== -1 || nomes.indexOf(code) !== -1 ||
+      [24, 25, 174, 175].indexOf(numericCode) !== -1;
+  }
+
+  function habilitarSomPorSinalFisico(){
+    if (!mobileQuery.matches || !destaqueAberto() || !storyMuted) return;
+    var now = Date.now();
+    if (now - lastActivation < 700) return;
+    lastActivation = now;
+
+    // O destaque continua iniciando silenciado; só ativa se o browser enviar um sinal de volume.
+    storyMuted = false;
+    if (!storyVolumeAtual || storyVolumeAtual <= 0) storyVolumeAtual = 0.5;
+    if (storyMuteButton) {
+      storyMuteButton.innerHTML = iconeVolume();
+      storyMuteButton.setAttribute('aria-label', 'Silenciar vídeo');
+    }
+    if (storyVolume) storyVolume.value = String(storyVolumeAtual);
+    if (storyPlayer) {
+      try {
+        storyPlayer.setMuted(false)
+          .then(function(){ return storyPlayer ? storyPlayer.setVolume(storyVolumeAtual) : Promise.resolve(); })
+          .catch(function(){});
+      } catch (e) {}
+    }
+  }
+
+  function onHardwareKey(event){
+    if (!ehSinalDeVolume(event) || !destaqueAberto()) return;
+    habilitarSomPorSinalFisico();
+    // Não bloqueia a tecla: se o sistema operacional tratar o volume, ele continua funcionando.
+  }
+
+  // Alguns navegadores/dispositivos repassam os botões como teclas multimídia; muitos não repassam.
+  document.addEventListener('keydown', onHardwareKey, true);
+  document.addEventListener('keyup', onHardwareKey, true);
+  window.addEventListener('keydown', onHardwareKey, true);
+  window.addEventListener('keyup', onHardwareKey, true);
+
+  // Compatibilidade adicional caso o navegador disponibilize evento de volume na página.
+  document.addEventListener('volumechange', function(){
+    if (mobileQuery.matches && destaqueAberto() && storyMuted) habilitarSomPorSinalFisico();
+  }, true);
+  window.addEventListener('volumechange', function(){
+    if (mobileQuery.matches && destaqueAberto() && storyMuted) habilitarSomPorSinalFisico();
+  }, true);
+})();
+</script>
+
 </body>
 </html>
 
