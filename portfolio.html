@@ -1601,7 +1601,15 @@ function abrirDestaque(indice){
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
- /* Preserva a preferência de áudio escolhida ao trocar de destaque. */
+ /* Mobile: iniciar o destaque com áudio ativo para que os botões físicos de volume
+    do celular controlem o volume da reprodução. No desktop, preservar o comportamento original. */
+ if(window.matchMedia && window.matchMedia('(max-width: 900px)').matches){
+  storyMuted=false;
+  if(!storyVolumeAtual || storyVolumeAtual<=0)storyVolumeAtual=0.5;
+  storyMuteButton.innerHTML=iconeVolume();
+  storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+  storyVolume.value=String(storyVolumeAtual);
+ }
  storiesViewer.classList.add('aberto');
  storiesViewer.setAttribute('aria-hidden','false');
  document.body.style.overflow='hidden';
@@ -2069,10 +2077,11 @@ document.addEventListener('keydown',function(event){
 @media (max-width: 650px) {
   .site-footer .footer-columns { grid-template-columns: minmax(0, 1fr) !important; }
   .site-footer .footer-columns > * { width: 100% !important; }
-  .whatsapp-scroll { left: 34px !important; }
+  /* Igual à página Sobre Nós: ícone WhatsApp mais à esquerda, sem cobrir o copyright. */
+  .whatsapp-scroll { left: 12px !important; bottom: 8px !important; }
 }
 @media (max-width: 600px) {
-  .whatsapp-scroll { left: 34px !important; }
+  .whatsapp-scroll { left: 12px !important; bottom: 8px !important; }
 }
 </style>
 
