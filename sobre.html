@@ -264,7 +264,7 @@ a{color:inherit;text-decoration:none}
  .brand-description span:last-child{font-size:10px;letter-spacing:.7px}
  .menu-toggle{font-size:25px}
  .banner{min-height:600px}
- .banner .slide{object-position:56% center}
+ .banner .slide{object-position:center center}
  .banner .overlay{background:linear-gradient(to bottom,rgba(11,15,20,.24) 0%,rgba(11,15,20,.10) 35%,rgba(11,15,20,.42) 65%,rgba(11,15,20,.80) 84%,#0b0f14 100%)}
  .portfolio{padding:42px 5% 60px}
  .portfolio-header{margin-bottom:24px}
@@ -745,13 +745,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
     border-radius: 12px !important;
     padding: 10px 16px !important;
   }
-  /* Show more of the portrait/banner image on mobile, matching the wider reference framing */
-  .banner .slide {
-    object-fit: fill !important;
-    object-position: center center !important;
-    background: transparent !important;
-  }
-  /* Keep a clear gap between the brand and navigation on narrow screens */
+/* Keep a clear gap between the brand and navigation on narrow screens */
   .navbar .brand-area { margin-right: 12px !important; flex-shrink: 0 !important; }
   .navbar .nav-links { gap: clamp(12px, 3vw, 20px) !important; }
   .navbar .nav-links a { letter-spacing: 0 !important; }
@@ -761,13 +755,42 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 
 <style id="mobile-final-user-adjustments">
 @media (max-width: 650px) {
-  /* Mobile only: reduce the hero image zoom while keeping it sharp and full-screen. */
-  .banner .slide { object-fit: fill !important; object-position: center center !important; transform: none !important; }
-  /* Mobile only: keep all five Coverage highlights in one horizontal row. */
+/* Mobile only: keep all five Coverage highlights in one horizontal row. */
   #experiencias .destaques-lista { display:flex !important; flex-wrap:nowrap !important; align-items:flex-start !important; justify-content:space-between !important; gap:clamp(4px,1.6vw,10px) !important; width:100% !important; overflow:visible !important; }
   #experiencias .destaque-item { flex:0 0 18% !important; width:18% !important; min-width:0 !important; padding:0 !important; font-size:clamp(7px,2.15vw,11px) !important; letter-spacing:0 !important; gap:7px !important; }
   #experiencias .destaque-circulo { width:clamp(42px,15vw,68px) !important; height:clamp(42px,15vw,68px) !important; min-width:0 !important; min-height:0 !important; padding:2px !important; box-sizing:border-box !important; }
   #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; overflow-wrap:anywhere !important; }
+}
+</style>
+
+<style id="mobile-banner-third-slide-user-rule">
+@media (max-width: 768px) {
+  .banner .slide:nth-of-type(3) {
+    display: none !important;
+  }
+}
+</style>
+
+
+<style id="ajuste-banner-mobile-sem-bordas">
+/* Mobile: banner com 30svh e imagem centralizada em 80% de largura e altura. */
+@media (max-width: 768px) {
+  .banner {
+    height: 30svh !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+  .banner .slide {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    transform: translate(-50%, -50%) !important;
+  }
 }
 </style>
 
@@ -2073,14 +2096,6 @@ document.addEventListener('keydown',function(event){
     color: #fff !important;
     box-shadow: none !important;
   }
-  /* Mobile only: use the existing banner image only; no duplicate background image. */
-  .banner { background-image: none !important; }
-  .banner .slide {
-    transform: none !important;
-    object-fit: fill !important;
-    object-position: center center !important;
-    background: transparent !important;
-  }
 }
 </style>
 
@@ -2159,3 +2174,4 @@ document.addEventListener('keydown',function(event){
   .about-story-row .about-story-copy p { font-size: 12px !important; line-height: 1.45 !important; }
 }
 </style>
+

@@ -78,7 +78,7 @@ a{color:inherit;text-decoration:none}
 .video-card:hover .video-cover{filter:brightness(.78)}
 .video-frame::after{content:"";position:absolute;inset:25% 0 0;background:linear-gradient(to bottom,rgba(5,7,10,0) 0%,rgba(5,7,10,.08) 28%,rgba(5,7,10,.72) 100%);z-index:1;pointer-events:none;transition:inset .4s,background .4s}
 .video-play{position:absolute;z-index:4;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.68);border-radius:50%;background:rgba(0,0,0,.48);box-shadow:0 4px 18px rgba(0,0,0,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);transition:background .25s,border-color .25s,transform .25s,box-shadow .25s;pointer-events:none}
-.video-play svg{width:21px;height:21px;margin-left:3px;fill:rgba(255,255,255,.96)}
+.video-play svg{width:21px;height:21px;margin-left:0;fill:rgba(255,255,255,.96)}
 .video-card:hover .video-play{background:rgba(0,0,0,.55);border-color:rgba(255,255,255,.82);transform:translate(-50%,-50%) scale(1.06);box-shadow:0 3px 18px rgba(0,0,0,.24)}
 .video-info{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:38px 14px 14px;display:flex;flex-direction:column;justify-content:flex-end;min-height:38%;pointer-events:none;transition:min-height .4s,padding .4s}
 .video-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:500;letter-spacing:1.35px;text-transform:uppercase;color:#f5f2ec;line-height:1.2;text-shadow:0 1px 8px rgba(0,0,0,.35);overflow-wrap:anywhere}
@@ -701,13 +701,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
     border-radius: 12px !important;
     padding: 10px 16px !important;
   }
-  /* Show more of the portrait/banner image on mobile, matching the wider reference framing */
-  .banner .slide {
-    object-fit: cover !important;
-    object-position: 56% center !important;
-    background: #0b0f14 !important;
-  }
-  /* Keep a clear gap between the brand and navigation on narrow screens */
+/* Keep a clear gap between the brand and navigation on narrow screens */
   .navbar .brand-area { margin-right: 12px !important; flex-shrink: 0 !important; }
   .navbar .nav-links { gap: clamp(12px, 3vw, 20px) !important; }
   .navbar .nav-links a { letter-spacing: 0 !important; }
@@ -717,13 +711,42 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 
 <style id="mobile-final-user-adjustments">
 @media (max-width: 650px) {
-  /* Mobile only: reduce the hero image zoom while keeping it sharp and full-screen. */
-  .banner .slide { object-fit: cover !important; object-position: 56% center !important; transform: scale(.88) !important; }
-  /* Mobile only: keep all five Coverage highlights in one horizontal row. */
+/* Mobile only: keep all five Coverage highlights in one horizontal row. */
   #experiencias .destaques-lista { display:flex !important; flex-wrap:nowrap !important; align-items:flex-start !important; justify-content:space-between !important; gap:clamp(4px,1.6vw,10px) !important; width:100% !important; overflow:visible !important; }
   #experiencias .destaque-item { flex:0 0 18% !important; width:18% !important; min-width:0 !important; padding:0 !important; font-size:clamp(7px,2.15vw,11px) !important; letter-spacing:0 !important; gap:7px !important; }
   #experiencias .destaque-circulo { width:clamp(42px,15vw,68px) !important; height:clamp(42px,15vw,68px) !important; min-width:0 !important; min-height:0 !important; padding:2px !important; box-sizing:border-box !important; }
   #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; overflow-wrap:anywhere !important; }
+}
+</style>
+
+<style id="mobile-banner-third-slide-user-rule">
+@media (max-width: 768px) {
+  .banner .slide:nth-of-type(3) {
+    display: none !important;
+  }
+}
+</style>
+
+
+<style id="ajuste-banner-mobile-sem-bordas">
+/* Mobile: banner com 30svh e imagem centralizada em 80% de largura e altura. */
+@media (max-width: 768px) {
+  .banner {
+    height: 30svh !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+  .banner .slide {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    transform: translate(-50%, -50%) !important;
+  }
 }
 </style>
 
@@ -767,7 +790,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
    <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Dental Protect"><span class="destaque-circulo"><img src="dental-protect.jpeg" alt="Capa Dental Protect" loading="lazy"></span><span class="destaque-nome">DENTAL PROTETIC</span></button>
    <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
    <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
-   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Produções"><span class="destaque-circulo"><img src="https://i.imgur.com/p6jEHVA.jpeg" alt="Capa Produções" loading="lazy"></span><span class="destaque-nome">PRODUÇÕES</span></button>
+   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.png" alt="Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
   </div>
  </div>
 </section>
@@ -861,6 +884,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
     <div class="story-loading" id="storyLoading"></div>
     <div class="story-paused" id="storyPaused"><span>▶</span></div>
    </div>
+   <div class="story-swipe-layer" aria-hidden="true"></div>
    <div class="story-progress" id="storyProgress"></div>
    <div class="story-topbar">
     <div class="story-avatar"><img id="storyAvatar" src="https://i.imgur.com/zIHrBNG.jpeg" alt=""></div>
@@ -1327,8 +1351,8 @@ const destaquesData=[
   ]
  },
  {
-  nome:'PRODUÇÕES',
-  capa:'https://i.imgur.com/p6jEHVA.jpeg',
+  nome:'Layra Mentora',
+  capa:'layra-mentora.png',
   videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
  }
 ];
@@ -1987,12 +2011,6 @@ document.addEventListener('keydown',function(event){
     color: #fff !important;
     box-shadow: none !important;
   }
-  /* Match the desktop photo framing; undo the mobile-only zoom-out transform. */
-  .banner .slide {
-    transform: none !important;
-    object-fit: cover !important;
-    object-position: 56% center !important;
-  }
 }
 </style>
 
@@ -2057,3 +2075,71 @@ document.addEventListener('keydown',function(event){
   .whatsapp-scroll { left: 34px !important; }
 }
 </style>
+
+<style id="mobile-stories-swipe-only">
+/* Somente no celular: remove as setas e transforma o gesto horizontal em navegação entre destaques. */
+.story-swipe-layer{display:none;position:absolute;z-index:5;top:75px;right:0;bottom:0;left:0;background:transparent;touch-action:pan-y;-webkit-tap-highlight-color:transparent;}
+@media(max-width:768px){
+  .story-nav-arrow{display:none!important;}
+  .story-swipe-layer{display:block;}
+  .story-hint{font-size:0!important;line-height:1.2!important;bottom:12px!important;}
+  .story-hint::after{content:"Deslize para trocar de destaque";display:block;font-size:10px;line-height:1.2;color:rgba(255,255,255,.65);}
+}
+</style>
+<script id="mobile-stories-swipe-gestures">
+(function(){
+  var viewer=document.getElementById('storiesViewer');
+  var main=document.getElementById('storyMain');
+  if(!viewer||!main)return;
+  var startX=0,startY=0,tracking=false,horizontalMove=false,lastSwipeAt=0;
+  function isMobile(){return window.matchMedia('(max-width: 768px)').matches;}
+  function ignoredTarget(target){
+    return !!(target&&target.closest&&target.closest('.story-topbar,.story-progress,.story-icon-button,.stories-close,.story-sound-control,#storyVolume,.story-paused'));
+  }
+  main.addEventListener('touchstart',function(event){
+    if(!isMobile()||!viewer.classList.contains('aberto')||!event.changedTouches.length||ignoredTarget(event.target)){
+      tracking=false;
+      horizontalMove=false;
+      return;
+    }
+    var touch=event.changedTouches[0];
+    startX=touch.clientX;
+    startY=touch.clientY;
+    tracking=true;
+    horizontalMove=false;
+  },{passive:true});
+  main.addEventListener('touchmove',function(event){
+    if(!tracking||!isMobile()||!event.changedTouches.length)return;
+    var touch=event.changedTouches[0];
+    var dx=touch.clientX-startX;
+    var dy=touch.clientY-startY;
+    if(Math.abs(dx)>14&&Math.abs(dx)>Math.abs(dy)*1.15){
+      horizontalMove=true;
+      event.preventDefault();
+    }
+  },{passive:false});
+  main.addEventListener('touchend',function(event){
+    if(!tracking||!isMobile()||!event.changedTouches.length){tracking=false;return;}
+    var touch=event.changedTouches[0];
+    var dx=touch.clientX-startX;
+    var dy=touch.clientY-startY;
+    tracking=false;
+    if(!horizontalMove||Math.abs(dx)<48||Math.abs(dx)<Math.abs(dy)*1.2)return;
+    lastSwipeAt=Date.now();
+    if(dx<0){
+      proximoDestaque();
+    }else{
+      destaqueAnterior();
+    }
+  },{passive:true});
+  /* Evita que o toque final de um swipe também acione a área de toque anterior/próximo vídeo. */
+  main.addEventListener('click',function(event){
+    if(!isMobile()||Date.now()-lastSwipeAt>650)return;
+    if(event.target&&event.target.closest&&event.target.closest('.story-click-area')){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  },true);
+})();
+</script>
+
