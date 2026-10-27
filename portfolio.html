@@ -2153,10 +2153,10 @@ document.addEventListener('keydown',function(event){
   .site-footer .footer-columns { grid-template-columns: minmax(0, 1fr) !important; }
   .site-footer .footer-columns > * { width: 100% !important; }
   /* Igual à página Sobre Nós: ícone WhatsApp mais à esquerda, sem cobrir o copyright. */
-  .whatsapp-scroll { left: 12px !important; bottom: 8px !important; }
+  .whatsapp-scroll { left: 4px !important; bottom: 8px !important; }
 }
 @media (max-width: 600px) {
-  .whatsapp-scroll { left: 12px !important; bottom: 8px !important; }
+  .whatsapp-scroll { left: 4px !important; bottom: 8px !important; }
 }
 </style>
 
@@ -2839,4 +2839,8 @@ document.addEventListener('keydown',function(event){
     background: rgba(11,15,20,.58) !important;
   }
 }
+</style>
+<style id="whatsapp-portfolio-mobile-alinhado-final">
+/* Mobile: mantém o ícone do WhatsApp à esquerda, como na página Sobre Nós, sem cobrir o copyright. */
+@media (max-width: 650px) { .whatsapp-scroll { left: 4px !important; bottom: 8px !important; } }
 </style>
