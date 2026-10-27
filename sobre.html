@@ -1945,11 +1945,10 @@ document.addEventListener('keydown',function(event){
 .empresas .empresas-eyebrow{font-size:35px!important;}
 @media(max-width:600px){.about-story-copy h3{font-size:35px!important;}.instagram-live-about-title{font-size:35px!important;}.empresas .empresas-eyebrow{font-size:35px!important;}}
 
-/* VER PORTFÓLIO: somente a escrita em vermelho; fundo transparente e esfumado preto nas bordas */
-.floating-page-arrows > a{background:transparent!important;color:#ff0000!important;border:0!important;box-shadow:0 0 10px 3px rgba(0,0,0,.9),0 0 24px 8px rgba(0,0,0,.72)!important;}
+/* VER PORTFÓLIO: mantém o fundo original, sem camada transparente nem sombra adicionada; só o texto fica vermelho. */
+.floating-page-arrows > a{color:#ff0000!important;}
 .floating-page-arrows > a svg{color:#fff!important;stroke:#fff!important;}
-.floating-page-arrows > a span{color:#ff0000!important;text-shadow:0 0 2px rgba(0,0,0,.95)!important;}
-@media(max-width:600px){.floating-page-arrows > a{background:transparent!important;box-shadow:0 0 10px 3px rgba(0,0,0,.9),0 0 24px 8px rgba(0,0,0,.72)!important;}}
+.floating-page-arrows > a span{color:#ff0000!important;text-shadow:none!important;}
 
 </style>
 <script id="controle-links-flutuantes">
