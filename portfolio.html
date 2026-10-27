@@ -810,7 +810,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
   <div class="portfolio-row-title"><div class="row-heading"><h3>Trabalhos em Destaque</h3><span class="row-subtitle">Confira os melhores momentos dos nossos trabalhos em destaque.</span></div></div>
   <div class="portfolio-grid" id="recentVideos"></div>
 
-  <div class="portfolio-row-title trabalhos-mobile-title"><div class="row-heading"><h3>Trabalhos Mobile</h3><span class="row-subtitle">Confira os melhores momentos das nossas produções feitas para o formato mobile.</span></div></div>
+  <div class="portfolio-row-title trabalhos-mobile-title"><div class="row-heading"><h3>Mobile</h3><span class="row-subtitle">Confira os melhores momentos das nossas produções feitas para o formato mobile.</span></div></div>
   <div class="portfolio-grid" id="mobileVideos"></div>
 
  </div>
@@ -879,7 +879,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 @media(max-width:700px){.footer-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px;padding:28px 18px}.footer-bottom{flex-wrap:wrap;justify-content:center;text-align:center}.footer-bottom>strong{width:100%}.empresas .logos-grupo{gap:20px}.empresas .logo-cliente{width:125px;min-width:125px}.whatsapp-scroll{left:24px;bottom:16px;width:48px;height:48px}}
 </style>
 <script>
-(function(){const btn=document.querySelector('.whatsapp-scroll');if(!btn)return;function toggle(){btn.classList.toggle('visivel',window.scrollY>Math.max(250,window.innerHeight*.65));}window.addEventListener('scroll',toggle,{passive:true});toggle();})();
+(function(){const btn=document.querySelector('.whatsapp-scroll');if(!btn)return;btn.classList.add('visivel');})();
 </script>
 
 
@@ -1101,16 +1101,16 @@ const recentContainer=document.getElementById('recentVideos');
 projetos.forEach(function(projeto){recentContainer.appendChild(criarCard(projeto))});
 const mobileContainer=document.getElementById('mobileVideos');
 const mobileProjetos=[
- {id:'1239941136',title:'Trabalho Mobile 1',description:'Produção audiovisual para formato mobile.'},
- {id:'1239942183',title:'Trabalho Mobile 2',description:'Produção audiovisual para formato mobile.'},
- {id:'1239942653',title:'Trabalho Mobile 3',description:'Produção audiovisual para formato mobile.'},
- {id:'1239943182',title:'Trabalho Mobile 4',description:'Produção audiovisual para formato mobile.'},
- {id:'1239948291',title:'Trabalho Mobile 5',description:'Produção audiovisual para formato mobile.'},
- {id:'1239944180',title:'Trabalho Mobile 6',description:'Produção audiovisual para formato mobile.'},
- {id:'1239943520',title:'Trabalho Mobile 7',description:'Produção audiovisual para formato mobile.'},
- {id:'1239946012',title:'Trabalho Mobile 8',description:'Produção audiovisual para formato mobile.'},
- {id:'1239948889',title:'Trabalho Mobile 9',description:'Produção audiovisual para formato mobile.'},
- {id:'1239949189',title:'Trabalho Mobile 10',description:'Produção audiovisual para formato mobile.'}
+ {id:'1239941136',title:'Embaixadores Nuuvi',description:'Aftermovie com os embaixadores da Nuuvi Beauty na Beauty Fair 2026.'},
+ {id:'1239942183',title:'Visita Outlet',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239942653',title:'Dental Protetic',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239943182',title:'Panela Color Stone',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239948291',title:'Agência Leks',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239944180',title:'Nuuvi Beauty',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239943520',title:'Dental Protetic',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239946012',title:'Aqua Mart',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239948889',title:'Débora Makeup',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239949189',title:'Pedro Chen',description:'Produção audiovisual para formato mobile.'}
 ];
 mobileProjetos.forEach(function(projeto){mobileContainer.appendChild(criarCard(projeto))});
 const makingContainer=document.getElementById('makingOfVideos');
@@ -2038,6 +2038,12 @@ document.addEventListener('keydown',function(event){
 </style>
 
 
+<style id="bordas-sutis-videos-trabalhos-mobile">
+/* Bordas discretas nos vídeos de Trabalhos Mobile, combinando com Bastidores. */
+#mobileVideos .video-card{border:1px solid rgba(255,255,255,.12)!important;border-radius:4px!important;box-sizing:border-box!important;}
+#mobileVideos .video-card:hover{border-color:rgba(255,255,255,.18)!important;}
+</style>
+
 <style id="espacamento-trabalhos-mobile">
 /* Dá a Trabalhos Mobile um respiro semelhante ao intervalo entre as outras seções. */
 .trabalhos-mobile-title{margin-top:68px!important;margin-bottom:22px!important;}
@@ -2882,4 +2888,37 @@ document.addEventListener('keydown',function(event){
 <style id="whatsapp-portfolio-mobile-alinhado-final">
 /* Mobile: mantém o ícone do WhatsApp à esquerda, como na página Sobre Nós, sem cobrir o copyright. */
 @media (max-width: 650px) { .whatsapp-scroll { left: 4px !important; bottom: 8px !important; } }
+</style>
+
+
+<style id="whatsapp-notification-badge-smaller-centered">
+/* Ajuste solicitado: bolinha vermelha menor e número 1 centralizado. */
+.whatsapp-scroll .whatsapp-notification{
+  width:15px!important;min-width:15px!important;height:15px!important;padding:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;border:1px solid #d71920!important;border-radius:50%!important;
+  top:5px!important;right:4px!important;font:700 9px/1 Arial,sans-serif!important;
+  text-align:center!important;line-height:1!important;
+}
+</style>
+
+
+<style id="whatsapp-notification-badge-arrival-animation">
+/* Pequeno salto repetido para simular uma nova mensagem chegando. */
+@keyframes whatsappBadgeMessageBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  12% { transform: translateY(-3px) scale(1.08); }
+  24% { transform: translateY(0) scale(1); }
+  36% { transform: translateY(-2px) scale(1.05); }
+  48% { transform: translateY(0) scale(1); }
+  62% { transform: translateY(-1px) scale(1.02); }
+  74%, 100% { transform: translateY(0) scale(1); }
+}
+.whatsapp-scroll .whatsapp-notification {
+  transform-origin: center;
+  animation: whatsappBadgeMessageBounce 1.8s ease-in-out infinite !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-scroll .whatsapp-notification { animation: none !important; }
+}
 </style>

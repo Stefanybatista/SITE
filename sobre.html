@@ -879,14 +879,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
    <div class="about-story-image"><img src="https://i.imgur.com/ukTp9lV.jpeg" alt="Equipe trabalhando nos bastidores de uma filmagem" loading="lazy"></div>
    <div class="about-story-copy"><h3>Criatividade Com Estrutura</h3><p>Ao meu lado, Stefany Lima, minha sócia e noiva, responsável pela organização e gestão administrativa dos projetos.<br>Acreditamos na produção cinematográfica, sempre vamos nos esforçar para criar um trabalho original, e personalizado. É isso que nos move, é isso que nos mantém acordados de dia, e muitas vezes, à noite.</p></div>
   </article>
-  
-  
-  <div class="about-story-end" aria-label="Mais fotos dos bastidores">
-   <img src="https://i.imgur.com/B5appHN.jpeg" alt="Equipamento audiovisual" loading="lazy">
-   <img src="https://i.imgur.com/B5appHN.jpeg" alt="Equipe em produção" loading="lazy">
-   <img src="https://i.imgur.com/B5appHN.jpeg" alt="Bastidores de filmagem" loading="lazy">
-  </div>
- </div>
+</div>
 </section>
 
 <section class="instagram-live-section" aria-labelledby="instagramLiveTitle">
@@ -2234,5 +2227,38 @@ document.addEventListener('keydown',function(event){
   .instagram-live-embed-column { min-height: 0 !important; height: auto !important; }
   .instagram-live-embed-wrap { min-height: 0 !important; height: auto !important; }
   .instagram-live-embed-wrap iframe { height: 350px !important; min-height: 350px !important; }
+}
+</style>
+
+
+<style id="whatsapp-notification-badge-smaller-centered">
+/* Ajuste solicitado: bolinha vermelha menor e número 1 centralizado. */
+.whatsapp-scroll .whatsapp-notification{
+  width:15px!important;min-width:15px!important;height:15px!important;padding:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;border:1px solid #d71920!important;border-radius:50%!important;
+  top:5px!important;right:4px!important;font:700 9px/1 Arial,sans-serif!important;
+  text-align:center!important;line-height:1!important;
+}
+</style>
+
+
+<style id="whatsapp-notification-badge-arrival-animation">
+/* Pequeno salto repetido para simular uma nova mensagem chegando. */
+@keyframes whatsappBadgeMessageBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  12% { transform: translateY(-3px) scale(1.08); }
+  24% { transform: translateY(0) scale(1); }
+  36% { transform: translateY(-2px) scale(1.05); }
+  48% { transform: translateY(0) scale(1); }
+  62% { transform: translateY(-1px) scale(1.02); }
+  74%, 100% { transform: translateY(0) scale(1); }
+}
+.whatsapp-scroll .whatsapp-notification {
+  transform-origin: center;
+  animation: whatsappBadgeMessageBounce 1.8s ease-in-out infinite !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-scroll .whatsapp-notification { animation: none !important; }
 }
 </style>
