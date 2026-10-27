@@ -1945,6 +1945,12 @@ document.addEventListener('keydown',function(event){
 .empresas .empresas-eyebrow{font-size:35px!important;}
 @media(max-width:600px){.about-story-copy h3{font-size:35px!important;}.instagram-live-about-title{font-size:35px!important;}.empresas .empresas-eyebrow{font-size:35px!important;}}
 
+/* VER PORTFÓLIO: somente a escrita em vermelho; fundo transparente e esfumado preto nas bordas */
+.floating-page-arrows > a{background:transparent!important;color:#ff0000!important;border:0!important;box-shadow:0 0 10px 3px rgba(0,0,0,.9),0 0 24px 8px rgba(0,0,0,.72)!important;}
+.floating-page-arrows > a svg{color:#fff!important;stroke:#fff!important;}
+.floating-page-arrows > a span{color:#ff0000!important;text-shadow:0 0 2px rgba(0,0,0,.95)!important;}
+@media(max-width:600px){.floating-page-arrows > a{background:transparent!important;box-shadow:0 0 10px 3px rgba(0,0,0,.9),0 0 24px 8px rgba(0,0,0,.72)!important;}}
+
 </style>
 <script id="controle-links-flutuantes">
 (function(){function atualizar(){var rolou=window.scrollY>180;document.querySelectorAll('.floating-page-arrows').forEach(function(el){el.classList.toggle('visivel',rolou);});}window.addEventListener('scroll',atualizar,{passive:true});window.addEventListener('load',atualizar);atualizar();})();
@@ -2137,6 +2143,37 @@ document.addEventListener('keydown',function(event){
 
 <style id="mobile-menu-centered-contact-smaller">
 @media (max-width:700px) { .navbar .nav-links { align-items:center !important; justify-content:center !important; } .navbar .nav-links a { text-align:center !important; font-size:13px !important; padding:10px 12px !important; } .navbar .nav-links a.nav-contact-link { width:auto !important; min-width:0 !important; margin:4px auto 0 !important; padding:7px 14px !important; font-size:11px !important; line-height:1.2 !important; letter-spacing:1px !important; border-radius:5px !important; } }
+</style>
+
+<style id="mobile-portfolio-red-soft-glow-final">
+@media (max-width: 650px) {
+  .navbar .nav-links a[href*="portfolio.html"] {
+    position: relative !important;
+    z-index: 0 !important;
+    color: #e3261b !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 7px rgba(220, 28, 18, .28) !important;
+  }
+  .navbar .nav-links a[href*="portfolio.html"]::before {
+    content: "" !important;
+    position: absolute !important;
+    z-index: -1 !important;
+    left: -18px !important; right: -18px !important; top: -9px !important; bottom: -9px !important;
+    border-radius: 10px !important;
+    background: radial-gradient(ellipse at center, rgba(190, 22, 13, .22) 0%, rgba(190, 22, 13, .10) 48%, rgba(190, 22, 13, 0) 78%) !important;
+    filter: blur(5px) !important;
+    pointer-events: none !important;
+  }
+}
+</style>
+
+
+<style id="fix-menu-portfolio-white-final">
+/* O item Portfólio do menu mobile deve ficar branco; o vermelho pertence somente ao texto VER PORTFÓLIO. */
+@media (max-width: 650px) {
+  .navbar .nav-links a[href*="portfolio.html"] { color: #f2f2f2 !important; text-shadow: none !important; }
+  .navbar .nav-links a[href*="portfolio.html"]::before { display: none !important; content: none !important; }
+}
 </style>
 </body>
 </html>
