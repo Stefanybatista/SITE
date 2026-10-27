@@ -545,7 +545,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
  .about-reel-card{flex-basis:calc((100vw - 150px - 16px)/3)!important}
 }
 @media(max-width:600px){
- .about-story{padding-top:35px!important}
+ .about-story{padding-top:8px!important}
  .about-social-heading{margin-bottom:24px!important}
  .about-reel-wrap{padding:0 35px!important}
  .about-reel-card{flex-basis:calc((100vw - 100px)/2)!important}
@@ -2065,6 +2065,19 @@ document.addEventListener('keydown',function(event){
   .about-reel-viewport {
     -webkit-mask-image: none !important;
     mask-image: none !important;
+  }
+}
+</style>
+
+
+<style id="carrossel-mobile-sobrepoe-banner">
+@media (max-width: 768px) {
+  /* O carrossel sobe e sobrepõe discretamente a base do banner apenas no mobile. */
+  #sobre-historia.about-story {
+    position: relative !important;
+    z-index: 3 !important;
+    margin-top: -91px !important;
+    padding-top: 8px !important;
   }
 }
 </style>
