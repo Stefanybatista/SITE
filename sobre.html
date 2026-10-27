@@ -795,6 +795,17 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 }
 </style>
 
+
+<style id="about-reel-edge-fade">
+/* Degradê suave nas extremidades do carrossel de fotos Sobre Nós, como na seção Marcas. */
+.about-reel-viewport{
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
+}
+@media (prefers-reduced-motion: reduce){
+  .about-reel-viewport{ -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%); mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%); }
+}
+</style>
 </head>
 
 <body data-page="sobre">
@@ -819,13 +830,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 </section>
 
 <section class="about-story" id="sobre-historia" aria-label="Nossa história">
- <div class="about-social-heading">
-  <span class="about-social-mark" aria-hidden="true">○</span>
-  <a href="https://www.instagram.com/euvitorcine?srtk=N3ZpZ2RyOGN0djU1" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Victor">@euvitorcine</a>
-  <span class="about-social-divider" aria-hidden="true"></span>
-  <a class="about-social-button" href="https://www.instagram.com/euvitorcine?srtk=N3ZpZ2RyOGN0djU1" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">○</span> Instagram</a>
- </div>
- <div class="about-reel-wrap" aria-label="Carrossel infinito de fotos">
+  <div class="about-reel-wrap" aria-label="Carrossel infinito de fotos">
   <button class="about-reel-arrow prev" type="button" aria-label="Foto anterior">‹</button>
   <div class="about-reel" id="aboutReel" aria-label="Fotos de bastidores e produções">
    <div class="about-reel-card"><img src="https://i.imgur.com/WnQZlYv.jpeg" alt="Foto do carrossel Sobre Nós 1" loading="lazy"></div>
@@ -967,7 +972,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 
 <section class="empresas" id="clientes" aria-label="Clientes e marcas em nosso portfólio">
  <div class="empresas-container">
-  <header class="empresas-header"><div class="empresas-eyebrow">Marcas Que Trabalhamos</div></header>
+  <header class="empresas-header"><div class="empresas-eyebrow">Marcas</div></header>
   <div class="logos-slider" aria-label="Marcas em nosso portfólio"><div class="logos-track"><div class="logos-grupo">
    <div class="logo-cliente"><img src="https://i.postimg.cc/kgGSFYn2/Background-Eraser.png" alt="Crescieperdi" loading="lazy"></div>
    <div class="logo-cliente"><img src="https://i.postimg.cc/Bn2crKG6/Background-Eraser.png" alt="Borelli" loading="lazy"></div>
@@ -2024,7 +2029,7 @@ document.addEventListener('keydown',function(event){
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
-/* Rodapé com a mesma tipografia do título Marcas Que Trabalhamos */
+/* Rodapé com a mesma tipografia do título Marcas */
 .site-footer .footer-columns h3,
 .site-footer .footer-columns a,
 .site-footer .footer-info p {
