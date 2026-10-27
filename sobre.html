@@ -796,16 +796,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 </style>
 
 
-<style id="about-reel-edge-fade">
-/* Degradê suave nas extremidades do carrossel de fotos Sobre Nós, como na seção Marcas. */
-.about-reel-viewport{
-  -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
-  mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
-}
-@media (prefers-reduced-motion: reduce){
-  .about-reel-viewport{ -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%); mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%); }
-}
-</style>
+
 
 <style id="about-reel-match-bastidores-layout">
 /* Sobre Nós: mesmo tamanho, espaçamento e setas do carrossel Bastidores do Portfólio. */
@@ -1894,7 +1885,7 @@ document.addEventListener('keydown',function(event){
  reel.classList.add('about-reel-track');
  originals.forEach(card=>reel.appendChild(card.cloneNode(true)));
  let position=0, pausedByHover=false, manualMode=false, lastTime=0, resumeTimer=null;
- const speed=42;
+ const speed=22;
  const resumeDelay=1200;
  function gapSize(){const css=getComputedStyle(reel);const value=css.columnGap&&css.columnGap!=='normal'?css.columnGap:css.gap;const parsed=parseFloat(value);return Number.isFinite(parsed)?parsed:0;}
  function stepSize(){const card=originals[0];return (card?card.getBoundingClientRect().width:180)+gapSize();}
@@ -2051,6 +2042,33 @@ document.addEventListener('keydown',function(event){
 .about-story .about-story-image img { border: 0 !important; box-sizing: border-box !important; }
 .about-story .about-story-end img { border: 1px solid rgba(255,255,255,.22) !important; box-sizing: border-box !important; }
 </style>
+
+
+<style id="about-reel-mobile-match-bastidores-final">
+/* Somente mobile: carrossel Sobre Nós com as mesmas dimensões do carrossel Bastidores. Desktop preservado. */
+@media (max-width:600px){
+ /* Estende a área até perto das bordas: a foto começa alinhada ao meio das setas, como em Bastidores. */
+ .about-reel-wrap{width:calc(100% - 8px)!important;max-width:none!important;padding:0!important;margin:0 auto!important;box-sizing:border-box!important;}
+ .about-reel-viewport{width:100%!important;max-width:100%!important;overflow:hidden!important;}
+ .about-reel-track{gap:12px!important;width:max-content!important;max-width:none!important;flex-wrap:nowrap!important;padding:2px 1px 10px!important;}
+ .about-reel-card{flex:0 0 calc((100vw - 56px)/2)!important;width:calc((100vw - 56px)/2)!important;min-width:0!important;max-width:calc((100vw - 56px)/2)!important;aspect-ratio:.67!important;box-sizing:border-box!important;}
+ .about-reel-arrow{width:30px!important;height:30px!important;flex-basis:30px!important;}
+ .about-reel-arrow.prev{left:-15px!important;}
+ .about-reel-arrow.next{right:-15px!important;}
+}
+</style>
+
+
+<style id="about-reel-remove-edge-shadows-mobile">
+/* Somente no mobile: remove o degradê/sombra nas duas extremidades do carrossel. */
+@media (max-width: 600px) {
+  .about-reel-viewport {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+}
+</style>
+
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
