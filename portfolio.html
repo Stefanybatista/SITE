@@ -751,6 +751,13 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 }
 </style>
 
+
+<style id="borda-clara-todos-bastidores">
+/* Uniformiza a borda clara em todos os cards de vídeo de Bastidores. */
+#makingOfVideos .video-card{border:1px solid rgba(255,255,255,.12)!important;border-radius:4px!important;box-sizing:border-box!important;}
+#makingOfVideos .video-card:hover{border-color:rgba(255,255,255,.18)!important;}
+</style>
+
 </head>
 
 <body data-page="portfolio">
@@ -1093,7 +1100,19 @@ function criarCard(projeto){
 const recentContainer=document.getElementById('recentVideos');
 projetos.forEach(function(projeto){recentContainer.appendChild(criarCard(projeto))});
 const mobileContainer=document.getElementById('mobileVideos');
-projetos.slice(0,5).forEach(function(projeto){mobileContainer.appendChild(criarCard(projeto))});
+const mobileProjetos=[
+ {id:'1239941136',title:'Trabalho Mobile 1',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239942183',title:'Trabalho Mobile 2',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239942653',title:'Trabalho Mobile 3',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239943182',title:'Trabalho Mobile 4',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239948291',title:'Trabalho Mobile 5',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239944180',title:'Trabalho Mobile 6',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239943520',title:'Trabalho Mobile 7',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239946012',title:'Trabalho Mobile 8',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239948889',title:'Trabalho Mobile 9',description:'Produção audiovisual para formato mobile.'},
+ {id:'1239949189',title:'Trabalho Mobile 10',description:'Produção audiovisual para formato mobile.'}
+];
+mobileProjetos.forEach(function(projeto){mobileContainer.appendChild(criarCard(projeto))});
 const makingContainer=document.getElementById('makingOfVideos');
 makingOf.forEach(function(projeto){makingContainer.appendChild(criarCard(projeto))});
 /* Bastidores: carrossel infinito. A seta direita avança sempre para a direita;
@@ -1129,32 +1148,51 @@ if(makingViewport){
    }
    return clone;
   }
+  /* Insere as cópias anteriores em um único fragmento para preservar a ordem 1, 2, 3... */
+  const beforeFragment=document.createDocumentFragment();
   clonesBefore.forEach((card,i)=>{
    prepararClone(card,originals[i]);
-   makingViewport.insertBefore(card,makingViewport.firstChild);
+   beforeFragment.appendChild(card);
   });
+  makingViewport.insertBefore(beforeFragment,makingViewport.firstChild);
   clonesAfter.forEach((card,i)=>{
    prepararClone(card,originals[i]);
    makingViewport.appendChild(card);
   });
   makingIndex=makingOriginalCount;
-  requestAnimationFrame(()=>{makingViewport.scrollLeft=makingViewport.children[makingIndex].offsetLeft;});
+  function alinharCard(index,behavior){
+   const card=makingViewport.children[index];
+   if(!card)return;
+   const primeiro=makingViewport.children[0];
+   const left=card.offsetLeft-primeiro.offsetLeft;
+   makingViewport.scrollTo({left:left,behavior:behavior||'auto'});
+  }
+  requestAnimationFrame(()=>requestAnimationFrame(()=>alinharCard(makingIndex,'auto')));
  }
 }
 function scrollMaking(direction){
- if(!makingViewport||!makingOriginalCount||makingAnimating)return;
- makingAnimating=true;
+ if(!makingViewport||!makingOriginalCount)return;
+ /* Permite cliques consecutivos: o índice acompanha cada clique, sem bloquear
+    o botão durante a animação suave anterior. */
  makingIndex+=direction;
  const cards=makingViewport.querySelectorAll('.video-card');
  const target=cards[makingIndex];
- if(!target){makingAnimating=false;return;}
- makingViewport.scrollTo({left:target.offsetLeft,behavior:'smooth'});
+ if(!target){makingIndex=Math.max(makingOriginalCount,Math.min(makingIndex,makingOriginalCount*2-1));return;}
+ const primeiro=makingViewport.children[0];
+ const targetLeft=target.offsetLeft-primeiro.offsetLeft;
+ makingViewport.scrollTo({left:targetLeft,behavior:'smooth'});
  clearTimeout(makingResetTimer);
+ /* Aguarda a rolagem terminar antes de reposicionar silenciosamente na cópia
+    equivalente. Um timer reiniciado a cada clique evita travas e saltos. */
  makingResetTimer=setTimeout(()=>{
-  if(makingIndex>=makingOriginalCount*2){makingIndex=makingOriginalCount;makingViewport.scrollLeft=cards[makingIndex].offsetLeft;}
-  else if(makingIndex<makingOriginalCount){makingIndex=makingOriginalCount*2-1;makingViewport.scrollLeft=cards[makingIndex].offsetLeft;}
-  makingAnimating=false;
- },500);
+  if(makingIndex>=makingOriginalCount*2)makingIndex-=makingOriginalCount;
+  else if(makingIndex<makingOriginalCount)makingIndex+=makingOriginalCount;
+  const resetCard=makingViewport.children[makingIndex];
+  if(resetCard){
+   const base=makingViewport.children[0];
+   makingViewport.scrollTo({left:resetCard.offsetLeft-base.offsetLeft,behavior:'auto'});
+  }
+ },900);
 }
 if(makingPrev)makingPrev.addEventListener('click',()=>scrollMaking(-1));
 if(makingNext)makingNext.addEventListener('click',()=>scrollMaking(1));

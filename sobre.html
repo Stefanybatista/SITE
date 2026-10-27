@@ -497,13 +497,13 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 .about-story-intro p{font-size:14px;line-height:1.8;color:#c0c2c5}
 .about-story-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(22px,4vw,54px);margin:30px 0}
 .about-story-row:nth-child(even) .about-story-image{order:2}
-.about-story-image{height:clamp(220px,28vw,360px);overflow:hidden;background:#171b21}
+.about-story-image{height:clamp(220px,28vw,360px);overflow:hidden;background:#171b21;border:1px solid rgba(255,255,255,.12);box-sizing:border-box}
 .about-story-image img{width:100%;height:100%;object-fit:cover;display:block}
 .about-story-copy{padding:10px 2px}
 .about-story-copy h3{font-size:clamp(22px,2.4vw,30px);line-height:1.2;margin:0 0 12px;letter-spacing:-.5px}
 .about-story-copy p{font-size:14px;line-height:1.85;color:#c0c2c5;margin:0}
 .about-story-end{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:42px}
-.about-story-end img{width:100%;height:190px;object-fit:cover;display:block}
+.about-story-end img{width:100%;height:190px;object-fit:cover;display:block;border:1px solid rgba(255,255,255,.12);box-sizing:border-box}
 @media(max-width:850px){.about-reel-card{flex-basis:calc((100% - 12px)/3)}.about-story-row{gap:22px}.about-story-image{height:250px}}
 @media(max-width:600px){.about-story{padding:54px 16px 55px}.about-reel-wrap{padding:0 40px}.about-reel-card{flex-basis:42%;}.about-reel-arrow{width:34px;height:34px;font-size:25px}.about-story-inner{margin-top:45px}.about-story-intro{text-align:left}.about-story-row{grid-template-columns:1fr;gap:14px;margin:28px 0}.about-story-row:nth-child(even) .about-story-image{order:0}.about-story-image{height:230px}.about-story-copy h3{font-size:24px}.about-story-copy p{font-size:13px}.about-story-end{grid-template-columns:repeat(3,1fr);gap:5px}.about-story-end img{height:105px}}
 
@@ -806,6 +806,31 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
   .about-reel-viewport{ -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%); mask-image:linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%); }
 }
 </style>
+
+<style id="about-reel-match-bastidores-layout">
+/* Sobre Nós: mesmo tamanho, espaçamento e setas do carrossel Bastidores do Portfólio. */
+.about-reel-wrap{max-width:1288px!important;width:calc(100% - 96px)!important;padding:0!important;margin:0 auto!important;position:relative!important;overflow:visible!important}
+.about-reel-viewport{display:block!important;width:100%!important;max-width:100%!important;overflow:hidden!important;flex:none!important}
+.about-reel-track{display:flex!important;flex-wrap:nowrap!important;gap:22px!important;width:max-content!important;max-width:none!important;overflow:visible!important;padding:2px 1px 10px!important;scroll-snap-type:none!important;scroll-behavior:auto!important;will-change:transform;cursor:default!important}
+.about-reel-card{flex:0 0 calc((min(100vw - 96px, 1288px) - 88px)/5)!important;width:calc((min(100vw - 96px, 1288px) - 88px)/5)!important;min-width:0!important;aspect-ratio:.67!important;overflow:hidden!important;scroll-snap-align:start!important}
+.about-reel-arrow{position:absolute!important;top:50%!important;transform:translateY(-50%)!important;width:38px!important;height:38px!important;flex:0 0 38px!important;border:1px solid rgba(255,255,255,.35)!important;border-radius:50%!important;background:rgba(255,255,255,.08)!important;color:#fff!important;font-size:0!important;line-height:1!important;box-shadow:none!important;z-index:5!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important}
+.about-reel-arrow:hover{background:#a7192d!important;border-color:#a7192d!important;transform:translateY(-50%)!important}
+.about-reel-arrow.prev{left:-48px!important;padding:0!important}
+.about-reel-arrow.next{right:-48px!important;padding:0!important}
+.about-reel-arrow.prev::before{content:"‹";font-size:28px;line-height:1;display:block;position:relative;top:-1px;left:-1px}
+.about-reel-arrow.next::before{content:"›";font-size:28px;line-height:1;display:block;position:relative;top:-1px;left:1px}
+@media(max-width:1250px){.about-reel-wrap{width:calc(100% - 76px)!important}.about-reel-track{gap:16px!important}.about-reel-card{flex-basis:calc((100% - 48px)/4)!important;width:calc((100% - 48px)/4)!important}.about-reel-arrow.prev{left:-38px!important}.about-reel-arrow.next{right:-38px!important}}
+@media(max-width:900px){.about-reel-wrap{width:calc(100% - 68px)!important}.about-reel-track{gap:18px!important}.about-reel-card{flex-basis:calc((100% - 36px)/3)!important;width:calc((100% - 36px)/3)!important}.about-reel-arrow.prev{left:-34px!important}.about-reel-arrow.next{right:-34px!important}}
+@media(max-width:600px){.about-reel-wrap{width:calc(100% - 48px)!important}.about-reel-track{gap:12px!important}.about-reel-card{flex-basis:calc((100% - 12px)/2)!important;width:calc((100% - 12px)/2)!important}.about-reel-arrow{width:30px!important;height:30px!important;flex-basis:30px!important}.about-reel-arrow.prev{left:-15px!important}.about-reel-arrow.next{right:-15px!important}.about-reel-arrow.prev::before,.about-reel-arrow.next::before{font-size:24px;top:-1px}}
+</style>
+
+
+<style id="borda-clara-carrossel-sobre">
+/* Borda branca suave nas fotos do carrossel Sobre Nós, igual ao Portfólio. */
+.about-reel-card{border:1px solid rgba(255,255,255,.35)!important;border-radius:4px!important;box-sizing:border-box!important;}
+.about-reel-card img,.about-reel-card video{border-radius:3px!important;}
+</style>
+
 </head>
 
 <body data-page="sobre">
@@ -1878,9 +1903,9 @@ document.addEventListener('keydown',function(event){
  let position=0, pausedByHover=false, manualMode=false, lastTime=0, resumeTimer=null;
  const speed=42;
  const resumeDelay=1200;
- function gapSize(){const css=getComputedStyle(reel);return parseFloat(css.columnGap||css.gap)||0;}
+ function gapSize(){const css=getComputedStyle(reel);const value=css.columnGap&&css.columnGap!=='normal'?css.columnGap:css.gap;const parsed=parseFloat(value);return Number.isFinite(parsed)?parsed:0;}
  function stepSize(){const card=originals[0];return (card?card.getBoundingClientRect().width:180)+gapSize();}
- function loopWidth(){return originals.reduce((sum,card)=>sum+card.getBoundingClientRect().width,0)+gapSize()*originals.length;}
+ function loopWidth(){const widths=originals.reduce((sum,card)=>sum+card.getBoundingClientRect().width,0);return widths+gapSize()*originals.length;}
  function normalize(){const loop=loopWidth();if(loop>0)position=((position%loop)+loop)%loop;}
  function render(){reel.style.transform='translate3d('+Math.round(-position)+'px,0,0)';}
  function animate(time){
@@ -2026,6 +2051,13 @@ document.addEventListener('keydown',function(event){
 })();
 </script>
 
+
+<style id="about-story-images-subtle-white-borders">
+/* Borda clara consistente nas fotos da história de Sobre Nós. */
+.about-story .about-story-image { border: 1px solid rgba(255,255,255,.22) !important; box-sizing: border-box !important; overflow: hidden !important; }
+.about-story .about-story-image img { border: 0 !important; box-sizing: border-box !important; }
+.about-story .about-story-end img { border: 1px solid rgba(255,255,255,.22) !important; box-sizing: border-box !important; }
+</style>
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
