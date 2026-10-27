@@ -2122,6 +2122,22 @@ document.addEventListener('keydown',function(event){
 }
 </style>
 
+
+<style id="mobile-hamburger-menu-reference-final">
+/* Mobile: mostrar somente o botão de três barras; abrir links ao tocar. */
+@media (max-width: 700px) {
+  .navbar .menu-toggle { display: block !important; flex: 0 0 auto !important; margin-left: auto !important; padding: 0 2px !important; color: #e21b0c !important; font-size: 29px !important; line-height: 1 !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  .navbar .nav-links { display: none !important; position: absolute !important; top: calc(100% + 10px) !important; right: 0 !important; left: auto !important; width: min(220px, 86vw) !important; min-width: 0 !important; height: auto !important; padding: 10px 0 !important; margin: 0 !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 0 !important; background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .navbar .nav-links.open, .navbar .nav-links.active { display: flex !important; }
+  .navbar .nav-links a { display: block !important; width: 100% !important; padding: 10px 12px !important; text-align: center !important; font-size: 13px !important; line-height: 1.25 !important; color: #f2f2f2 !important; background: transparent !important; border: 0 !important; }
+  .navbar .nav-links a.nav-contact-link { width: auto !important; min-width: 0 !important; margin: 4px auto 0 !important; padding: 7px 14px !important; font-size: 11px !important; line-height: 1.2 !important; letter-spacing: 1px !important; border-radius: 5px !important; }
+}
+@media (min-width: 701px) { .navbar .menu-toggle { display: none !important; } }
+</style>
+
+<style id="mobile-menu-centered-contact-smaller">
+@media (max-width:700px) { .navbar .nav-links { align-items:center !important; justify-content:center !important; } .navbar .nav-links a { text-align:center !important; font-size:13px !important; padding:10px 12px !important; } .navbar .nav-links a.nav-contact-link { width:auto !important; min-width:0 !important; margin:4px auto 0 !important; padding:7px 14px !important; font-size:11px !important; line-height:1.2 !important; letter-spacing:1px !important; border-radius:5px !important; } }
+</style>
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
