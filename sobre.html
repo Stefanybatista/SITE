@@ -2082,6 +2082,46 @@ document.addEventListener('keydown',function(event){
 }
 </style>
 
+
+<style id="mobile-navlinks-same-background-as-navbar-final">
+/* Mobile: nav-links usa exatamente a mesma cor da cápsula principal do menu. */
+@media (max-width: 650px) {
+  .navbar .nav-links,
+  .navbar .nav-links:hover,
+  .navbar .nav-links:focus,
+  .navbar .nav-links:focus-within,
+  .navbar .nav-links:active {
+    background: rgba(0,0,0,.58) !important;
+    background-color: rgba(0,0,0,.58) !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+}
+</style>
+
+
+<style id="mobile-nav-links-remove-frost-final">
+@media (max-width: 650px) {
+  .navbar .nav-links,
+  .navbar .nav-links.open,
+  .navbar .nav-links.active,
+  .navbar .nav-links:hover,
+  .navbar .nav-links:focus,
+  .navbar .nav-links:focus-within,
+  .navbar .nav-links:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    outline: 0 !important;
+  }
+}
+</style>
+
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
@@ -2291,5 +2331,22 @@ document.addEventListener('keydown',function(event){
 }
 @media (prefers-reduced-motion: reduce) {
   .whatsapp-scroll .whatsapp-notification { animation: none !important; }
+}
+</style>
+
+
+<style id="mobile-nav-links-inner-background-transparent-final">
+@media (max-width: 650px) {
+  .navbar .nav-links,
+  .navbar .nav-links:hover,
+  .navbar .nav-links:focus,
+  .navbar .nav-links:focus-within,
+  .navbar .nav-links:active {
+    background: none !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
 }
 </style>
