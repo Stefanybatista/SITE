@@ -1946,9 +1946,9 @@ document.addEventListener('keydown',function(event){
 @media(max-width:600px){.about-story-copy h3{font-size:35px!important;}.instagram-live-about-title{font-size:35px!important;}.empresas .empresas-eyebrow{font-size:35px!important;}}
 
 /* VER PORTFÓLIO: mantém o fundo original, sem camada transparente nem sombra adicionada; só o texto fica vermelho. */
-.floating-page-arrows > a{color:#ff0000!important;}
+.floating-page-arrows > a{color:#fff!important;}
 .floating-page-arrows > a svg{color:#fff!important;stroke:#fff!important;}
-.floating-page-arrows > a span{color:#ff0000!important;text-shadow:none!important;}
+.floating-page-arrows > a span{color:#fff!important;text-shadow:none!important;}
 
 </style>
 <script id="controle-links-flutuantes">
@@ -2174,6 +2174,14 @@ document.addEventListener('keydown',function(event){
   .navbar .nav-links a[href*="portfolio.html"]::before { display: none !important; content: none !important; }
 }
 </style>
+
+<style id="navbar-background-user-request-final">
+  .navbar,
+  .navbar.scrolled {
+    background: rgba(7, 9, 12, .72) !important;
+  }
+</style>
+
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
@@ -2400,5 +2408,18 @@ document.addEventListener('keydown',function(event){
     outline: 0 !important;
     box-shadow: none !important;
   }
+}
+</style>
+
+<style id="final-navbar-darker-ver-portfolio-white">
+.navbar, .navbar.scrolled { background: rgba(7, 9, 12, .72) !important; }
+.floating-page-arrows > a, .floating-page-arrows > a span { color: #fff !important; text-shadow: none !important; }
+.floating-page-arrows > a svg { color: #fff !important; stroke: #fff !important; }
+</style>
+
+<style id="mobile-open-menu-shift-right-final">
+/* Move o painel aberto do menu mobile um pouco para a direita, sem alterar a navbar. */
+@media (max-width: 650px) {
+  .navbar .nav-links.open, .navbar .nav-links.active { right: -61px !important; left: auto !important; }
 }
 </style>
