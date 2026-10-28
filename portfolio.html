@@ -715,7 +715,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
   #experiencias .destaques-lista { display:flex !important; flex-wrap:nowrap !important; align-items:flex-start !important; justify-content:space-between !important; gap:clamp(4px,1.6vw,10px) !important; width:100% !important; overflow:visible !important; }
   #experiencias .destaque-item { flex:0 0 18% !important; width:18% !important; min-width:0 !important; padding:0 !important; font-size:clamp(7px,2.15vw,11px) !important; letter-spacing:0 !important; gap:7px !important; }
   #experiencias .destaque-circulo { width:clamp(42px,15vw,68px) !important; height:clamp(42px,15vw,68px) !important; min-width:0 !important; min-height:0 !important; padding:2px !important; box-sizing:border-box !important; }
-  #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; overflow-wrap:anywhere !important; }
+  #experiencias .destaque-nome { display:block !important; width:100% !important; max-width:100% !important; font-size:clamp(7px,2vw,10px) !important; line-height:1.2 !important; white-space:nowrap !important; overflow-wrap:normal !important; }
 }
 </style>
 
@@ -797,11 +797,11 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
    <div class="destaques-subtitle">Confira os melhores momentos por trás das câmeras da cobertura em tempo real.</div>
   </div>
   <div class="destaques-lista" id="destaquesLista">
-   <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuuvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuuvi Beauty" loading="lazy"></span><span class="destaque-nome">NUUVI BEAUY</span></button>
-   <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Dental Protect"><span class="destaque-circulo"><img src="dental-protect.jpeg" alt="Capa Dental Protect" loading="lazy"></span><span class="destaque-nome">DENTAL PROTETIC</span></button>
-   <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
+   <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuvvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuvvi Beauty" loading="lazy"></span><span class="destaque-nome">NUVVI BEAUTY</span></button>
    <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
-   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.png" alt="Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
+   <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
+   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.png" alt="Capa Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
+   <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Eduardo Cristian"><span class="destaque-circulo"><img src="https://i.imgur.com/C9T1VVT.jpeg" alt="Capa Eduardo Cristian" loading="lazy"></span><span class="destaque-nome">EDUARDO CRISTIAN</span></button>
   </div>
  </div>
 </section>
@@ -1324,7 +1324,7 @@ const videoStoryExemplo='https://player.vimeo.com/video/1189278924?title=0&bylin
 
 const destaquesData=[
  {
-  nome:'NUUVI BEAUY',
+  nome:'NUVVI BEAUTY',
   capa:'https://i.imgur.com/zIHrBNG.jpeg',
   videos:[
    'https://player.vimeo.com/video/1235823336?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
@@ -1361,14 +1361,27 @@ const destaquesData=[
   ]
  },
  {
-  nome:'DENTAL PROTETIC',
-  capa:'dental-protect.jpeg',
+  nome:'EDUARDO CRISTIAN',
+  capa:'https://i.imgur.com/C9T1VVT.jpeg',
   videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
  },
  {
   nome:'AQUA MART',
   capa:'aqua-mart.jpeg',
-  videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
+  videos:[
+   'https://player.vimeo.com/video/1240282294?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240282944?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240283376?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240283825?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240285635?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240286798?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240288239?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240289150?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240292353?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240293379?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240295547?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240297311?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1'
+  ]
  },
  {
   nome:'PEDRO CHEN',
