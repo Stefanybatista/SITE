@@ -822,6 +822,24 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 .about-reel-card img,.about-reel-card video{border-radius:3px!important;}
 </style>
 
+
+<style id="mobile-brand-logo-font-size-14px">
+/* Ajuste solicitado: nome VITOR MATOS maior no menu mobile, nas duas páginas. */
+@media (max-width: 760px) {
+  .navbar .brand-logo { font-size: 14px !important; line-height: 1 !important; }
+}
+</style>
+
+<style id="mobile-menu-links-all-12px">
+/* Mobile: Sobre Nós, Portfólio e Contato com tamanho uniforme de 12px. */
+@media (max-width: 700px) {
+  .navbar .nav-links a,
+  .navbar .nav-links a.nav-contact-link {
+    font-size: 12px !important;
+  }
+}
+</style>
+
 </head>
 
 <body data-page="sobre">
@@ -2182,6 +2200,15 @@ document.addEventListener('keydown',function(event){
   }
 </style>
 
+<style id="footer-font-match-menu">
+/* Rodapé: mesma família tipográfica dos links do menu (Poppins), em desktop e mobile. */
+.site-footer,
+.site-footer *,
+.site-copyright,
+.site-copyright * {
+  font-family: 'Poppins', sans-serif !important;
+}
+</style>
 </body>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
@@ -2421,5 +2448,15 @@ document.addEventListener('keydown',function(event){
 /* Move o painel aberto do menu mobile um pouco para a direita, sem alterar a navbar. */
 @media (max-width: 650px) {
   .navbar .nav-links.open, .navbar .nav-links.active { right: -61px !important; left: auto !important; }
+}
+</style>
+
+
+<style id="rodape-tamanhos-mobile-solicitados">
+@media (max-width: 700px) {
+  .site-footer .footer-columns h3 { font-size: 12px !important; }
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p { font-size: 9px !important; }
+  .site-footer .footer-bottom > span { font-size: 12px !important; }
 }
 </style>

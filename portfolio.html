@@ -789,30 +789,35 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 </style>
 
 
-<style id="em-breve-imagem-layra-eduardo-mobile-final">
-/* Somente no celular: mantém o destaque EM BREVE e mostra a foto enviada. */
-@media (max-width: 900px) {
-  #storyVideoBox.em-breve-ativo .story-em-breve {
-    display: flex !important;
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    box-sizing: border-box !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: #000 url("https://i.imgur.com/zYvHJwb.png") center center / cover no-repeat !important;
-    color: #fff !important;
-    font-size: clamp(28px, 5vw, 42px) !important;
-    font-weight: 600 !important;
-    letter-spacing: .12em !important;
-    text-align: center !important;
-    text-indent: 0 !important;
-    text-shadow: 0 2px 12px rgba(0,0,0,.9) !important;
-    z-index: 10001 !important;
+
+
+<style id="em-breve-imagem-mobile-correcao-direta">
+@media screen and (max-width: 900px) {
+  #storyVideoBox.em-breve-ativo { position: relative !important; inset: auto !important; width: 100% !important; height: 100% !important; min-height: 0 !important; overflow: hidden !important; background: #000 !important; }
+  #storyVideoBox.em-breve-ativo > .story-em-breve-image-mobile { display: block !important; position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; object-fit: fill !important; object-position: center center !important; margin: 0 !important; padding: 0 !important; border: 0 !important; background: #000 !important; z-index: 100000 !important; }
+  #storyVideoBox.em-breve-ativo > .story-em-breve { display: none !important; }
+  #storyVideoBox.em-breve-ativo::after { content: none !important; display: none !important; }
+}
+</style>
+
+
+<style id="mobile-brand-logo-font-size-14px">
+/* Ajuste solicitado: nome VITOR MATOS maior no menu mobile, nas duas páginas. */
+@media (max-width: 760px) {
+  .navbar .brand-logo { font-size: 14px !important; line-height: 1 !important; }
+}
+</style>
+
+<style id="mobile-menu-links-all-12px">
+/* Mobile: Sobre Nós, Portfólio e Contato com tamanho uniforme de 12px. */
+@media (max-width: 700px) {
+  .navbar .nav-links a,
+  .navbar .nav-links a.nav-contact-link {
+    font-size: 12px !important;
   }
 }
 </style>
+
 </head>
 
 <body data-page="portfolio">
@@ -839,7 +844,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 <section id="portfolio" class="portfolio">
  <div class="portfolio-container">
   <h1 class="recent-title">Bastidores</h1>
-  <p class="recent-subtitle">Confira os melhores momentos por trás das câmeras de cada produção.</p>
+  <p class="recent-subtitle">Registros da preparação e dos bastidores da campanha de Guto Silva.</p>
 
 
   <div class="making-carousel"><button class="making-arrow making-prev" type="button" aria-label="Ver vídeos anteriores">‹</button><div class="making-carousel-viewport"><div class="portfolio-grid" id="makingOfVideos"></div></div><button class="making-arrow making-next" type="button" aria-label="Ver próximos vídeos">›</button></div>
@@ -1064,31 +1069,31 @@ navLinks.querySelectorAll('a').forEach(function(link){
 
 /* PROJETOS */
 const projetos=[
- {id:'1099468333',hash:'h=76e43c87b1',title:'Rosa Selvagem',description:'Uma produção visual pensada para transmitir a identidade, a atmosfera e os detalhes da marca com uma narrativa envolvente.'},
- {id:'1189273179',hash:'h=76e43c87b1',title:'Borelli Gelateria',description:'Conteúdo audiovisual que valoriza a experiência, os produtos e os detalhes que tornam a marca memorável.'},
- {id:'1189278924',hash:'p=0s',title:'Dra. Marcela',description:'Conteúdo estratégico para comunicar autoridade, proximidade e confiança por meio de uma linguagem visual cuidadosa.'},
- {id:'1191342661',hash:'h=76e43c87b1',title:'Dra. Juliana Narciso',description:'Produção de conteúdo profissional com foco na presença digital, na personalidade e no posicionamento da especialista.'},
- {id:'1190608148',hash:'p=0s',title:'Tayti Gelateria',description:'Uma abordagem visual dinâmica para destacar a experiência da marca e despertar o interesse do público.'},
- {id:'1189273774',hash:'h=76e43c87b1',title:'Fábrica de Love',description:'Registro audiovisual de marca com atenção à narrativa, aos detalhes e à emoção presente em cada cena.'},
- {id:'1099462212',hash:'p=0s',title:'Evento',description:'Captação dos principais momentos e da energia do evento, criando um registro visual envolvente.'},
- {id:'1189274042',hash:'p=0s',title:'Fábrica de Love',description:'Conteúdo visual que aproxima o público da marca e evidencia os detalhes da experiência.'},
- {id:'1189273549',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Produção temática que destaca os produtos, os detalhes e a atmosfera especial da campanha de Páscoa.'},
- {id:'1099459713',hash:'p=0s',title:'TV Fama',description:'Registro audiovisual de entrevista e presença de marca, com foco nos momentos mais relevantes.'},
- {id:'1099542612',hash:'p=0s',title:'Juju Salimeni',description:'Conteúdo de personalidade com direção visual e atenção à presença e à expressividade em cena.'},
- {id:'1189280115',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Uma segunda perspectiva da campanha, valorizando os detalhes e a construção visual da produção.'},
- {id:'1099461212',hash:'p=0s',title:'Paraisópolis',description:'Registro de ambiente, pessoas e momentos reais, com uma narrativa visual conectada à experiência.'},
- {id:'1099464291',hash:'p=0s',title:'Capital Black Master Mind',description:'Cobertura audiovisual voltada a registrar ideias, conexões e os momentos marcantes da experiência.'},
- {id:'1099468840',hash:'p=0s',title:'Underground',description:'Uma linguagem visual de atitude, ritmo e atmosfera, construída para valorizar a identidade do projeto.'}
+ {id:'1099468333',hash:'h=76e43c87b1',title:'Rosa Selvagem',description:'Campanha para a marca Rosa Selvagem com a celebridade Juju Salimeni.'},
+ {id:'1189273179',hash:'h=76e43c87b1',title:'Borelli Gelateria',description:'Campanha para a gelateria Borelli com a participação da influenciadora Thátilla Coelho.'},
+ {id:'1189278924',hash:'p=0s',title:'Dra. Marcela',description:'Produção de conteúdo de posicionamento para a Doutora Biomédica Marcela.'},
+ {id:'1191342661',hash:'h=76e43c87b1',title:'Dra. Juliana Narciso',description:'Produção de conteúdo para a doutora nutróloga Juliana Narciso.'},
+ {id:'1190608148',hash:'p=0s',title:'Tayti Gelateria',description:'Essa produção mostra um pouco da experiência do cliente das lojas Tayti Gelateria.'},
+ {id:'1189273774',hash:'h=76e43c87b1',title:'Fábrica de Love',description:'Produção da campanha de Natal da confeitaria Fábrica de Love.'},
+ {id:'1099462212',hash:'p=0s',title:'Circo do Tirulipa',description:'Registramos os bastidores da participação da Juju Salimeni no circo do Tirulipa.'},
+ {id:'1189274042',hash:'p=0s',title:'Fábrica de Love',description:'Conteúdo apresentando a produção da confeitaria Fábrica de Love.'},
+ {id:'1189273549',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Produção de conteúdo para a Fábrica de Love no período de Páscoa.'},
+ {id:'1099459713',hash:'p=0s',title:'TV Fama',description:'Cobertura TV Fama no show de lançamento do Mumuzinho com a Erika Schneider.'},
+ {id:'1099542612',hash:'p=0s',title:'Juju Salimeni',description:'Treino completo de quadríceps da Juju Salimeni na academia Ironberg Alphaville.'},
+ {id:'1189280115',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Takes para divulgação dos produtos de Páscoa da confeitaria Fábrica de Love.'},
+ {id:'1099461212',hash:'p=0s',title:'Paraisópolis',description:'Acompanhamos o Pablo Marçal, candidato à prefeitura de SP, na favela Paraisópolis.'},
+ {id:'1099464291',hash:'p=0s',title:'Capital Black Master Mind',description:'Viagem exclusiva para os membros do Capital Black Master Mind do Nezio Monteiro.'},
+ {id:'1099468840',hash:'p=0s',title:'Underground',description:'Aftermovie do evento presencial Underground no Kartódromo Aldeia da Serra.'}
 ];
 
 const makingOf=[
   {id:'1189288930',hash:'h=76e43c87b1',title:'Making Of',description:'Bastidores da campanha de Guto Silva, secretário de Estado do Paraná, em Curitiba.'},
   {id:'1099554358',title:'Making Of',description:'Bastidores da produção: organização, preparação e os detalhes que acontecem antes de cada cena.'},
-  {id:'1239671392',title:'Making Of',description:'Mais momentos registrados por trás das câmeras.'},
-  {id:'1239671015',title:'Making Of',description:'Novo registro dos bastidores da produção audiovisual.'},
+  {id:'1239671392',title:'Making Of',description:'Registros da preparação e dos bastidores da campanha de Guto Silva.'},
+  {id:'1239671015',title:'Making Of',description:'Bastidor da nova loja Camelô do China em São Mateus, Hexie.'},
   {id:'1099555467',title:'Making Of',description:'Acompanhamento do processo de produção audiovisual com Erika Schneider, conferindo o desenvolvimento do vídeo e os detalhes da edição.'},
   {id:'1099555025',title:'Making Of',description:'Bastidores de uma live com Willian Celso, registrando a transmissão, o cenário e os detalhes por trás das câmeras.'},
-  {id:'1239671725',title:'Making Of',description:'Outro olhar sobre o processo de produção audiovisual.'},
+  {id:'1239671725',title:'Making Of',description:'Registros de uma jornada de negócios com Pedro Chen pelos céus de São Paulo.'},
   {id:'1099795275',hash:'h=76e43c87b1',title:'Making Of',description:'Bastidores de gravação para uma marca de acessórios com Erika Schneider.'},
   {id:'1099553815',title:'Making Of',description:'Sessão fotográfica com a celebridade Juju Salimeni, captando os momentos por trás da produção.'},
   {id:'1099778841',hash:'h=76e43c87b1',title:'Making Of',description:'Set com o Mago da Neurovendas, Karllos Della Re.'},
@@ -1654,10 +1659,19 @@ function carregarStory(){
   storyVideoBox.classList.add('em-breve-ativo');
   storyLoadingState=false;
   storyLoading.style.display='none';
-  const placeholder=document.createElement('div');
-  placeholder.className='story-em-breve';
-  placeholder.textContent='EM BREVE';
-  storyVideoBox.appendChild(placeholder);
+  if (window.matchMedia('(max-width: 900px)').matches) {
+   const image=document.createElement('img');
+   image.className='story-em-breve-image-mobile';
+   image.alt='EM BREVE';
+   image.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAeACAIAAACkA3BdAAAtE0lEQVR4Xu3de3CVxdkA8CQkXKwhAVGMRYQKKlq0omMqahGtRQSkgkBQsXipUkXqDG1tizqt2nZqnYqXUUFtB9IgdwVnFBWlghiqxaBiAYuAcr+oAUaTkAvftHzDx6dAzr455yQ5+f3+fp/dZ/cQPc/Zd3fT0gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEm/+/Pl7G4AdO3YEjbWOae/evbt169ZBPcZo7NixdZzOCy+8MMa+kqOOU/0VlZWVX375ZWlp6caNGz/44IPFixfPnj17/PjxY8eO7devX8eOHRM6qPiOpbq6uqysbNeuXVu2bFmxYsW+sfz5z38eM2bMxRdf3LZt24SOZZ/4jiiyQ/39XnfddaFtTpo0KQnz1rJly507dwblVl5enpube6jcGvgHAcRXZnybAzjQkUceOXLkyIcffji+05KRkXHrrbfGt80Uk/lfrVq1ysnJOe64474+us8++2zRokULFiyYM2fOunXrGvLwMzIyWv5XdnZ2+/btv57qRx99NH/+/JdeeunFF18sLy9vyGNJkJkzZz766KNHHHFE7O1fccUVo0aNKisriz0kggEDBoT+VDF37tzS0tIIfQGpJyP1hgQ0KKNHj05PT49vSv379+/cuXN822xq2rZtO3DgwPHjx69du3bJkiXXXXdd8+bNG+kknHjiiTfffPPs2bM3b978xBNPnHTSSY10IJHt3r37ueeeCwrPzs4eOHBgUEgEV199dWjU5MmTQ0OAVKVQARKra9euffr0iW8fY8aMiW+DTVx+fv5f/vKXdevWjRw5Mu5VZTLl5ubefPPNK1asmDx58kHXXlJYhO/3EaqIIG3atOnbt29QyLZt2+bNmxcUAqQwhQqQcLfddlsc+zj11FMvvvjiODbIPnl5eX/9618XLFjQ2L/iZ2RkjBgxYsWKFVdccUXT+XBfeeWVTZs2BY23T58+Rx11VFBIkKFDh4Yu002ZMqWqqiqoFyCFKVSAhOvbt2+XLl3i1U18yx6+olevXu+88063bt0a+8y0adNm1qxZP//5zxv7QGJUU1NTVFQU48P7ZGVlDRs2LCgkSIQVmwjrQkAKU6gACZeenh6vve+5ubkjRoxIeMZN23HHHffqq6926tSpsU9Denr6/fffH69/ew1fhIO8ItQSMerYseP5558f48P7vP/++yUlJUEhQGpTqADJcN11133jG9+oe0/XX399XNrh8PLy8qZOnZqZmQonQ44fPz4/P78pfOIffPBB6Bf9nj17futb30rE5Fx11VWh+50spwBfoVABkiEnJ+faa6+tY09OJU6m/Pz81Di0IDMzc9KkSalRdNUqwqLKVVddVWuzEYSu1VRXV4e+ugakPIUKkCSjR4+uY0/9+/dP0K+/HNS4ceOys7NTYHJOPvnkkSNHpsBAahVhM3poRRGLM84449vf/nYsT+73yiuvbN68OSgESHkKFSBJ6n5al230Sda2bduEbrZOpttvvz2Z3dWX7du3hx7ve8opp5x11lnxTThC8eO9L+DrFCpA8tSl0ujWrdv3v//95OXaGJx55pnph5CRkdGmTZuTTz55xIgRM2fOrK6ujjagCN84G6bTTjutR48eDTO3+IrwjT++n3J6evrw4cODBrVr167QCyuBpkChAiTPgAEDTjjhhGj91aXIaYL27t1bWlr64Ycf/u1vfxsyZEj37t3ffffdCPPQs2fPVq1aRQgMddCiKzMzs02bNh07drzooovGjBkzb968ulyyEfeLRxumuXPnfv7550G5FRQUNGvWLCjkMHr16tWhQ4eg1mbOnFlWVhYUAjQFChVouA7ze3lk7dq1q8cBZ2Rk3HLLLRESiMte/KZsxYoVF1544cqVK0MnoXnz5vW4EFFdXV1aWrp+/foFCxY88sgjffv27dy585w5c0JHsc8FF1wQLTCa+vr7raiomD59elDOeXl5F110UVDIYVxzzTWhTUU4AyB29fVBAHWnUAGS6sYbb4zwC/0NN9zgVOI6Ki0t/fGPfxyhka5du0aISpANGzb88Ic/nDBhQoT2Tz311AhRjVE9vv3VokWLwYMHB03aunXrFi1aFBQCNBEKFSCp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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICv+x/45edHohlNlwAAAABJRU5ErkJggg==';
+   image.draggable=false;
+   storyVideoBox.appendChild(image);
+  } else {
+   const placeholder=document.createElement('div');
+   placeholder.className='story-em-breve';
+   placeholder.textContent='EM BREVE';
+   storyVideoBox.appendChild(placeholder);
+  }
   return;
  }
 
@@ -2127,6 +2141,15 @@ document.addEventListener('keydown',function(event){
   }
 </style>
 
+<style id="footer-font-match-menu">
+/* Rodapé: mesma família tipográfica dos links do menu (Poppins), em desktop e mobile. */
+.site-footer,
+.site-footer *,
+.site-copyright,
+.site-copyright * {
+  font-family: 'Poppins', sans-serif !important;
+}
+</style>
 </body>
 </html>
 
@@ -3131,5 +3154,21 @@ document.addEventListener('keydown',function(event){
 /* Move o painel aberto do menu mobile um pouco para a direita, sem alterar a navbar. */
 @media (max-width: 650px) {
   .navbar .nav-links.open, .navbar .nav-links.active { right: -61px !important; left: auto !important; }
+}
+</style>
+
+<style id="destaques-mobile-nomes-10px-final">
+@media (max-width: 700px) {
+  #experiencias .destaque-nome { font-size: 10px !important; }
+}
+</style>
+
+
+<style id="rodape-tamanhos-mobile-solicitados">
+@media (max-width: 700px) {
+  .site-footer .footer-columns h3 { font-size: 12px !important; }
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p { font-size: 9px !important; }
+  .site-footer .footer-bottom > span { font-size: 12px !important; }
 }
 </style>
