@@ -758,6 +758,18 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 #makingOfVideos .video-card:hover{border-color:rgba(255,255,255,.18)!important;}
 </style>
 
+
+<style id="story-em-breve">
+/* Placeholder temporário para destaques sem vídeos publicados */
+.story-em-breve{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#000;color:#fff;font-size:clamp(28px,5vw,42px);font-weight:600;letter-spacing:.12em;text-transform:uppercase;z-index:3;}
+</style>
+
+
+<style id="em-breve-visivel-mobile">
+@media (max-width: 900px) {
+  #storyVideoBox .story-em-breve { display:flex !important; position:absolute !important; inset:0 !important; align-items:center !important; justify-content:center !important; width:100% !important; height:100% !important; min-height:100% !important; background:#000 !important; color:#fff !important; font-size:clamp(28px,5vw,42px) !important; font-weight:600 !important; letter-spacing:.12em !important; text-align:center !important; z-index:20 !important; }
+}
+</style>
 </head>
 
 <body data-page="portfolio">
@@ -798,10 +810,10 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
   </div>
   <div class="destaques-lista" id="destaquesLista">
    <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuvvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuvvi Beauty" loading="lazy"></span><span class="destaque-nome">NUVVI BEAUTY</span></button>
-   <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
+   <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
    <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
-   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.png" alt="Capa Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
-   <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Eduardo Cristian"><span class="destaque-circulo"><img src="https://i.imgur.com/C9T1VVT.jpeg" alt="Capa Eduardo Cristian" loading="lazy"></span><span class="destaque-nome">EDUARDO CRISTIAN</span></button>
+   <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.png" alt="Capa Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
+   <button class="destaque-item" type="button" data-destaque="4" aria-label="Ver destaques Eduardo Cristian"><span class="destaque-circulo"><img src="https://i.imgur.com/C9T1VVT.jpeg" alt="Capa Eduardo Cristian" loading="lazy"></span><span class="destaque-nome">EDUARDO CRISTIAN</span></button>
   </div>
  </div>
 </section>
@@ -1361,29 +1373,6 @@ const destaquesData=[
   ]
  },
  {
-  nome:'EDUARDO CRISTIAN',
-  capa:'https://i.imgur.com/C9T1VVT.jpeg',
-  videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
- },
- {
-  nome:'AQUA MART',
-  capa:'aqua-mart.jpeg',
-  videos:[
-   'https://player.vimeo.com/video/1240282294?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240282944?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240283376?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240283825?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240285635?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240286798?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240288239?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240289150?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240292353?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240293379?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240295547?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1240297311?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1'
-  ]
- },
- {
   nome:'PEDRO CHEN',
   capa:'camelo-do-china.jpeg',
   videos:[
@@ -1407,9 +1396,32 @@ const destaquesData=[
   ]
  },
  {
+  nome:'AQUA MART',
+  capa:'aqua-mart.jpeg',
+  videos:[
+   'https://player.vimeo.com/video/1240282294?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240282944?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240283376?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240283825?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240285635?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240286798?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240288239?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240289150?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240292353?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240293379?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240295547?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1240297311?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1'
+  ]
+ },
+ {
   nome:'Layra Mentora',
   capa:'layra-mentora.png',
-  videos:[videoStoryExemplo,videoStoryExemplo,videoStoryExemplo]
+  videos:['EM_BREVE']
+ },
+ {
+  nome:'EDUARDO CRISTIAN',
+  capa:'https://i.imgur.com/C9T1VVT.jpeg',
+  videos:['EM_BREVE']
  }
 ];
 
@@ -1535,6 +1547,7 @@ function criarPreview(container,destaqueIndice){
  container.innerHTML='';
  const destaque=destaquesData[destaqueIndice];
  if(!destaque)return;
+ if(destaque.videos[0]==='EM_BREVE'){container.innerHTML='';return;}
  const iframe=document.createElement('iframe');
  iframe.src=urlVimeoComParametros(destaque.videos[0]).replace('autoplay=1','autoplay=0');
  iframe.title='Prévia '+destaque.nome;
@@ -1592,6 +1605,16 @@ function carregarStory(){
  const destaque=destaquesData[destaqueAtual];
  const videoUrl=destaque.videos[storyAtual];
  atualizarDadosStory();
+ storyVideoBox.querySelectorAll('iframe,.story-em-breve').forEach(function(el){el.remove()});
+ if(videoUrl==='EM_BREVE'){
+  storyLoadingState=false;
+  storyLoading.style.display='none';
+  const placeholder=document.createElement('div');
+  placeholder.className='story-em-breve';
+  placeholder.textContent='EM BREVE';
+  storyVideoBox.appendChild(placeholder);
+  return;
+ }
 
  const iframe=document.createElement('iframe');
  iframe.title=destaque.nome;
@@ -1679,7 +1702,7 @@ function fecharDestaque(){
  storiesViewer.setAttribute('aria-hidden','true');
  destruirStoryPlayer();
  destruirPreviewPlayers();
- storyVideoBox.querySelectorAll('iframe').forEach(function(el){el.remove()});
+ storyVideoBox.querySelectorAll('iframe,.story-em-breve').forEach(function(el){el.remove()});
  storyLoading.style.display='none';
  storyLoadingState=false;
  storyPausedState=false;
