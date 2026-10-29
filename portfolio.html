@@ -767,7 +767,50 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 
 <style id="em-breve-visivel-mobile">
 @media (max-width: 900px) {
-  #storyVideoBox .story-em-breve { display:flex !important; position:absolute !important; inset:0 !important; align-items:center !important; justify-content:center !important; width:100% !important; height:100% !important; min-height:100% !important; background:#000 !important; color:#fff !important; font-size:clamp(28px,5vw,42px) !important; font-weight:600 !important; letter-spacing:.12em !important; text-align:center !important; z-index:20 !important; }
+  #storyVideoBox { position:relative !important; overflow:hidden !important; background:#000 !important; }
+  #storyVideoBox .story-em-breve { display:flex !important; position:absolute !important; inset:0 !important; align-items:center !important; justify-content:center !important; width:100% !important; height:100% !important; min-height:100% !important; margin:0 !important; padding:0 !important; box-sizing:border-box !important; background:#000 !important; color:#fff !important; font-size:clamp(28px,5vw,42px) !important; font-weight:600 !important; letter-spacing:.12em !important; text-align:center !important; z-index:20 !important; pointer-events:none !important; }
+  #storyVideoBox .story-em-breve::selection { background:transparent !important; }
+}
+</style>
+<style id="em-breve-mobile-fundo-preto-final">
+@media (max-width: 900px) {
+  #storyVideoBox.em-breve-ativo { position:absolute!important; inset:0!important; width:100%!important; height:100%!important; min-height:100%!important; background:#000!important; overflow:hidden!important; }
+  #storyVideoBox.em-breve-ativo::after { content:"EM BREVE"!important; position:absolute!important; inset:0!important; display:flex!important; align-items:center!important; justify-content:center!important; background:#000!important; color:#fff!important; font-size:clamp(28px,5vw,42px)!important; font-weight:600!important; letter-spacing:.12em!important; text-align:center!important; z-index:999!important; pointer-events:none!important; }
+}
+</style>
+
+<style id="em-breve-mobile-fix-final">
+@media (max-width: 900px) {
+  #storyVideoBox.em-breve-ativo { background:#000 !important; position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; min-height:100% !important; overflow:hidden !important; }
+  #storyVideoBox.em-breve-ativo .story-em-breve { display:flex !important; position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; align-items:center !important; justify-content:center !important; background:#000 !important; color:#fff !important; z-index:10000 !important; font-size:clamp(28px,5vw,42px) !important; font-weight:600 !important; letter-spacing:.12em !important; text-align:center !important; }
+  #storyVideoBox.em-breve-ativo .story-cube-scene, #storyVideoBox.em-breve-ativo iframe, #storyVideoBox.em-breve-ativo .story-loading, #storyVideoBox.em-breve-ativo .story-paused { display:none !important; }
+  #storyVideoBox.em-breve-ativo::after { content:none !important; display:none !important; }
+}
+</style>
+
+
+<style id="em-breve-imagem-layra-eduardo-mobile-final">
+/* Somente no celular: mantém o destaque EM BREVE e mostra a foto enviada. */
+@media (max-width: 900px) {
+  #storyVideoBox.em-breve-ativo .story-em-breve {
+    display: flex !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #000 url("https://i.imgur.com/zYvHJwb.png") center center / cover no-repeat !important;
+    color: #fff !important;
+    font-size: clamp(28px, 5vw, 42px) !important;
+    font-weight: 600 !important;
+    letter-spacing: .12em !important;
+    text-align: center !important;
+    text-indent: 0 !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,.9) !important;
+    z-index: 10001 !important;
+  }
 }
 </style>
 </head>
@@ -1605,8 +1648,10 @@ function carregarStory(){
  const destaque=destaquesData[destaqueAtual];
  const videoUrl=destaque.videos[storyAtual];
  atualizarDadosStory();
+ storyVideoBox.classList.remove('em-breve-ativo');
  storyVideoBox.querySelectorAll('iframe,.story-em-breve').forEach(function(el){el.remove()});
  if(videoUrl==='EM_BREVE'){
+  storyVideoBox.classList.add('em-breve-ativo');
   storyLoadingState=false;
   storyLoading.style.display='none';
   const placeholder=document.createElement('div');
