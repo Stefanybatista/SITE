@@ -720,7 +720,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 
 </style>
 
-<style id="about-copy-style">.about-story-copy p{font-family:'Poppins',sans-serif!important;font-size:14px!important;font-weight:300!important;font-style:italic!important;line-height:1.55!important;color:#8c8c91!important;}</style>
+<style id="about-copy-style">.about-story-copy p{font-family:'Poppins',sans-serif!important;font-size:11px!important;font-weight:300!important;font-style:normal!important;line-height:1.55!important;color:rgba(255,255,255,.88)!important;}</style>
 <style id="mobile-menu-match-desktop">
 @media (max-width: 700px) {
   .navbar { display:flex!important; flex-direction:row!important; align-items:center!important; justify-content:space-between!important; gap:10px!important; height:72px!important; min-height:72px!important; padding:0 4%!important; background:rgba(11,15,20,.88)!important; backdrop-filter:blur(12px)!important; -webkit-backdrop-filter:blur(12px)!important; border-bottom:1px solid rgba(255,255,255,.08)!important; }
@@ -2458,5 +2458,29 @@ document.addEventListener('keydown',function(event){
   .site-footer .footer-columns a,
   .site-footer .footer-info p { font-size: 9px !important; }
   .site-footer .footer-bottom > span { font-size: 12px !important; }
+}
+</style>
+
+<style id="about-story-descriptions-size-final">
+/* Ajuste solicitado apenas nas descrições da página Sobre Nós. */
+.about-story-copy p { font-size: 21px !important; }
+@media (max-width: 600px) {
+  .about-story-copy p { font-size: 10.5px !important; }
+}
+</style>
+
+<style id="about-story-mobile-font-final">
+/* Somente mobile: descrições em 10px e títulos em 16px. */
+@media (max-width: 600px) {
+  .about-story-copy p { font-size: 10px !important; }
+  .about-story-copy h3 { font-size: 16px !important; }
+}
+</style>
+
+<style>
+/* Ajuste exclusivo da página Sobre Nós: tipografia mobile dos blocos de história */
+@media (max-width: 600px) {
+  .about-story-copy h3 { font-size: 17px !important; }
+  .about-story-copy p { font-size: 10px !important; }
 }
 </style>
