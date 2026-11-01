@@ -405,7 +405,7 @@ body[data-page="portfolio"] #Home { display:none !important; }
 body[data-page="portfolio"] .destaques-rector { display:block !important; }
 body[data-page="portfolio"] #portfolio { display:block !important; }
 body[data-page="portfolio"] .empresas { display:none !important; }
-body[data-page="portfolio"] .permissao-som { display:none !important; }
+body[data-page="portfolio"] .permissao-som:not([hidden]) { display:flex !important; }
 
 body[data-page="experiencias"] #Home,
 body[data-page="experiencias"] #portfolio,
@@ -1003,7 +1003,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
   const permitir = document.getElementById('permitirSom');
   const recusar = document.getElementById('recusarSom');
   if (!audio || !permissao || !permitir || !recusar) return;
-  try { if (sessionStorage.getItem('vitorSomPermissaoExibida') === '1') { permissao.hidden = true; permissao.style.setProperty('display','none','important'); permissao.setAttribute('aria-hidden','true'); return; } sessionStorage.setItem('vitorSomPermissaoExibida','1'); } catch(e) {}
+  try { if (sessionStorage.getItem('vitorPortfolioSomPermissaoExibida') === '1') { permissao.hidden = true; permissao.style.setProperty('display','none','important'); permissao.setAttribute('aria-hidden','true'); return; } sessionStorage.setItem('vitorPortfolioSomPermissaoExibida','1'); } catch(e) {}
 
   // Disponibiliza a função para interromper a narração quando um vídeo for aberto.
   window.pararNarracaoFundo = function(){
@@ -1020,6 +1020,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 
   permitir.addEventListener('click', function(){
     fecharPermissao();
+    window.vitorPortfolioAudioAutorizado = true;
     audio.volume = 1;
     audio.muted = false;
     const tentativa = audio.play();
@@ -1504,8 +1505,8 @@ let storyAtual=0;
 let storyPlayer=null;
 let storyTimer=null;
 let storyPausedState=false;
-let storyMuted=true;
-let storyVolumeAtual=0;
+let storyMuted=false;
+let storyVolumeAtual=1;
 let storyLoadingState=false;
 let storyPlayerToken=0;
 let previewPlayers=[];
@@ -1739,14 +1740,12 @@ function abrirDestaque(indice){
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
- /* Mobile: inicia os destaques com áudio habilitado; demais comportamentos ficam iguais. */
- if(window.matchMedia && window.matchMedia('(max-width: 900px)').matches){
-  storyMuted=false;
-  if(!storyVolumeAtual || storyVolumeAtual<=0) storyVolumeAtual=0.5;
-  storyMuteButton.innerHTML=iconeVolume();
-  storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
-  storyVolume.value=String(storyVolumeAtual);
- }
+ /* Todos os destaques iniciam com áudio habilitado no volume máximo, em desktop e mobile. */
+ storyMuted=false;
+ storyVolumeAtual=1;
+ storyMuteButton.innerHTML=iconeVolume();
+ storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+ storyVolume.value='1';
  storiesViewer.classList.add('aberto');
  storiesViewer.setAttribute('aria-hidden','false');
  document.body.style.overflow='hidden';
