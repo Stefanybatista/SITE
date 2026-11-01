@@ -983,13 +983,11 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 </div>
 
 <!-- Narração: o visitante autoriza o áudio uma única vez ao entrar -->
-<audio id="narracaoFundo" preload="auto" playsinline>
-  <source src="narracao-rector.mp3" type="audio/mpeg">
-</audio>
+<!-- Autorização de áudio exclusiva do Portfólio; não utiliza a narração de Sobre Nós. -->
 <div id="permissaoSom" class="permissao-som" role="dialog" aria-modal="true" aria-labelledby="tituloPermissaoSom">
   <div class="permissao-som-conteudo">
     <h2 id="tituloPermissaoSom">Ativar som</h2>
-    <p>Nosso site entrega uma experiência sonora.<br><span style="white-space:nowrap">Você permite?</span></p>
+    <p>Os vídeos do nosso portfólio têm áudio.<br><span style="white-space:nowrap">Você permite?</span></p>
     <div class="permissao-som-botoes">
       <button id="permitirSom" type="button">Sim</button>
       <button id="recusarSom" type="button">Não</button>
@@ -998,46 +996,14 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 </div>
 <script>
 (function(){
-  const audio = document.getElementById('narracaoFundo');
-  const permissao = document.getElementById('permissaoSom');
-  const permitir = document.getElementById('permitirSom');
-  const recusar = document.getElementById('recusarSom');
-  if (!audio || !permissao || !permitir || !recusar) return;
-  try { if (sessionStorage.getItem('vitorPortfolioSomPermissaoExibida') === '1') { permissao.hidden = true; permissao.style.setProperty('display','none','important'); permissao.setAttribute('aria-hidden','true'); return; } sessionStorage.setItem('vitorPortfolioSomPermissaoExibida','1'); } catch(e) {}
-
-  // Disponibiliza a função para interromper a narração quando um vídeo for aberto.
-  window.pararNarracaoFundo = function(){
-    audio.pause();
-    audio.currentTime = 0;
-  };
-
-  function fecharPermissao(){
-    permissao.hidden = true;
-    // Garante que regras de layout específicas da página não reexibam a janela.
-    permissao.style.setProperty('display', 'none', 'important');
-    permissao.setAttribute('aria-hidden', 'true');
-  }
-
-  permitir.addEventListener('click', function(){
-    fecharPermissao();
-    window.vitorPortfolioAudioAutorizado = true;
-    audio.volume = 1;
-    audio.muted = false;
-    const tentativa = audio.play();
-    if (tentativa && typeof tentativa.catch === 'function') {
-      tentativa.catch(function(erro){ console.error('Não foi possível iniciar a narração:', erro); });
-    }
-  });
-
-  recusar.addEventListener('click', function(){
-    audio.pause();
-    audio.currentTime = 0;
-    fecharPermissao();
-  });
-
-  audio.addEventListener('error', function(){
-    console.error('Falha ao carregar narracao-rector.mp3. Confira se o MP3 está na mesma pasta do index.html.');
-  });
+  const modal=document.getElementById('permissaoSom');
+  const sim=document.getElementById('permitirSom');
+  const nao=document.getElementById('recusarSom');
+  if(!modal||!sim||!nao)return;
+  try{if(sessionStorage.getItem('vitorPortfolioSom')==='sim'){modal.hidden=true;modal.style.setProperty('display','none','important');return;}}catch(e){}
+  function fechar(){modal.hidden=true;modal.style.setProperty('display','none','important');modal.setAttribute('aria-hidden','true');}
+  sim.addEventListener('click',function(){try{sessionStorage.setItem('vitorPortfolioSom','sim');}catch(e){}window.vitorPortfolioSomAtivado=true;fechar();});
+  nao.addEventListener('click',function(){try{sessionStorage.setItem('vitorPortfolioSom','nao');}catch(e){}window.vitorPortfolioSomAtivado=false;fechar();});
 })();
 </script>
 
@@ -1285,6 +1251,7 @@ function abrirVideo(card){
  iframe.allowFullscreen=true;
  iframe.referrerPolicy='strict-origin-when-cross-origin';
  url.searchParams.set('autoplay','1');
+ url.searchParams.set('muted','0');
  url.searchParams.set('title','0');
  url.searchParams.set('byline','0');
  url.searchParams.set('portrait','0');
@@ -1311,7 +1278,7 @@ function abrirVideo(card){
  frame.appendChild(toggle);
  if(window.Vimeo&&window.Vimeo.Player){
   card._vimeoInlinePlayer=new window.Vimeo.Player(iframe);
-  card._vimeoInlinePlayer.ready().catch(function(){});
+  card._vimeoInlinePlayer.ready().then(function(){return card._vimeoInlinePlayer.setMuted(false);}).then(function(){return card._vimeoInlinePlayer.setVolume(1);}).catch(function(){});
  }
  card.dataset.paused='0';
  const expand=document.createElement('button');
@@ -1357,11 +1324,11 @@ function abrirVideoAmpliado(endereco,titulo){
  frame.querySelectorAll('iframe').forEach(el=>el.remove());modal.querySelector('.video-modal-loading').hidden=false;
  const playBtn=modal.querySelector('.video-modal-play'),progress=modal.querySelector('.video-modal-progress'),muteBtn=modal.querySelector('.video-modal-mute'),volume=modal.querySelector('.video-modal-volume');
  let url;try{url=new URL(endereco,window.location.href)}catch(e){return}
- url.searchParams.set('autoplay','1');url.searchParams.set('title','0');url.searchParams.set('byline','0');url.searchParams.set('portrait','0');url.searchParams.set('playsinline','1');url.searchParams.set('controls','0');url.searchParams.set('transparent','0');url.searchParams.set('api','1');url.searchParams.set('player_id','portfolio-expanded-player');
+ url.searchParams.set('autoplay','1');url.searchParams.set('muted','0');url.searchParams.set('title','0');url.searchParams.set('byline','0');url.searchParams.set('portrait','0');url.searchParams.set('playsinline','1');url.searchParams.set('controls','0');url.searchParams.set('transparent','0');url.searchParams.set('api','1');url.searchParams.set('player_id','portfolio-expanded-player');
  const iframe=document.createElement('iframe');iframe.id='portfolio-expanded-player';iframe.title=titulo;iframe.allow='autoplay; fullscreen; picture-in-picture; encrypted-media';iframe.allowFullscreen=true;iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.src=url.toString();frame.insertBefore(iframe,frame.querySelector('.video-modal-loading'));
  modal.classList.add('open');document.body.style.overflow='hidden';progress.value=0;progress.style.setProperty('--progress','0%');volume.value=1;volume.style.setProperty('--volume-fill','100%');
  const setup=()=>{if(!window.Vimeo||!window.Vimeo.Player)return;const player=new window.Vimeo.Player(iframe);portfolioExpandedPlayer=player;
- player.ready().then(()=>{modal.querySelector('.video-modal-loading').hidden=true;player.setVolume(1).catch(()=>{});Promise.all([player.getVideoWidth(),player.getVideoHeight()]).then(([w,h])=>{if(w>0&&h>0){const ratio=w/h;const maxH=Math.min(window.innerHeight*.82,800);const maxW=window.innerWidth*.92;let height=maxH,width=height*ratio;if(width>maxW){width=maxW;height=width/ratio}frame.style.width=Math.round(width)+'px';frame.style.height=Math.round(height)+'px';frame.style.aspectRatio=w+' / '+h}}).catch(()=>{});}).catch(()=>{});
+ player.ready().then(()=>{modal.querySelector('.video-modal-loading').hidden=true;player.setMuted(false).then(()=>player.setVolume(1)).catch(()=>{});Promise.all([player.getVideoWidth(),player.getVideoHeight()]).then(([w,h])=>{if(w>0&&h>0){const ratio=w/h;const maxH=Math.min(window.innerHeight*.82,800);const maxW=window.innerWidth*.92;let height=maxH,width=height*ratio;if(width>maxW){width=maxW;height=width/ratio}frame.style.width=Math.round(width)+'px';frame.style.height=Math.round(height)+'px';frame.style.aspectRatio=w+' / '+h}}).catch(()=>{});}).catch(()=>{});
  player.on('play',()=>{playBtn.setAttribute('aria-label','Pausar vídeo');playBtn.innerHTML='<svg viewBox="0 0 24 24"><path d="M7 5h4v14H7zM15 5h4v14h-4z"/></svg>';});
  player.on('pause',()=>{playBtn.setAttribute('aria-label','Reproduzir vídeo');playBtn.innerHTML='<svg viewBox="0 0 24 24"><path d="m7 4 13 8-13 8z"/></svg>';});
  player.on('bufferstart',()=>{modal.querySelector('.video-modal-loading').hidden=false});player.on('bufferend',()=>{modal.querySelector('.video-modal-loading').hidden=true});player.on('playing',()=>{modal.querySelector('.video-modal-loading').hidden=true});
