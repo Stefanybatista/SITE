@@ -826,6 +826,18 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 <link rel="dns-prefetch" href="//player.vimeo.com">
 <link rel="dns-prefetch" href="//i.vimeocdn.com">
 <link rel="dns-prefetch" href="//f.vimeocdn.com">
+
+<style id="mobile-story-activate-hint">
+#storyActivateHint{display:none;}
+@media(max-width:768px){
+ .story-sound-control{position:relative!important;overflow:visible!important}
+ #storyActivateHint{display:none;position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);white-space:nowrap;color:#fff;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.55);border-radius:20px;padding:5px 9px;font-family:inherit;font-size:11px;font-weight:700;line-height:1;letter-spacing:.1px;z-index:20;animation:storyHintPulse 1.15s ease-in-out infinite;pointer-events:auto;cursor:pointer;appearance:none;-webkit-appearance:none;touch-action:manipulation}
+ #storyActivateHint.visivel{display:block}
+ @keyframes storyHintPulse{0%,100%{opacity:1;translate:0 0}50%{opacity:.72;translate:0 -5px}}
+ @keyframes storyHintPulse{0%,100%{translate:0 0;opacity:.88}50%{translate:0 -6px;opacity:1}}
+}
+</style>
+
 </head>
 
 <body data-page="portfolio">
@@ -970,7 +982,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
     <div class="story-heading"><strong id="storyTitle">RECTOR FILMES</strong></div>
     <div class="story-sound-control">
      <input id="storyVolume" type="range" min="0" max="1" step="0.05" value="0" aria-label="Ajustar volume">
-     <button class="story-icon-button" id="storyMuteButton" type="button" aria-label="Ativar som"></button>
+     <button class="story-icon-button" id="storyMuteButton" type="button" aria-label="Ativar som"></button><button id="storyActivateHint" type="button" aria-label="Ativar som do destaque">Ativar som</button>
     </div>
     <button class="story-icon-button" id="storyPauseButton" type="button" aria-label="Pausar vídeo"></button>
     <button class="stories-close" id="storiesClose" type="button" aria-label="Fechar destaques"></button>
@@ -1273,9 +1285,9 @@ function abrirVideo(card){
    ativar.addEventListener('click',function(event){event.preventDefault();event.stopPropagation();
     ativar.disabled=true;ativar.classList.add('is-activating');
     const player=card._vimeoInlinePlayer;
-    Promise.resolve(player.ready()).then(function(){return player.setMuted(false)}).then(function(){return player.setVolume(1)}).then(function(){return player.play()}).then(function(){return player.getMuted()}).then(function(muted){
-     if(muted)throw new Error('O navegador manteve o vídeo no mudo');
-     ativar.remove();card.dataset.soundEnabled='1';
+    Promise.resolve(player.ready()).then(function(){return player.setMuted(false)}).then(function(){return player.setVolume(1)}).then(function(){return player.play()}).then(function(){
+     card.dataset.soundEnabled='1';
+     ativar.remove();
     }).catch(function(){ativar.disabled=false;ativar.classList.remove('is-activating');ativar.querySelector('span:last-child').textContent='Toque para ativar o som';});
    });
    frame.appendChild(ativar);
@@ -1661,7 +1673,9 @@ function carregarStory(){
  const destaque=destaquesData[destaqueAtual];
  const videoUrl=destaque.videos[storyAtual];
  /* A autorização é por destaque: todos os vídeos da sequência respeitam a mesma escolha. */
- storyMuted=!audioPermitidoNoDestaque;
+ storyMuted=window.matchMedia('(max-width: 768px)').matches ? true : !audioPermitidoNoDestaque;
+ var activateHint=document.getElementById('storyActivateHint');
+ if(activateHint)activateHint.classList.toggle('visivel',window.matchMedia('(max-width: 768px)').matches);
  atualizarDadosStory();
  storyVideoBox.classList.remove('em-breve-ativo');
  storyVideoBox.querySelectorAll('iframe,.story-em-breve').forEach(function(el){el.remove()});
@@ -1719,9 +1733,10 @@ function carregarStory(){
    return storyPlayer.setVolume(storyMuted?0:storyVolumeAtual);
   }).then(function(){
    if(token!==storyPlayerToken||!storyPlayer)return;
-   return storyPlayer.play();
+   return window.matchMedia('(max-width: 768px)').matches ? storyPlayer.pause() : storyPlayer.play();
   }).then(function(){
    if(token!==storyPlayerToken)return;
+   if(window.matchMedia('(max-width: 768px)').matches){storyPausedState=true;storyPaused.classList.remove('visivel');}
    storyLoadingState=false;
    storyLoading.style.display='none';
   }).catch(function(){
@@ -1746,17 +1761,17 @@ function carregarStory(){
 }
 
 function abrirDestaque(indice){
+ ocultarAutorizacaoSomDestaque();
  if(window.pararNarracaoFundo)window.pararNarracaoFundo();
  if(indice<0||indice>=destaquesData.length)return;
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
- /* Cada destaque exige uma autorização própria; ela libera todos os vídeos desta sequência. */
- mostrarAutorizacaoSomDestaque();
+ storyMuted=false;
  storyVolumeAtual=1;
- storyMuteButton.innerHTML=iconeMudo();
- storyMuteButton.setAttribute('aria-label','Ativar som');
- storyVolume.value='0';
+ storyMuteButton.innerHTML=iconeVolume();
+ storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+ storyVolume.value='1';
  storiesViewer.classList.add('aberto');
  storiesViewer.setAttribute('aria-hidden','false');
  document.body.style.overflow='hidden';
@@ -1812,7 +1827,10 @@ function storyAnterior(){
 function proximoDestaque(){
  destaqueAtual=(destaqueAtual+1)%destaquesData.length;
  storyAtual=0;
- mostrarAutorizacaoSomDestaque();
+ storyMuted=false;
+ storyMuteButton.innerHTML=iconeVolume();
+ storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+ storyVolume.value='1';
  atualizarPreviews();
  carregarStory();
 }
@@ -1821,13 +1839,32 @@ function destaqueAnterior(){
  if(destaqueAtual===0)return;
  destaqueAtual--;
  storyAtual=0;
- mostrarAutorizacaoSomDestaque();
+ storyMuted=false;
+ storyMuteButton.innerHTML=iconeVolume();
+ storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+ storyVolume.value='1';
  atualizarPreviews();
  carregarStory();
 }
 
 function alternarPausa(){
  if(!storyPlayer)return;
+ /* No mobile, não permite iniciar/reiniciar a reprodução antes da ativação explícita do som. */
+ if(window.matchMedia('(max-width: 768px)').matches && storyMuted && !storyPausedState){
+  storyPausedState=true;
+  storyPaused.classList.add('visivel');
+  storyPauseButton.innerHTML=iconePlay();
+  storyPauseButton.setAttribute('aria-label','Reproduzir vídeo');
+  var activateHint=document.getElementById('storyActivateHint');
+  if(activateHint)activateHint.classList.add('visivel');
+  storyPlayer.pause().catch(function(){});
+  return;
+ }
+ if(window.matchMedia('(max-width: 768px)').matches && storyMuted && storyPausedState){
+  var hint=document.getElementById('storyActivateHint');
+  if(hint)hint.classList.add('visivel');
+  return;
+ }
  storyPausedState=!storyPausedState;
  storyPaused.classList.toggle('visivel',storyPausedState);
  storyPauseButton.innerHTML=storyPausedState?iconePlay():iconePause();
@@ -1837,6 +1874,17 @@ function alternarPausa(){
 }
 
 function alternarSom(){
+ if(window.matchMedia('(max-width: 768px)').matches){
+  storyMuted=false;
+  if(storyVolumeAtual===0)storyVolumeAtual=1;
+  var activateHint=document.getElementById('storyActivateHint');
+  if(activateHint)activateHint.classList.remove('visivel');
+  storyMuteButton.innerHTML=iconeVolume();
+  storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
+  storyVolume.value=String(storyVolumeAtual);
+  if(storyPlayer){storyPlayer.setMuted(false).then(function(){return storyPlayer.setVolume(storyVolumeAtual);}).then(function(){return storyPlayer.play();}).catch(function(){if(activateHint)activateHint.classList.add('visivel');});}
+  return;
+ }
  storyMuted=!storyMuted;
  if(!storyMuted&&storyVolumeAtual===0)storyVolumeAtual=.5;
  storyMuteButton.innerHTML=storyMuted?iconeMudo():iconeVolume();
@@ -1872,6 +1920,7 @@ document.getElementById('storyClickNext').addEventListener('click',proximoStory)
 document.getElementById('storyClickPrev').addEventListener('click',storyAnterior);
 storyPauseButton.addEventListener('click',alternarPausa);
 storyMuteButton.addEventListener('click',alternarSom);
+document.getElementById('storyActivateHint').addEventListener('click',alternarSom);
 storyVolume.addEventListener('input',function(){mudarVolume(this.value)});
 
 /* Clicar nas prévias laterais abre diretamente o destaque correspondente.
@@ -2800,7 +2849,7 @@ document.addEventListener('keydown',function(event){
         entry.readyPromise = Promise.resolve(player.ready())
           .then(function(){ return player.setMuted(storyMuted); })
           .then(function(){ return player.setVolume(storyMuted ? 0 : storyVolumeAtual); })
-          .then(function(){ return player.play(); })
+          .then(function(){ return player.pause(); })
           .then(function(){
             entry.ready = true;
             entry.failed = false;
@@ -2844,6 +2893,18 @@ document.addEventListener('keydown',function(event){
 
   function loadMobileStory(){
     if (!viewer.classList.contains('aberto')) return;
+    /* Cada vídeo da Cobertura em Tempo Real começa pausado e exige ativação explícita do som no mobile. */
+    if (isMobileCubeMode()) {
+      storyMuted = true;
+      storyVolumeAtual = 1;
+      var activateHint = document.getElementById('storyActivateHint');
+      if (activateHint) activateHint.classList.add('visivel');
+      if (storyMuteButton) {
+        storyMuteButton.innerHTML = iconeMudo();
+        storyMuteButton.setAttribute('aria-label', 'Ativar som');
+      }
+      if (storyVolume) storyVolume.value = '0';
+    }
     ensureCubeScene();
     setCubeSize();
     storyPlayerToken++;
@@ -2953,23 +3014,22 @@ document.addEventListener('keydown',function(event){
     storyPaused.classList.remove('visivel');
     storyPlayerToken++;
     storyPlayer = target.player;
-    /* Cada novo destaque no mobile inicia uma nova sessão de áudio: solicitar autorização
-       novamente e aplicar a escolha a todos os Stories dessa sequência. */
     storyMuted = true;
     storyVolumeAtual = 1;
-    mostrarAutorizacaoSomDestaque();
+    var activateHint = document.getElementById('storyActivateHint');
+    if (activateHint) activateHint.classList.toggle('visivel', isMobileCubeMode());
     storyMuteButton.innerHTML = iconeMudo();
-    storyMuteButton.setAttribute('aria-label', 'Ativar som');
-    storyVolume.value = '0';
+    storyMuteButton.setAttribute('aria-label', 'Silenciar vídeo');
+    storyVolume.value = '1';
     attachActiveHandlers(target, storyPlayerToken);
     atualizarDadosStory();
     storyLoadingState = false;
     loading.style.display = 'none';
     try {
       if (typeof target.player.setLoop === 'function') target.player.setLoop(false).catch(function(){});
-      target.player.setMuted(storyMuted)
-        .then(function(){ return target.player.setVolume(storyMuted ? 0 : storyVolumeAtual); })
-        .then(function(){ return target.player.play(); })
+      target.player.setMuted(true)
+        .then(function(){ return target.player.setVolume(0); })
+        .then(function(){ return target.player.pause(); })
         .catch(function(){});
     } catch (e) {}
 
