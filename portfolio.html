@@ -842,12 +842,12 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 <script id="detect-ios-mobile-audio-ui">
 (function(){var ios=/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);if(ios&&window.matchMedia('(max-width: 768px)').matches){document.documentElement.classList.add('ios-mobile-story-audio');}})();
 </script>
-<style id="ios-mobile-only-activate-som-button">
+<style id="mobile-story-audio-toggle-button">
 @media(max-width:768px){
- html.ios-mobile-story-audio .story-sound-control{width:auto!important;flex:0 0 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;}
- html.ios-mobile-story-audio #storyMuteButton,
- html.ios-mobile-story-audio #storyVolume{display:none!important;}
- html.ios-mobile-story-audio #storyActivateHint{position:relative!important;top:auto!important;left:auto!important;transform:none!important;margin:0!important;}
+ .story-sound-control{width:auto!important;flex:0 0 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:0!important;overflow:visible!important}
+ #storyMuteButton,#storyVolume{display:none!important}
+ #storyActivateHint{display:block!important;position:relative!important;top:auto!important;left:auto!important;transform:none!important;margin:0!important;white-space:nowrap!important;padding:7px 12px!important;border:1px solid rgba(255,255,255,.72)!important;border-radius:22px!important;background:rgba(0,0,0,.68)!important;color:#fff!important;font:600 11px Poppins,sans-serif!important;line-height:1.1!important;letter-spacing:.1px!important;z-index:25!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important;animation:storyHintPulse 1.15s ease-in-out infinite}
+ #storyActivateHint:not(.visivel){display:none!important}
 }
 </style>
 
@@ -1888,52 +1888,44 @@ function alternarPausa(){
 
 function alternarSom(){
  if(window.matchMedia('(max-width: 768px)').matches){
-  /* iOS: play() é chamado diretamente dentro do toque do usuário.
-     Encadear play() somente depois de setVolume/setMuted faz o Safari perder
-     o gesto de ativação e pode exigir um segundo toque no ícone. */
   var isIOSMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var playerAtivo = storyPlayer;
   if(!playerAtivo)return;
+  var activateHint=document.getElementById('storyActivateHint');
+  if(!storyMuted){
+   /* Segundo toque: desativa somente o áudio, mantendo o vídeo em reprodução. */
+   storyMuted=true;
+   if(activateHint){activateHint.textContent='Ativar som';activateHint.classList.add('visivel');}
+   if(storyMuteButton){storyMuteButton.innerHTML=iconeMudo();storyMuteButton.setAttribute('aria-label','Ativar som');}
+   if(storyVolume)storyVolume.value='0';
+   try{playerAtivo.setMuted(true);}catch(e){}
+   try{playerAtivo.setVolume(0);}catch(e){}
+   return;
+  }
+  /* Um toque ativa áudio e reprodução; no iOS as chamadas ocorrem no gesto original. */
   storyVolumeAtual=1;
   storyMuted=false;
-  var activateHint=document.getElementById('storyActivateHint');
-  if(activateHint)activateHint.classList.remove('visivel');
-  storyMuteButton.innerHTML=iconeVolume();
-  storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
-  storyVolume.value='1';
-
+  if(activateHint){activateHint.textContent='Desativar som';activateHint.classList.add('visivel');}
+  if(storyMuteButton){storyMuteButton.innerHTML=iconeVolume();storyMuteButton.setAttribute('aria-label','Silenciar vídeo');}
+  if(storyVolume)storyVolume.value='1';
   if(isIOSMobile){
-   /* Disparar as três operações no mesmo gesto de toque é essencial no Safari iOS. */
-   var playPromise;
-   try { playPromise=playerAtivo.play(); } catch(e) { playPromise=Promise.reject(e); }
-   var unmutePromise;
-   try { unmutePromise=playerAtivo.setMuted(false); } catch(e) { unmutePromise=Promise.reject(e); }
-   var volumePromise;
-   try { volumePromise=playerAtivo.setVolume(1); } catch(e) { volumePromise=Promise.reject(e); }
+   var playPromise,unmutePromise,volumePromise;
+   try{playPromise=playerAtivo.play();}catch(e){playPromise=Promise.reject(e);}
+   try{unmutePromise=playerAtivo.setMuted(false);}catch(e){unmutePromise=Promise.reject(e);}
+   try{volumePromise=playerAtivo.setVolume(1);}catch(e){volumePromise=Promise.reject(e);}
    Promise.all([playPromise,unmutePromise,volumePromise]).then(function(){
     if(storyPlayer!==playerAtivo)return;
-    return playerAtivo.getMuted().then(function(muted){
-     if(muted)throw new Error('O Safari manteve o vídeo no mudo');
-     storyMuted=false;storyVolumeAtual=1;storyPausedState=false;
-     storyPaused.classList.remove('visivel');
-     storyPauseButton.innerHTML=iconePause();
-     storyPauseButton.setAttribute('aria-label','Pausar vídeo');
-    });
+    storyMuted=false;storyVolumeAtual=1;storyPausedState=false;
+    storyPaused.classList.remove('visivel');storyPauseButton.innerHTML=iconePause();
+    storyPauseButton.setAttribute('aria-label','Pausar vídeo');
    }).catch(function(){
     if(storyPlayer!==playerAtivo)return;
-    storyMuted=true;storyVolumeAtual=1;
-    if(activateHint)activateHint.classList.add('visivel');
-    storyMuteButton.innerHTML=iconeMudo();
-    storyMuteButton.setAttribute('aria-label','Ativar som');
+    storyMuted=true;if(activateHint){activateHint.textContent='Ativar som';activateHint.classList.add('visivel');}
    });
    return;
   }
-
   Promise.resolve(playerAtivo.setMuted(false)).then(function(){return playerAtivo.setVolume(1)}).then(function(){return playerAtivo.play()}).catch(function(){
-   if(activateHint)activateHint.classList.add('visivel');
-   storyMuted=true;
-   storyMuteButton.innerHTML=iconeMudo();
-   storyMuteButton.setAttribute('aria-label','Ativar som');
+   storyMuted=true;if(activateHint){activateHint.textContent='Ativar som';activateHint.classList.add('visivel');}
   });
   return;
  }
@@ -1942,12 +1934,8 @@ function alternarSom(){
  storyMuteButton.innerHTML=storyMuted?iconeMudo():iconeVolume();
  storyMuteButton.setAttribute('aria-label',storyMuted?'Ativar som':'Silenciar vídeo');
  storyVolume.value=String(storyMuted?0:storyVolumeAtual);
- if(storyPlayer){
-  storyPlayer.setMuted(storyMuted).catch(function(){});
-  storyPlayer.setVolume(storyMuted?0:storyVolumeAtual).catch(function(){});
- }
+ if(storyPlayer){storyPlayer.setMuted(storyMuted).catch(function(){});storyPlayer.setVolume(storyMuted?0:storyVolumeAtual).catch(function(){});}
 }
-
 function mudarVolume(valor){
  storyVolumeAtual=Number(valor);
  storyMuted=storyVolumeAtual===0;
@@ -2950,7 +2938,7 @@ document.addEventListener('keydown',function(event){
       storyMuted = true;
       storyVolumeAtual = 1;
       var activateHint = document.getElementById('storyActivateHint');
-      if (activateHint) activateHint.classList.add('visivel');
+      if (activateHint) { activateHint.textContent = 'Ativar som'; activateHint.classList.add('visivel'); }
       if (storyMuteButton) {
         storyMuteButton.innerHTML = iconeMudo();
         storyMuteButton.setAttribute('aria-label', 'Ativar som');
