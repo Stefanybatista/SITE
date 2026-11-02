@@ -818,6 +818,14 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 }
 </style>
 
+
+<!-- Otimização de conexão para os vídeos Vimeo -->
+<link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+<link rel="preconnect" href="https://i.vimeocdn.com" crossorigin>
+<link rel="preconnect" href="https://f.vimeocdn.com" crossorigin>
+<link rel="dns-prefetch" href="//player.vimeo.com">
+<link rel="dns-prefetch" href="//i.vimeocdn.com">
+<link rel="dns-prefetch" href="//f.vimeocdn.com">
 </head>
 
 <body data-page="portfolio">
@@ -1213,7 +1221,7 @@ function abrirVideo(card){
  /* Se outro card estiver tocando, encerra a reprodução anterior sem afetar o layout. */
  document.querySelectorAll('.video-card.is-playing').forEach(function(playingCard){
   playingCard.querySelectorAll('.video-inline-player').forEach(function(player){player.src='about:blank';player.remove()});
-  playingCard.querySelectorAll('.video-expand-button,.video-inline-toggle').forEach(function(button){button.remove()});
+  playingCard.querySelectorAll('.video-expand-button,.video-inline-toggle,.video-mobile-sound-prompt').forEach(function(button){button.remove()});
   playingCard._vimeoInlinePlayer=null;
   playingCard.dataset.paused='0';
   playingCard.classList.remove('is-playing');
@@ -1227,8 +1235,9 @@ function abrirVideo(card){
  iframe.allow='autoplay; fullscreen; picture-in-picture; encrypted-media';
  iframe.allowFullscreen=true;
  iframe.referrerPolicy='strict-origin-when-cross-origin';
+ const pedirSomNoMobile=window.matchMedia('(max-width: 768px)').matches;
  url.searchParams.set('autoplay','1');
- url.searchParams.set('muted','0');
+ url.searchParams.set('muted',pedirSomNoMobile?'1':'0');
  url.searchParams.set('title','0');
  url.searchParams.set('byline','0');
  url.searchParams.set('portrait','0');
@@ -1255,7 +1264,17 @@ function abrirVideo(card){
  frame.appendChild(toggle);
  if(window.Vimeo&&window.Vimeo.Player){
   card._vimeoInlinePlayer=new window.Vimeo.Player(iframe);
-  card._vimeoInlinePlayer.ready().then(function(){return card._vimeoInlinePlayer.setMuted(false);}).then(function(){return card._vimeoInlinePlayer.setVolume(1);}).catch(function(){});
+  card._vimeoInlinePlayer.ready().then(function(){return card._vimeoInlinePlayer.setMuted(pedirSomNoMobile);}).then(function(){return card._vimeoInlinePlayer.setVolume(pedirSomNoMobile?0:1);}).catch(function(){});
+  if(pedirSomNoMobile){
+   const ativar=document.createElement('button');
+   ativar.type='button';ativar.className='video-mobile-sound-prompt';
+   ativar.innerHTML='<span class="video-mobile-sound-icon">♪</span><span>Ative o som</span>';
+   ativar.setAttribute('aria-label','Ativar som do vídeo');
+   ativar.addEventListener('click',function(event){event.preventDefault();event.stopPropagation();
+    card._vimeoInlinePlayer.setMuted(false).then(function(){return card._vimeoInlinePlayer.setVolume(1)}).then(function(){return card._vimeoInlinePlayer.play()}).then(function(){ativar.remove()}).catch(function(){});
+   });
+   frame.appendChild(ativar);
+  }
  }
  card.dataset.paused='0';
  const expand=document.createElement('button');
@@ -1454,6 +1473,30 @@ let storyVolumeAtual=1;
 let storyLoadingState=false;
 let storyPlayerToken=0;
 let previewPlayers=[];
+let audioPermitidoNoDestaque=false;
+let overlaySomDestaque=null;
+function mostrarAutorizacaoSomDestaque(){
+ audioPermitidoNoDestaque=false;
+ storyMuted=true;
+ if(storyPlayer){storyPlayer.setMuted(true).catch(function(){});storyPlayer.setVolume(0).catch(function(){});}
+ if(!overlaySomDestaque){
+  overlaySomDestaque=document.createElement('div');
+  overlaySomDestaque.id='portfolioSoundPermission';
+  overlaySomDestaque.innerHTML='<div class="portfolio-sound-card"><h2>Ative o som</h2><p>Permita ouvir o áudio deste destaque.</p><button type="button" id="portfolioSoundYes">Ativar som</button></div>';
+  document.body.appendChild(overlaySomDestaque);
+  const style=document.createElement('style');
+  style.textContent='#portfolioSoundPermission{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.55);backdrop-filter:blur(3px)}#portfolioSoundPermission .portfolio-sound-card{width:min(100%,340px);padding:28px 24px;text-align:center;color:#fff;background:rgba(17,19,24,.94);border:1px solid rgba(255,255,255,.2);border-radius:16px;font-family:Poppins,sans-serif}#portfolioSoundPermission h2{margin:0 0 8px;font-size:22px}#portfolioSoundPermission p{margin:0 0 20px;color:rgba(255,255,255,.8);font-size:13px}#portfolioSoundPermission button{border:0;border-radius:30px;padding:12px 25px;background:#fff;color:#111;font-weight:600;cursor:pointer}';
+  document.head.appendChild(style);
+  overlaySomDestaque.querySelector('button').addEventListener('click',function(){
+   audioPermitidoNoDestaque=true;storyMuted=false;storyVolumeAtual=1;
+   storyMuteButton.innerHTML=iconeVolume();storyMuteButton.setAttribute('aria-label','Silenciar vídeo');storyVolume.value='1';
+   overlaySomDestaque.style.display='none';
+   if(storyPlayer){storyPlayer.setMuted(false).then(function(){return storyPlayer.setVolume(storyVolumeAtual)}).then(function(){return storyPlayer.play()}).catch(function(){});}
+  });
+ }
+ overlaySomDestaque.style.display='flex';
+}
+function ocultarAutorizacaoSomDestaque(){if(overlaySomDestaque)overlaySomDestaque.style.display='none';}
 
 storyMuteButton.innerHTML=iconeMudo();
 storyPauseButton.innerHTML=iconePause();
@@ -1624,6 +1667,8 @@ function carregarStory(){
  iframe.title=destaque.nome;
  iframe.allow='autoplay; fullscreen; picture-in-picture';
  iframe.allowFullscreen=true;
+ iframe.loading='eager';
+ iframe.referrerPolicy='strict-origin-when-cross-origin';
  iframe.src=urlVimeoComParametros(videoUrl);
  storyVideoBox.querySelectorAll('iframe').forEach(function(el){el.remove()});
  storyVideoBox.appendChild(iframe);
@@ -1684,12 +1729,12 @@ function abrirDestaque(indice){
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
- /* Todos os destaques iniciam com áudio habilitado no volume máximo, em desktop e mobile. */
- storyMuted=false;
+ /* Cada destaque exige uma autorização própria; ela libera todos os vídeos desta sequência. */
+ mostrarAutorizacaoSomDestaque();
  storyVolumeAtual=1;
- storyMuteButton.innerHTML=iconeVolume();
- storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
- storyVolume.value='1';
+ storyMuteButton.innerHTML=iconeMudo();
+ storyMuteButton.setAttribute('aria-label','Ativar som');
+ storyVolume.value='0';
  storiesViewer.classList.add('aberto');
  storiesViewer.setAttribute('aria-hidden','false');
  document.body.style.overflow='hidden';
@@ -1699,6 +1744,7 @@ function abrirDestaque(indice){
 }
 
 function fecharDestaque(){
+ ocultarAutorizacaoSomDestaque();
  storiesViewer.classList.remove('aberto');
  storiesViewer.classList.remove('sem-preview-anterior');
  storiesViewer.setAttribute('aria-hidden','true');
@@ -1735,6 +1781,7 @@ function storyAnterior(){
   if(destaqueAtual===0)return;
   destaqueAtual--;
   storyAtual=destaquesData[destaqueAtual].videos.length-1;
+  mostrarAutorizacaoSomDestaque();
   atualizarPreviews();
   carregarStory();
  }
@@ -1743,6 +1790,7 @@ function storyAnterior(){
 function proximoDestaque(){
  destaqueAtual=(destaqueAtual+1)%destaquesData.length;
  storyAtual=0;
+ mostrarAutorizacaoSomDestaque();
  atualizarPreviews();
  carregarStory();
 }
@@ -1751,6 +1799,7 @@ function destaqueAnterior(){
  if(destaqueAtual===0)return;
  destaqueAtual--;
  storyAtual=0;
+ mostrarAutorizacaoSomDestaque();
  atualizarPreviews();
  carregarStory();
 }
@@ -2105,36 +2154,11 @@ document.addEventListener('keydown',function(event){
 </style>
 
 
-<style id="destaques-mobile-imersivo">
-/* Mobile: visualização limpa dos destaques, sem controles sobre o vídeo.
-   Desktop permanece com os controles originais. */
-@media (max-width: 767px) {
-  .stories-viewer .story-topbar,
-  .stories-viewer .story-nav-arrow,
-  .stories-viewer .story-hint {
-    display: none !important;
-  }
-  .stories-viewer .story-progress {
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 20 !important;
-  }
-  .stories-viewer .story-main {
-    width: 100vw !important;
-    height: 100svh !important;
-    max-height: 100svh !important;
-    border-radius: 0 !important;
-  }
-  .stories-viewer .story-video-box,
-  .stories-viewer .story-video-box iframe,
-  .stories-viewer .story-video-box video {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-  }
-}
+<style id="portfolio-mobile-video-sound-prompt">
+.video-mobile-sound-prompt{display:none}
+@media(max-width:768px){.video-card.is-playing .video-mobile-sound-prompt{position:absolute!important;z-index:30!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;min-width:145px!important;padding:12px 18px!important;border:1px solid rgba(255,255,255,.65)!important;border-radius:30px!important;background:rgba(0,0,0,.78)!important;color:#fff!important;font:600 13px Poppins,sans-serif!important;letter-spacing:.2px!important;box-shadow:0 5px 22px rgba(0,0,0,.35)!important;cursor:pointer!important}.video-mobile-sound-icon{font-size:19px!important;line-height:1!important}}
 </style>
+
 </body>
 </html>
 
