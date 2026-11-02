@@ -838,6 +838,19 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 }
 </style>
 
+
+<script id="detect-ios-mobile-audio-ui">
+(function(){var ios=/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);if(ios&&window.matchMedia('(max-width: 768px)').matches){document.documentElement.classList.add('ios-mobile-story-audio');}})();
+</script>
+<style id="ios-mobile-only-activate-som-button">
+@media(max-width:768px){
+ html.ios-mobile-story-audio .story-sound-control{width:auto!important;flex:0 0 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+ html.ios-mobile-story-audio #storyMuteButton,
+ html.ios-mobile-story-audio #storyVolume{display:none!important;}
+ html.ios-mobile-story-audio #storyActivateHint{position:relative!important;top:auto!important;left:auto!important;transform:none!important;margin:0!important;}
+}
+</style>
+
 </head>
 
 <body data-page="portfolio">
