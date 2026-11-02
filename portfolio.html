@@ -1875,24 +1875,53 @@ function alternarPausa(){
 
 function alternarSom(){
  if(window.matchMedia('(max-width: 768px)').matches){
-  /* No iOS mobile, força o volume interno do player Vimeo ao máximo antes de liberar o áudio.
-     O volume físico do aparelho continua sob controle do próprio iOS. */
+  /* iOS: play() é chamado diretamente dentro do toque do usuário.
+     Encadear play() somente depois de setVolume/setMuted faz o Safari perder
+     o gesto de ativação e pode exigir um segundo toque no ícone. */
   var isIOSMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if(isIOSMobile)storyVolumeAtual=1;
-  else if(storyVolumeAtual===0)storyVolumeAtual=1;
+  var playerAtivo = storyPlayer;
+  if(!playerAtivo)return;
+  storyVolumeAtual=1;
   storyMuted=false;
   var activateHint=document.getElementById('storyActivateHint');
   if(activateHint)activateHint.classList.remove('visivel');
   storyMuteButton.innerHTML=iconeVolume();
   storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
-  storyVolume.value=String(storyVolumeAtual);
-  if(storyPlayer){
-   var volumeAlvo=isIOSMobile?1:storyVolumeAtual;
-   storyPlayer.setVolume(volumeAlvo)
-    .then(function(){return storyPlayer.setMuted(false);})
-    .then(function(){return storyPlayer.play();})
-    .catch(function(){if(activateHint)activateHint.classList.add('visivel');});
+  storyVolume.value='1';
+
+  if(isIOSMobile){
+   /* Disparar as três operações no mesmo gesto de toque é essencial no Safari iOS. */
+   var playPromise;
+   try { playPromise=playerAtivo.play(); } catch(e) { playPromise=Promise.reject(e); }
+   var unmutePromise;
+   try { unmutePromise=playerAtivo.setMuted(false); } catch(e) { unmutePromise=Promise.reject(e); }
+   var volumePromise;
+   try { volumePromise=playerAtivo.setVolume(1); } catch(e) { volumePromise=Promise.reject(e); }
+   Promise.all([playPromise,unmutePromise,volumePromise]).then(function(){
+    if(storyPlayer!==playerAtivo)return;
+    return playerAtivo.getMuted().then(function(muted){
+     if(muted)throw new Error('O Safari manteve o vídeo no mudo');
+     storyMuted=false;storyVolumeAtual=1;storyPausedState=false;
+     storyPaused.classList.remove('visivel');
+     storyPauseButton.innerHTML=iconePause();
+     storyPauseButton.setAttribute('aria-label','Pausar vídeo');
+    });
+   }).catch(function(){
+    if(storyPlayer!==playerAtivo)return;
+    storyMuted=true;storyVolumeAtual=1;
+    if(activateHint)activateHint.classList.add('visivel');
+    storyMuteButton.innerHTML=iconeMudo();
+    storyMuteButton.setAttribute('aria-label','Ativar som');
+   });
+   return;
   }
+
+  Promise.resolve(playerAtivo.setMuted(false)).then(function(){return playerAtivo.setVolume(1)}).then(function(){return playerAtivo.play()}).catch(function(){
+   if(activateHint)activateHint.classList.add('visivel');
+   storyMuted=true;
+   storyMuteButton.innerHTML=iconeMudo();
+   storyMuteButton.setAttribute('aria-label','Ativar som');
+  });
   return;
  }
  storyMuted=!storyMuted;
