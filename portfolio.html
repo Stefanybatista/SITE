@@ -1271,7 +1271,12 @@ function abrirVideo(card){
    ativar.innerHTML='<span class="video-mobile-sound-icon">♪</span><span>Ative o som</span>';
    ativar.setAttribute('aria-label','Ativar som do vídeo');
    ativar.addEventListener('click',function(event){event.preventDefault();event.stopPropagation();
-    card._vimeoInlinePlayer.setMuted(false).then(function(){return card._vimeoInlinePlayer.setVolume(1)}).then(function(){return card._vimeoInlinePlayer.play()}).then(function(){ativar.remove()}).catch(function(){});
+    ativar.disabled=true;ativar.classList.add('is-activating');
+    const player=card._vimeoInlinePlayer;
+    Promise.resolve(player.ready()).then(function(){return player.setMuted(false)}).then(function(){return player.setVolume(1)}).then(function(){return player.play()}).then(function(){return player.getMuted()}).then(function(muted){
+     if(muted)throw new Error('O navegador manteve o vídeo no mudo');
+     ativar.remove();card.dataset.soundEnabled='1';
+    }).catch(function(){ativar.disabled=false;ativar.classList.remove('is-activating');ativar.querySelector('span:last-child').textContent='Toque para ativar o som';});
    });
    frame.appendChild(ativar);
   }
@@ -1476,6 +1481,12 @@ let previewPlayers=[];
 let audioPermitidoNoDestaque=false;
 let overlaySomDestaque=null;
 function mostrarAutorizacaoSomDestaque(){
+ /* A sessão de autorização por destaque existe exclusivamente no mobile. */
+ if(!window.matchMedia('(max-width: 768px)').matches){
+  if(overlaySomDestaque)overlaySomDestaque.style.display='none';
+  audioPermitidoNoDestaque=true;storyMuted=false;storyVolumeAtual=1;
+  return;
+ }
  audioPermitidoNoDestaque=false;
  storyMuted=true;
  if(storyPlayer){storyPlayer.setMuted(true).catch(function(){});storyPlayer.setVolume(0).catch(function(){});}
@@ -1488,15 +1499,24 @@ function mostrarAutorizacaoSomDestaque(){
   style.textContent='#portfolioSoundPermission{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.55);backdrop-filter:blur(3px)}#portfolioSoundPermission .portfolio-sound-card{width:min(100%,340px);padding:28px 24px;text-align:center;color:#fff;background:rgba(17,19,24,.94);border:1px solid rgba(255,255,255,.2);border-radius:16px;font-family:Poppins,sans-serif}#portfolioSoundPermission h2{margin:0 0 8px;font-size:22px}#portfolioSoundPermission p{margin:0 0 20px;color:rgba(255,255,255,.8);font-size:13px}#portfolioSoundPermission button{border:0;border-radius:30px;padding:12px 25px;background:#fff;color:#111;font-weight:600;cursor:pointer}';
   document.head.appendChild(style);
   overlaySomDestaque.querySelector('button').addEventListener('click',function(){
+   const botao=overlaySomDestaque.querySelector('button');
+   botao.disabled=true;botao.textContent='Ativando…';
    audioPermitidoNoDestaque=true;storyMuted=false;storyVolumeAtual=1;
    storyMuteButton.innerHTML=iconeVolume();storyMuteButton.setAttribute('aria-label','Silenciar vídeo');storyVolume.value='1';
-   overlaySomDestaque.style.display='none';
-   if(storyPlayer){storyPlayer.setMuted(false).then(function(){return storyPlayer.setVolume(storyVolumeAtual)}).then(function(){return storyPlayer.play()}).catch(function(){});}
+   const playerAtual=storyPlayer;
+   Promise.resolve(playerAtual?playerAtual.ready():null).then(function(){
+    if(!playerAtual)return;
+    return playerAtual.setMuted(false).then(function(){return playerAtual.setVolume(1)}).then(function(){return playerAtual.play()}).then(function(){return playerAtual.getMuted()}).then(function(muted){if(muted)throw new Error('Áudio bloqueado pelo navegador');});
+   }).then(function(){overlaySomDestaque.style.display='none';botao.disabled=false;botao.textContent='Ativar som';}).catch(function(){
+    audioPermitidoNoDestaque=false;storyMuted=true;storyVolumeAtual=0;
+    botao.disabled=false;botao.textContent='Toque para tentar novamente';
+   });
   });
  }
  overlaySomDestaque.style.display='flex';
 }
 function ocultarAutorizacaoSomDestaque(){if(overlaySomDestaque)overlaySomDestaque.style.display='none';}
+window.addEventListener('resize',function(){if(!window.matchMedia('(max-width: 768px)').matches)ocultarAutorizacaoSomDestaque();});
 
 storyMuteButton.innerHTML=iconeMudo();
 storyPauseButton.innerHTML=iconePause();
@@ -1640,6 +1660,8 @@ function carregarStory(){
 
  const destaque=destaquesData[destaqueAtual];
  const videoUrl=destaque.videos[storyAtual];
+ /* A autorização é por destaque: todos os vídeos da sequência respeitam a mesma escolha. */
+ storyMuted=!audioPermitidoNoDestaque;
  atualizarDadosStory();
  storyVideoBox.classList.remove('em-breve-ativo');
  storyVideoBox.querySelectorAll('iframe,.story-em-breve').forEach(function(el){el.remove()});
@@ -2931,6 +2953,14 @@ document.addEventListener('keydown',function(event){
     storyPaused.classList.remove('visivel');
     storyPlayerToken++;
     storyPlayer = target.player;
+    /* Cada novo destaque no mobile inicia uma nova sessão de áudio: solicitar autorização
+       novamente e aplicar a escolha a todos os Stories dessa sequência. */
+    storyMuted = true;
+    storyVolumeAtual = 1;
+    mostrarAutorizacaoSomDestaque();
+    storyMuteButton.innerHTML = iconeMudo();
+    storyMuteButton.setAttribute('aria-label', 'Ativar som');
+    storyVolume.value = '0';
     attachActiveHandlers(target, storyPlayerToken);
     atualizarDadosStory();
     storyLoadingState = false;
