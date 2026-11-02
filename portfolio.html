@@ -1875,14 +1875,24 @@ function alternarPausa(){
 
 function alternarSom(){
  if(window.matchMedia('(max-width: 768px)').matches){
+  /* No iOS mobile, força o volume interno do player Vimeo ao máximo antes de liberar o áudio.
+     O volume físico do aparelho continua sob controle do próprio iOS. */
+  var isIOSMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if(isIOSMobile)storyVolumeAtual=1;
+  else if(storyVolumeAtual===0)storyVolumeAtual=1;
   storyMuted=false;
-  if(storyVolumeAtual===0)storyVolumeAtual=1;
   var activateHint=document.getElementById('storyActivateHint');
   if(activateHint)activateHint.classList.remove('visivel');
   storyMuteButton.innerHTML=iconeVolume();
   storyMuteButton.setAttribute('aria-label','Silenciar vídeo');
   storyVolume.value=String(storyVolumeAtual);
-  if(storyPlayer){storyPlayer.setMuted(false).then(function(){return storyPlayer.setVolume(storyVolumeAtual);}).then(function(){return storyPlayer.play();}).catch(function(){if(activateHint)activateHint.classList.add('visivel');});}
+  if(storyPlayer){
+   var volumeAlvo=isIOSMobile?1:storyVolumeAtual;
+   storyPlayer.setVolume(volumeAlvo)
+    .then(function(){return storyPlayer.setMuted(false);})
+    .then(function(){return storyPlayer.play();})
+    .catch(function(){if(activateHint)activateHint.classList.add('visivel');});
+  }
   return;
  }
  storyMuted=!storyMuted;
