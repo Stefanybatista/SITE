@@ -1065,12 +1065,12 @@ const projetos=[
 
 const makingOf=[
   {id:'1189288930',hash:'h=76e43c87b1',title:'Making Of',description:'Bastidores da campanha de Guto Silva, secretário de Estado do Paraná, em Curitiba.'},
-  {id:'1099554358',title:'Making Of',description:'Bastidores da produção: organização, preparação e os detalhes que acontecem antes de cada cena.'},
+  {id:'1239671725',title:'Making Of',description:'Registros de uma jornada de negócios com Pedro Chen pelos céus de São Paulo.'},
+  {id:'1099555467',title:'Making Of',description:'Acompanhamento do processo de produção audiovisual com Erika Schneider, conferindo o desenvolvimento do vídeo e os detalhes da edição.'},
   {id:'1239671392',title:'Making Of',description:'Registros da preparação e dos bastidores da campanha de Guto Silva.'},
   {id:'1239671015',title:'Making Of',description:'Bastidor da nova loja Camelô do China em São Mateus, Hexie.'},
-  {id:'1099555467',title:'Making Of',description:'Acompanhamento do processo de produção audiovisual com Erika Schneider, conferindo o desenvolvimento do vídeo e os detalhes da edição.'},
+  {id:'1099554358',title:'Making Of',description:'Bastidores da produção: organização, preparação e os detalhes que acontecem antes de cada cena.'},
   {id:'1099555025',title:'Making Of',description:'Bastidores de uma live com Willian Celso, registrando a transmissão, o cenário e os detalhes por trás das câmeras.'},
-  {id:'1239671725',title:'Making Of',description:'Registros de uma jornada de negócios com Pedro Chen pelos céus de São Paulo.'},
   {id:'1099795275',hash:'h=76e43c87b1',title:'Making Of',description:'Bastidores de gravação para uma marca de acessórios com Erika Schneider.'},
   {id:'1099553815',title:'Making Of',description:'Sessão fotográfica com a celebridade Juju Salimeni, captando os momentos por trás da produção.'},
   {id:'1099778841',hash:'h=76e43c87b1',title:'Making Of',description:'Set com o Mago da Neurovendas, Karllos Della Re.'},
@@ -1456,9 +1456,21 @@ const destaquesData=[
   ]
  },
  {
-  nome:'Layra Mentora',
+  nome:'LAYRA MENTORA',
   capa:'layra-mentora.png',
-  videos:['EM_BREVE']
+  videos:[
+   'https://player.vimeo.com/video/1242568776?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242569216?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242568362?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242569742?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242570272?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242571514?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242572008?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242572329?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242572937?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242573780?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242574118?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1'
+  ]
  },
  {
   nome:'EDUARDO CRISTIAN',
@@ -2291,14 +2303,6 @@ document.addEventListener('keydown',function(event){
 }
 </style>
 
-
-<style id="story-header-inner-mobile-size-only">
-@media (max-width: 768px) {
-  .story-topbar .story-avatar { width: 39px !important; height: 39px !important; }
-  .story-topbar .story-heading strong { font-size: 16px !important; }
-}
-</style>
-
 </body>
 </html>
 
@@ -2916,9 +2920,9 @@ document.addEventListener('keydown',function(event){
       if (active) {
         storyPlayer = player;
         entry.readyPromise = Promise.resolve(player.ready())
-          .then(function(){ return player.setMuted(storyMuted); })
-          .then(function(){ return player.setVolume(storyMuted ? 0 : storyVolumeAtual); })
-          .then(function(){ return player.pause(); })
+          .then(function(){ return player.setMuted(isMobileCubeMode() ? true : false); })
+          .then(function(){ return player.setVolume(isMobileCubeMode() ? 0 : 1); })
+          .then(function(){ return isMobileCubeMode() ? player.pause() : player.play(); })
           .then(function(){
             entry.ready = true;
             entry.failed = false;
@@ -2973,6 +2977,16 @@ document.addEventListener('keydown',function(event){
         storyMuteButton.setAttribute('aria-label', 'Ativar som');
       }
       if (storyVolume) storyVolume.value = '0';
+    } else {
+      storyMuted = false;
+      storyVolumeAtual = 1;
+      var desktopHint = document.getElementById('storyActivateHint');
+      if (desktopHint) desktopHint.classList.remove('visivel');
+      if (storyMuteButton) {
+        storyMuteButton.innerHTML = iconeVolume();
+        storyMuteButton.setAttribute('aria-label', 'Silenciar vídeo');
+      }
+      if (storyVolume) storyVolume.value = '1';
     }
     ensureCubeScene();
     setCubeSize();
@@ -3083,12 +3097,12 @@ document.addEventListener('keydown',function(event){
     storyPaused.classList.remove('visivel');
     storyPlayerToken++;
     storyPlayer = target.player;
-    storyMuted = true;
+    storyMuted = isMobileCubeMode();
     storyVolumeAtual = 1;
     var activateHint = document.getElementById('storyActivateHint');
     if (activateHint) activateHint.classList.toggle('visivel', isMobileCubeMode());
-    storyMuteButton.innerHTML = iconeMudo();
-    storyMuteButton.setAttribute('aria-label', 'Silenciar vídeo');
+    storyMuteButton.innerHTML = storyMuted ? iconeMudo() : iconeVolume();
+    storyMuteButton.setAttribute('aria-label', storyMuted ? 'Ativar som' : 'Silenciar vídeo');
     storyVolume.value = '1';
     attachActiveHandlers(target, storyPlayerToken);
     atualizarDadosStory();
@@ -3096,9 +3110,9 @@ document.addEventListener('keydown',function(event){
     loading.style.display = 'none';
     try {
       if (typeof target.player.setLoop === 'function') target.player.setLoop(false).catch(function(){});
-      target.player.setMuted(true)
-        .then(function(){ return target.player.setVolume(0); })
-        .then(function(){ return target.player.pause(); })
+      target.player.setMuted(isMobileCubeMode())
+        .then(function(){ return target.player.setVolume(isMobileCubeMode() ? 0 : 1); })
+        .then(function(){ return isMobileCubeMode() ? target.player.pause() : target.player.play(); })
         .catch(function(){});
     } catch (e) {}
 
