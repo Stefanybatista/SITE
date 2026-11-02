@@ -840,6 +840,19 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 }
 </style>
 
+
+<style id="acompanhe-mesma-tipografia-clientes">
+/* Replica exatamente a tipografia do título Clientes. */
+.instagram-live-about-title {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -1.2px !important;
+  color: #f4f4f4 !important;
+  text-transform: none !important;
+}
+</style>
 </head>
 
 <body data-page="sobre">
@@ -894,7 +907,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 <section class="instagram-live-section" aria-labelledby="instagramLiveTitle">
  <div class="instagram-live-container">
   <div class="instagram-live-heading">
-   <h2 class="instagram-live-about-title" id="instagramLiveTitle">Acompanhe de perto nossos projetos e bastidores.</h2>
+   <h2 class="instagram-live-about-title" id="instagramLiveTitle">Clientes</h2>
    
    
   </div>
@@ -998,7 +1011,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 
 <section class="empresas" id="clientes" aria-label="Clientes e marcas em nosso portfólio">
  <div class="empresas-container">
-  <header class="empresas-header"><div class="empresas-eyebrow">Marcas</div></header>
+  <header class="empresas-header"><div class="empresas-eyebrow">Clientes</div></header>
   <div class="logos-slider" aria-label="Marcas em nosso portfólio"><div class="logos-track"><div class="logos-grupo">
    <div class="logo-cliente"><img src="https://i.postimg.cc/kgGSFYn2/Background-Eraser.png" alt="Crescieperdi" loading="lazy"></div>
    <div class="logo-cliente"><img src="https://i.postimg.cc/Bn2crKG6/Background-Eraser.png" alt="Borelli" loading="lazy"></div>
@@ -2208,7 +2221,66 @@ document.addEventListener('keydown',function(event){
   font-family: 'Poppins', sans-serif !important;
 }
 </style>
+
+<style id="sobre-titulo-bastidores-identico-portfolio">
+/* Título Bastidores em Sobre Nós: replica a tipografia do título Bastidores da página Portfólio. */
+.empresas .empresas-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -1.2px !important;
+  color: #f4f4f4 !important;
+  text-transform: none !important;
+}
+</style>
+
+<style id="titulo-bastidores-igual-portfolio">
+/* Replica no título da seção Sobre Nós a tipografia de .recent-title do Portfólio. */
+.empresas .empresas-header .empresas-eyebrow{font-family:inherit!important;font-size:35px!important;font-weight:700!important;line-height:1.08!important;letter-spacing:-1.2px!important;text-transform:none!important;color:#f4f4f4!important;}
+.empresas .empresas-header .empresas-eyebrow::before{display:none!important;content:none!important;}
+</style>
+
+<style id="instagram-title-copied-clientes-typography">
+#instagramLiveTitle {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -1.2px !important;
+  color: #f4f4f4 !important;
+  text-transform: none !important;
+}
+</style>
+
+
+<style id="clientes-titulo-35px-final">
+/* Ajuste solicitado: somente o título Clientes permanece em 35px também no mobile. */
+.instagram-live-about-title { font-size: 35px !important; }
+</style>
 </body>
+
+<style id="marcas-mesma-tipografia-bastidores">
+/* Página Sobre Nós: título Marcas com a mesma tipografia do título Bastidores no Portfólio. */
+.empresas .empresas-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -1.2px !important;
+  color: #f4f4f4 !important;
+  text-transform: none !important;
+}
+@media (max-width: 650px) {
+  .empresas .empresas-eyebrow { font-size: 35px !important; }
+}
+</style>
+
+<style id="sobre-bastidores-font-size-final">
+/* Única alteração: tamanho do título Bastidores na página Sobre Nós. */
+.empresas .empresas-eyebrow { font-size: 35px !important; }
+@media (max-width: 650px) { .empresas .empresas-eyebrow { font-size: 35px !important; } }
+</style>
 </html>
 <style id="rodape-tipografia-marcas-sem-assinatura">
 /* Rodapé com a mesma tipografia do título Marcas */
@@ -2484,15 +2556,27 @@ document.addEventListener('keydown',function(event){
 }
 </style>
 
-<style id="instagram-title-font-match-portfolio-bastidores">
-#instagramLiveTitle{font-family:'Poppins',sans-serif!important;}
-</style>
-
 <style id="familia-tipografica-titulos-sobre-nos">
 /* Mesma família tipográfica do título Acompanhe de perto nossos projetos e bastidores. */
 .about-story-copy h3,
 .empresas .empresas-eyebrow,
 .site-footer .footer-columns h3 {
   font-family: 'Barlow Condensed', sans-serif !important;
+}
+</style>
+
+<style id="clientes-titulo-42px-igual-referencia">
+/* Único ajuste solicitado: título Clientes da seção de clientes igual ao título da primeira referência. */
+.empresas .empresas-header .empresas-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 42px !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -1.2px !important;
+  color: #f4f4f4 !important;
+  text-transform: none !important;
+}
+@media (max-width: 650px) {
+  .empresas .empresas-header .empresas-eyebrow { font-size: 42px !important; }
 }
 </style>

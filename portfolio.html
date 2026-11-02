@@ -982,30 +982,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
  <div class="story-hint">Use as setas para navegar • ESC para fechar</div>
 </div>
 
-<!-- Narração: o visitante autoriza o áudio uma única vez ao entrar -->
-<!-- Autorização de áudio exclusiva do Portfólio; não utiliza a narração de Sobre Nós. -->
-<div id="permissaoSom" class="permissao-som" role="dialog" aria-modal="true" aria-labelledby="tituloPermissaoSom">
-  <div class="permissao-som-conteudo">
-    <h2 id="tituloPermissaoSom">Ativar som</h2>
-    <p>Os vídeos do nosso portfólio têm áudio.<br><span style="white-space:nowrap">Você permite?</span></p>
-    <div class="permissao-som-botoes">
-      <button id="permitirSom" type="button">Sim</button>
-      <button id="recusarSom" type="button">Não</button>
-    </div>
-  </div>
-</div>
-<script>
-(function(){
-  const modal=document.getElementById('permissaoSom');
-  const sim=document.getElementById('permitirSom');
-  const nao=document.getElementById('recusarSom');
-  if(!modal||!sim||!nao)return;
-  try{if(sessionStorage.getItem('vitorPortfolioSom')==='sim'){modal.hidden=true;modal.style.setProperty('display','none','important');return;}}catch(e){}
-  function fechar(){modal.hidden=true;modal.style.setProperty('display','none','important');modal.setAttribute('aria-hidden','true');}
-  sim.addEventListener('click',function(){try{sessionStorage.setItem('vitorPortfolioSom','sim');}catch(e){}window.vitorPortfolioSomAtivado=true;fechar();});
-  nao.addEventListener('click',function(){try{sessionStorage.setItem('vitorPortfolioSom','nao');}catch(e){}window.vitorPortfolioSomAtivado=false;fechar();});
-})();
-</script>
+
 
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
@@ -2114,6 +2091,48 @@ document.addEventListener('keydown',function(event){
 .site-copyright,
 .site-copyright * {
   font-family: 'Poppins', sans-serif !important;
+}
+</style>
+
+<style id="destaques-mobile-video-sem-zoom-final">
+/* No mobile, mantém o vídeo dos destaques na escala natural, sem ampliação da perspectiva 3D. */
+@media (max-width: 768px) {
+  #storiesViewer .story-main { overflow: hidden !important; }
+  #storiesViewer .story-cube-scene { perspective: 3000px !important; perspective-origin: 50% 50% !important; }
+  #storiesViewer .story-cube-face.front { transform: translateZ(var(--cube-half-depth, 195px)) scale(1) !important; }
+  #storiesViewer .story-cube-face iframe { width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; }
+}
+</style>
+
+
+<style id="destaques-mobile-imersivo">
+/* Mobile: visualização limpa dos destaques, sem controles sobre o vídeo.
+   Desktop permanece com os controles originais. */
+@media (max-width: 767px) {
+  .stories-viewer .story-topbar,
+  .stories-viewer .story-nav-arrow,
+  .stories-viewer .story-hint {
+    display: none !important;
+  }
+  .stories-viewer .story-progress {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 20 !important;
+  }
+  .stories-viewer .story-main {
+    width: 100vw !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+    border-radius: 0 !important;
+  }
+  .stories-viewer .story-video-box,
+  .stories-viewer .story-video-box iframe,
+  .stories-viewer .story-video-box video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
 }
 </style>
 </body>
