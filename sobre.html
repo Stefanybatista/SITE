@@ -1202,7 +1202,8 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
   }
 
   function iniciarNarracao(){
-    audio.volume = 1;
+    // A trilha da página Sobre Nós inicia e permanece em 50% do volume.
+    audio.volume = 0.5;
     audio.muted = false;
     const tentativa = audio.play();
     if (tentativa && typeof tentativa.catch === 'function') tentativa.catch(function(){});
