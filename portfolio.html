@@ -867,6 +867,15 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
   font-weight: 300 !important;
 }
 </style>
+<style id="botoes-permissao-mesma-tipografia-ativar-som">
+/* Sim e Não usam a mesma família e peso tipográfico de “Ativar som”, em desktop e mobile. */
+#permissaoSom .permissao-som-botoes button {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+}
+</style>
+
 </head>
 
 <body data-page="portfolio">
@@ -3565,5 +3574,15 @@ document.addEventListener('keydown',function(event){
   max-width: none !important;
   white-space: nowrap !important;
   overflow-wrap: normal !important;
+}
+</style>
+
+<style id="ajuste-tipografia-menu-mobile-nov-2026">
+/* Ajustes exclusivos para mobile: marca em 15px e links em 13px. */
+@media (max-width: 700px) {
+  .navbar .brand-logo { font-size: 15px !important; }
+  .navbar .nav-links a,
+  .navbar .nav-links a:not(.nav-contact-link),
+  .navbar .nav-links a.nav-contact-link { font-size: 13px !important; }
 }
 </style>

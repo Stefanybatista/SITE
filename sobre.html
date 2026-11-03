@@ -877,6 +877,24 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
   font-weight: 300 !important;
 }
 </style>
+
+<style id="permissao-som-tipografia-mobile-nov-2026">
+/* Ajustes exclusivos para mobile na mensagem de autorização de áudio. */
+@media (max-width: 700px) {
+  #permissaoSom #tituloPermissaoSom { font-size: 15px !important; }
+  #permissaoSom .permissao-som-conteudo p:not(.permissao-som-marca) { font-size: 13px !important; }
+}
+</style>
+
+<style id="botoes-permissao-mesma-tipografia-ativar-som">
+/* Sim e Não usam a mesma família e peso tipográfico de “Ativar som”, em desktop e mobile. */
+#permissaoSom .permissao-som-botoes button {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+}
+</style>
+
 </head>
 
 <body data-page="sobre">
@@ -2782,4 +2800,24 @@ document.addEventListener('keydown',function(event){
 .navbar .nav-links a:focus,
 .navbar .nav-links a:active,
 .navbar .nav-links a[aria-current="page"] { color: #fff !important; }
+</style>
+
+<style id="ajuste-tipografia-menu-mobile-nov-2026">
+/* Ajustes exclusivos para mobile: marca em 15px e links em 13px. */
+@media (max-width: 700px) {
+  .navbar .brand-logo { font-size: 15px !important; }
+  .navbar .nav-links a,
+  .navbar .nav-links a:not(.nav-contact-link),
+  .navbar .nav-links a.nav-contact-link { font-size: 13px !important; }
+}
+</style>
+
+<style id="titulos-historia-mobile-15px-nov-2026">
+/* Somente no mobile: os três títulos da história ficam em 15px. */
+@media screen and (max-width: 768px) {
+  html body .about-story-row .about-story-copy h3,
+  html body .about-story-copy h3 {
+    font-size: 15px !important;
+  }
+}
 </style>
