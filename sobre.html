@@ -853,6 +853,30 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
   text-transform: none !important;
 }
 </style>
+
+<style id="ajuste-tamanho-vitor-matos-ativar-som">
+/* Ajuste solicitado: marca 24px no desktop e 14px no mobile. */
+.navbar .brand-logo { font-size: 24px !important; }
+@media (max-width: 760px) { .navbar .brand-logo { font-size: 14px !important; } }
+/* Texto de autorização de áudio. */
+#permissaoSom #tituloPermissaoSom { font-family: 'Poppins', sans-serif !important; font-size: 24px !important; text-transform: uppercase !important; }
+</style>
+
+<style id="peso-texto-permissao-igual-descricao-2020">
+/* Mesmo peso tipográfico da descrição da seção Comecei do Zero em 2020. */
+#permissaoSom .permissao-som-conteudo p:not(.permissao-som-marca){font-family:'Poppins',sans-serif!important;font-size:15px!important;font-weight:300!important;}
+</style>
+
+
+<style id="menu-tipografia-poppins-light-igual-texto">
+/* Menu com a mesma família e peso leve da descrição e da mensagem de som. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 300 !important;
+}
+</style>
 </head>
 
 <body data-page="sobre">
@@ -907,7 +931,7 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
 <section class="instagram-live-section" aria-labelledby="instagramLiveTitle">
  <div class="instagram-live-container">
   <div class="instagram-live-heading">
-   <h2 class="instagram-live-about-title" id="instagramLiveTitle">Clientes</h2>
+   <h2 class="instagram-live-about-title" id="instagramLiveTitle">Acompanhe de Perto Nossos Projetos e Bastidores.</h2>
    
    
   </div>
@@ -915,9 +939,9 @@ body[data-page="sobre"] .stories-viewer { display:none !important; }
    <div class="instagram-live-profile-card">
     <div class="instagram-live-profile-top">
      <span class="instagram-live-icon" aria-hidden="true">◎</span>
-     <div class="instagram-live-profile-name"><strong>Vitor Matos</strong><span>@euvitorcine</span><small>Diretor criativo e filmmaker</small></div>
+     <div class="instagram-live-profile-name"><strong>VITOR MATOS</strong><span>@euvitorcine</span><small>Diretor criativo e filmmaker</small></div>
     </div>
-    <p class="instagram-live-description">Esse é o Instagram do diretor criativo e filmmaker Vitor Matos. Projetos, processos, momentos e bastidores.</p>
+    <p class="instagram-live-description">Se você quer acompanhar de perto os bastidores e todo o processo de cada produção, siga @euvitorcine.</p>
     <a class="instagram-live-link" href="https://www.instagram.com/euvitorcine/" target="_blank" rel="noopener noreferrer">ABRIR INSTAGRAM <span aria-hidden="true">↗</span></a>
     <p class="instagram-live-note">O perfil e as publicações são fornecidos pelo Instagram. Se o conteúdo incorporado não carregar, use o botão para abrir o perfil.</p>
    </div>
@@ -2283,6 +2307,29 @@ document.addEventListener('keydown',function(event){
 /* Ajuste solicitado: somente o título Clientes permanece em 35px também no mobile. */
 .instagram-live-about-title { font-size: 35px !important; }
 </style>
+
+
+<style id="instagram-nome-e-usuario-tipografia-menu">
+/* Vitor Matos e @euvitorcine usam a mesma família, peso e espaçamento do nome no menu. */
+.instagram-live-profile-name strong,
+.instagram-live-profile-name span {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.4px !important;
+}
+</style>
+
+<style id="footer-text-desktop-15px-b9bec5">
+/* Textos e links do rodapé: 15px e #b9bec5 somente no desktop. */
+@media (min-width: 701px) {
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p,
+  .site-footer .footer-bottom > span {
+    font-size: 15px !important;
+    color: #b9bec5 !important;
+  }
+}
+</style>
 </body>
 
 <style id="marcas-mesma-tipografia-bastidores">
@@ -2604,4 +2651,135 @@ document.addEventListener('keydown',function(event){
 @media (max-width: 650px) {
   .empresas .empresas-header .empresas-eyebrow { font-size: 42px !important; }
 }
+</style>
+
+
+<style id="menu-links-15px-poppins-light-final">
+/* Menu: mesmo peso Poppins Light, com tamanho de 15px em todos os links. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+}
+</style>
+
+
+<style id="titulos-sobre-poppins-medium-igual-vitor-matos">
+/* Os três títulos da história usam a mesma família e peso do nome VITOR MATOS no menu. */
+.about-story-copy h3 {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+</style>
+
+
+<style id="titulos-e-descricoes-sobre-desktop-30-19">
+/* Ajuste exclusivo para desktop nos três blocos da seção Sobre Nós. */
+.about-story-copy h3 { font-size: 30px !important; }
+.about-story-copy p { font-size: 19px !important; }
+/* Preserva os tamanhos mobile anteriores. */
+@media (max-width: 600px) {
+  .about-story-copy h3 { font-size: 35px !important; }
+  .about-story-copy p { font-size: 11px !important; }
+}
+</style>
+
+<style id="acompanhe-clientes-igual-criatividade-poppins-30">
+/* Os títulos Acompanhe... e Clientes seguem exatamente a tipografia do título Criatividade Com Estrutura. */
+#instagramLiveTitle,
+.empresas .empresas-header .empresas-eyebrow {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 2.2px !important;
+  text-transform: none !important;
+}
+@media (max-width: 600px) {
+  #instagramLiveTitle,
+  .empresas .empresas-header .empresas-eyebrow {
+    font-size: 35px !important;
+  }
+}
+</style>
+
+<style id="instagram-textos-brancos-restaurados">
+/* Mantém em branco os textos informativos do perfil do Instagram. */
+.instagram-live-profile-name small,
+.instagram-live-note {
+  color: #fff !important;
+}
+</style>
+
+<style id="instagram-live-description-branca">
+/* Mantém somente a descrição do perfil em branco, sem alterar outros estilos. */
+.instagram-live-description {
+  color: #fff !important;
+}
+</style>
+
+<style id="footer-headings-typography-menu-match">
+/* Somente os títulos das quatro colunas do rodapé usam a tipografia da marca VITOR MATOS no menu. */
+.site-footer .footer-columns h3 {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: .1px !important;
+}
+</style>
+
+<style id="footer-body-typography-about-copy-match">
+/* Links, descrição e direitos autorais do rodapé usam a mesma tipografia da descrição ao lado de Stefany Lima. */
+.site-footer .footer-columns a,
+.site-footer .footer-info p,
+.site-footer .footer-bottom > span {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 300 !important;
+}
+</style>
+
+<style id="footer-copywriter-and-ver-portfolio-final">
+/* Copyright © 2026: 15px em branco. */
+.site-footer .footer-bottom > span {
+  font-size: 15px !important;
+  color: #fff !important;
+}
+/* Títulos das colunas do rodapé permanecem em 15px no desktop. */
+@media (min-width: 701px) {
+  .site-footer .footer-columns h3 { font-size: 15px !important; }
+}
+/* VER PORTFÓLIO usa a tipografia da marca VITOR MATOS no menu. */
+.floating-page-arrows > a,
+.floating-page-arrows > a span {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: .1px !important;
+}
+</style>
+
+<style id="cor-b9bec5-textos-sobre-e-menu">
+/* Cor solicitada para a frase da permissão de áudio; o título/botão Ativar som permanece inalterado. */
+#permissaoSom .permissao-som-conteudo p:not(.permissao-som-marca) { color: #b9bec5 !important; }
+/* Textos descritivos da história, incluindo a apresentação de Stefany Lima. */
+.about-story-copy p { color: #b9bec5 !important; }
+/* Textos informativos do cartão do Instagram. */
+.instagram-live-profile-name small,
+.instagram-live-description,
+.instagram-live-note { color: #b9bec5 !important; }
+/* Links da barra de navegação. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link { color: #b9bec5 !important; }
+</style>
+
+<style id="menu-links-brancos-final">
+/* Links Sobre Nós, Portfólio e Contato em branco; demais cores permanecem inalteradas. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link,
+.navbar .nav-links a:hover,
+.navbar .nav-links a:focus,
+.navbar .nav-links a:active,
+.navbar .nav-links a[aria-current="page"] { color: #fff !important; }
 </style>

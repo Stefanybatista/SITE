@@ -851,6 +851,22 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 }
 </style>
 
+
+<style id="ajuste-tamanho-vitor-matos-ativar-som">
+/* Ajuste solicitado: marca 24px no desktop e 14px no mobile. */
+.navbar .brand-logo { font-size: 24px !important; }
+@media (max-width: 760px) { .navbar .brand-logo { font-size: 14px !important; } }
+</style>
+
+<style id="menu-tipografia-poppins-light-igual-texto">
+/* Menu com a mesma família e peso leve da descrição e da mensagem de som. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 300 !important;
+}
+</style>
 </head>
 
 <body data-page="portfolio">
@@ -890,7 +906,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
    <div class="destaques-subtitle">Confira os melhores momentos por trás das câmeras da cobertura em tempo real.</div>
   </div>
   <div class="destaques-lista" id="destaquesLista">
-   <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuvvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuvvi Beauty" loading="lazy"></span><span class="destaque-nome">NUVVI BEAUTY</span></button>
+   <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuuvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuuvi Beauty" loading="lazy"></span><span class="destaque-nome">NUUVI BEAUTY</span></button>
    <button class="destaque-item" type="button" data-destaque="1" aria-label="Ver destaques Pedro Chen"><span class="destaque-circulo"><img src="camelo-do-china.jpeg" alt="Capa Pedro Chen" loading="lazy"></span><span class="destaque-nome">PEDRO CHEN</span></button>
    <button class="destaque-item" type="button" data-destaque="2" aria-label="Ver destaques Aqua Mart"><span class="destaque-circulo"><img src="aqua-mart.jpeg" alt="Capa Aqua Mart" loading="lazy"></span><span class="destaque-nome">AQUA MART</span></button>
    <button class="destaque-item" type="button" data-destaque="3" aria-label="Ver destaques Layra Mentora"><span class="destaque-circulo"><img src="layra-mentora.png" alt="Capa Layra Mentora" loading="lazy"></span><span class="destaque-nome">LAYRA MENTORA</span></button>
@@ -1048,7 +1064,7 @@ navLinks.querySelectorAll('a').forEach(function(link){
 const projetos=[
  {id:'1099468333',hash:'h=76e43c87b1',title:'Rosa Selvagem',description:'Campanha para a marca Rosa Selvagem com a celebridade Juju Salimeni.'},
  {id:'1189273774',hash:'h=76e43c87b1',title:'Fábrica de Love',description:'Produção da campanha de Natal da confeitaria Fábrica de Love.'},
- {id:'1190608148',hash:'p=0s',title:'Tati Gelateria',description:'Essa produção mostra um pouco da experiência do cliente das lojas Tayti Gelateria.'},
+ {id:'1190608148',hash:'p=0s',title:'Tayti Gelateria',description:'Essa produção mostra um pouco da experiência do cliente das lojas Tayti Gelateria.'},
  {id:'1189273179',hash:'h=76e43c87b1',title:'Borelli Gelateria',description:'Campanha para a gelateria Borelli com a participação da influenciadora Thátilla Coelho.'},
  {id:'1189274042',hash:'p=0s',title:'Fábrica de Love',description:'Conteúdo apresentando a produção da confeitaria Fábrica de Love.'},
  {id:'1189273549',hash:'p=0s',title:'Fábrica de Love — Páscoa',description:'Produção de conteúdo para a Fábrica de Love no período de Páscoa.'},
@@ -1378,40 +1394,39 @@ const videoStoryExemplo='https://player.vimeo.com/video/1189278924?title=0&bylin
 
 const destaquesData=[
  {
-  nome:'NUVVI BEAUTY',
+  nome:'NUUVI BEAUTY',
   capa:'https://i.imgur.com/zIHrBNG.jpeg',
   videos:[
    'https://player.vimeo.com/video/1235823336?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235965796?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235966974?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235968845?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235983792?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242965383?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242966156?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235994838?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242966952?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235998958?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235992571?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235992349?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235991772?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235969549?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235970329?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242967578?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235973392?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235975493?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235976255?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235977109?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235977712?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235985294?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235980410?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235982527?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235983792?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235980410?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235984522?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235986869?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235991772?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235992349?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235992571?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235993096?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
    'https://player.vimeo.com/video/1235993649?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235993897?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235994186?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235994517?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235994838?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235995579?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235996530?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235997252?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1235998958?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
-   'https://player.vimeo.com/video/1236000270?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1'
+   'https://player.vimeo.com/video/1236000270?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235986869?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235985294?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1242968017?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1',
+   'https://player.vimeo.com/video/1235995579?title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1&playsinline=1'
   ]
  },
  {
@@ -1808,6 +1823,8 @@ function abrirDestaque(indice){
  destaqueAtual=indice;
  storyAtual=0;
  storyPausedState=false;
+ /* No desktop, o clique no destaque libera a reprodução inicial com áudio. No mobile, mantém a autorização manual. */
+ audioPermitidoNoDestaque=!window.matchMedia('(max-width: 768px)').matches;
  storyMuted=false;
  storyVolumeAtual=1;
  storyMuteButton.innerHTML=iconeVolume();
@@ -2300,6 +2317,35 @@ document.addEventListener('keydown',function(event){
  /* Mantém o botão original; apenas o fundo preto que cobria o vídeo foi removido. */
  .video-card.is-playing .video-mobile-sound-prompt{position:absolute!important;z-index:30!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;min-width:145px!important;padding:12px 18px!important;border:1px solid rgba(255,255,255,.65)!important;border-radius:30px!important;background:rgba(0,0,0,.78)!important;color:#fff!important;font:600 13px Poppins,sans-serif!important;letter-spacing:.2px!important;box-shadow:0 5px 22px rgba(0,0,0,.35)!important;cursor:pointer!important}
  .video-mobile-sound-icon{font-size:19px!important;line-height:1!important}
+}
+</style>
+
+
+<style id="footer-text-desktop-15px-b9bec5">
+/* Textos e links do rodapé: 15px e #b9bec5 somente no desktop. */
+@media (min-width: 701px) {
+  .site-footer .footer-columns a,
+  .site-footer .footer-info p,
+  .site-footer .footer-bottom > span {
+    font-size: 15px !important;
+    color: #b9bec5 !important;
+  }
+}
+</style>
+
+<style id="titulos-portfolio-poppins-30-igual-comecei-zero">
+/* Títulos do Portfólio com a mesma tipografia de “Comecei do Zero em 2020”. */
+@media (min-width: 651px) {
+  .portfolio-container > .recent-title,
+  .destaques-eyebrow,
+  .portfolio-row-title .row-heading h3 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 30px !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.8px !important;
+    line-height: 1.1 !important;
+    text-transform: none !important;
+  }
 }
 </style>
 
@@ -3352,5 +3398,172 @@ document.addEventListener('keydown',function(event){
   .site-footer .footer-columns a,
   .site-footer .footer-info p { font-size: 9px !important; }
   .site-footer .footer-bottom > span { font-size: 12px !important; }
+}
+</style>
+
+
+<style id="menu-links-15px-poppins-light-final">
+/* Menu: mesmo peso Poppins Light, com tamanho de 15px em todos os links. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+}
+</style>
+
+<style id="footer-headings-typography-menu-match">
+/* Somente os títulos das quatro colunas do rodapé usam a tipografia da marca VITOR MATOS no menu. */
+.site-footer .footer-columns h3 {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: .1px !important;
+}
+</style>
+
+<style id="footer-body-typography-about-copy-match">
+/* Links, descrição e direitos autorais do rodapé usam a mesma tipografia da descrição ao lado de Stefany Lima. */
+.site-footer .footer-columns a,
+.site-footer .footer-info p,
+.site-footer .footer-bottom > span {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 300 !important;
+}
+</style>
+
+<style id="footer-copywriter-and-ver-portfolio-final">
+/* Copyright © 2026: 15px em branco. */
+.site-footer .footer-bottom > span {
+  font-size: 15px !important;
+  color: #fff !important;
+}
+/* Títulos das colunas do rodapé permanecem em 15px no desktop. */
+@media (min-width: 701px) {
+  .site-footer .footer-columns h3 { font-size: 15px !important; }
+}
+/* VER PORTFÓLIO usa a tipografia da marca VITOR MATOS no menu. */
+.floating-page-arrows > a,
+.floating-page-arrows > a span {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: .1px !important;
+}
+</style>
+
+<style id="cor-menu-b9bec5">
+/* Mantém a mesma cor dos links da barra de navegação nas duas páginas. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link { color: #b9bec5 !important; }
+</style>
+
+<style id="menu-links-brancos-final">
+/* Links Sobre Nós, Portfólio e Contato em branco; demais cores permanecem inalteradas. */
+.navbar .nav-links a,
+.navbar .nav-links a:not(.nav-contact-link),
+.navbar .nav-links a.nav-contact-link,
+.navbar .nav-links a:hover,
+.navbar .nav-links a:focus,
+.navbar .nav-links a:active,
+.navbar .nav-links a[aria-current="page"] { color: #fff !important; }
+</style>
+
+<style id="portfolio-navbar-border-and-brand-match-sobre-final">
+/* Portfólio: borda sutil igual à barra Sobre Nós. */
+.navbar,
+.navbar.scrolled {
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-right: 1px solid rgba(255,255,255,.12) !important;
+  border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  outline: 0 !important;
+}
+/* VITOR MATOS: mesma tipografia, peso e espaçamento usados em Sobre Nós. */
+.navbar .brand-logo {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  letter-spacing: -.4px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 760px) {
+  .navbar .brand-logo { font-size: 14px !important; }
+}
+</style>
+
+
+<style id="portfolio-menu-right-edge-only-at-top">
+/* Portfólio: filete branco discreto somente na lateral direita e apenas no topo da página. */
+.navbar:not(.scrolled) {
+  border: 0 !important;
+  border-right: 1px solid rgba(255, 255, 255, .14) !important;
+  outline: 0 !important;
+}
+.navbar.scrolled {
+  border: 0 !important;
+  outline: 0 !important;
+}
+</style>
+
+
+<style id="portfolio-headings-match-menu-vitor-matos-final">
+/* Títulos do Portfólio: mesma tipografia da marca VITOR MATOS no menu, com 30px no desktop. */
+@media (min-width: 651px) {
+  body .portfolio-container h1.recent-title,
+  body #experiencias .destaques-header .destaques-eyebrow,
+  body .portfolio-row-title .row-heading h3 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 30px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.2px !important;
+    line-height: 1.1 !important;
+    text-transform: none !important;
+  }
+}
+</style>
+
+<style id="portfolio-descriptions-match-stefany-about-copy">
+/* Descrições das seções do Portfólio usam a mesma tipografia da descrição ao lado de Stefany Lima. */
+.portfolio-container > .recent-subtitle,
+#experiencias .destaques-subtitle,
+.portfolio-row-title .row-subtitle,
+.portfolio-row-title.trabalhos-mobile-title .row-subtitle {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 300 !important;
+  letter-spacing: normal !important;
+  font-style: normal !important;
+  color: #b9bec5 !important;
+  text-transform: none !important;
+}
+@media (min-width: 651px) {
+  .portfolio-container > .recent-subtitle,
+  #experiencias .destaques-subtitle,
+  .portfolio-row-title .row-subtitle,
+  .portfolio-row-title.trabalhos-mobile-title .row-subtitle {
+    font-size: 19px !important;
+  }
+}
+</style>
+
+<style id="portfolio-video-card-titles-match-section-headings">
+/* Somente os nomes dos vídeos e dos destaques usam a tipografia dos títulos de seção. */
+.video-name,
+.destaque-nome {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.2px !important;
+}
+</style>
+
+
+<style id="destaques-nomes-em-linha">
+/* Mantém os nomes dos destaques em uma única linha, sem alterar os demais elementos. */
+#experiencias .destaque-nome {
+  display: inline-block !important;
+  width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
 }
 </style>
