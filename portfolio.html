@@ -3878,3 +3878,63 @@ document.addEventListener('keydown',function(event){
   }
 }
 </style>
+
+<style id="destaques-mobile-duas-fileiras-maiores">
+/* Somente no mobile: três destaques na primeira fileira e dois centralizados na segunda. */
+@media screen and (max-width: 650px) {
+  body #experiencias .destaques-lista {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    justify-items: center !important;
+    column-gap: 0 !important;
+    row-gap: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+  body #experiencias .destaque-item {
+    grid-column: span 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 9px !important;
+    box-sizing: border-box !important;
+  }
+  body #experiencias .destaque-item:nth-child(4) { grid-column: 2 / span 2 !important; }
+  body #experiencias .destaque-item:nth-child(5) { grid-column: 4 / span 2 !important; }
+  body #experiencias .destaque-circulo {
+    width: clamp(68px, 20vw, 82px) !important;
+    height: clamp(68px, 20vw, 82px) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+    padding: 2px !important;
+    box-sizing: border-box !important;
+  }
+  body #experiencias .destaque-nome {
+    display: block !important;
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    white-space: nowrap !important;
+    text-overflow: clip !important;
+    text-align: center !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: .2px !important;
+    line-height: 1.3 !important;
+    transform: none !important;
+  }
+}
+</style>
