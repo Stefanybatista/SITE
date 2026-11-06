@@ -573,6 +573,13 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
 .destaques-eyebrow{font-size:clamp(30px,3.3vw,46px)!important;line-height:1.08!important;font-weight:700!important;letter-spacing:-1.2px!important;color:#f4f4f4!important}
 .destaques-subtitle{font-size:14px!important;color:#8c8c91!important;font-style:italic!important;letter-spacing:0!important}
 </style>
+<style id="quebra-descricao-cobertura-mobile">
+@media (max-width: 768px) {
+  .destaques-subtitle { padding-left: 0 !important; width: calc(100% + 17px) !important; }
+  .destaques-subtitle-linha-1 { display: block !important; white-space: nowrap !important; }
+  .destaques-subtitle-linha-2 { display: block !important; }
+}
+</style>
 <style>
 /* Ajustes solicitados para a seção Bastidores */
 .portfolio{padding-top:145px!important}
@@ -912,7 +919,7 @@ body[data-page="portfolio"] .floating-page-arrows{display:none!important;}
  <div class="destaques-container">
   <div class="destaques-header">
    <div class="destaques-eyebrow">Cobertura em Tempo Real</div>
-   <div class="destaques-subtitle">Confira os melhores momentos por trás das câmeras da cobertura em tempo real.</div>
+   <div class="destaques-subtitle"><span class="destaques-subtitle-linha-1">Confira os melhores momentos por trás das câmeras</span><span class="destaques-subtitle-linha-2">da cobertura em tempo real.</span></div>
   </div>
   <div class="destaques-lista" id="destaquesLista">
    <button class="destaque-item" type="button" data-destaque="0" aria-label="Ver destaques Nuuvi Beauty"><span class="destaque-circulo"><img src="https://i.imgur.com/zIHrBNG.jpeg" alt="Capa Nuuvi Beauty" loading="lazy"></span><span class="destaque-nome">NUUVI BEAUTY</span></button>
