@@ -3879,6 +3879,27 @@ document.addEventListener('keydown',function(event){
 }
 </style>
 
+<style id="titulo-destaque-aberto-mesma-tipografia-cobertura-mobile">
+/* Somente no mobile: o título dentro do destaque aberto usa a mesma tipografia de Cobertura em Tempo Real. */
+@media screen and (max-width: 650px) {
+  body .story-heading strong,
+  body #storyTitle {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.1px !important;
+    text-transform: none !important;
+  }
+  /* Foto de capa no topo do destaque: ligeiramente maior, sem exagero. */
+  body .story-topbar .story-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+}
+</style>
+
 <style id="destaques-mobile-duas-fileiras-maiores">
 /* Somente no mobile: três destaques na primeira fileira e dois centralizados na segunda. */
 @media screen and (max-width: 650px) {
